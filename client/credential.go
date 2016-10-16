@@ -6,8 +6,12 @@ import (
 	"bytes"
 )
 
-func (c *Client) ListInstitutions() ([]*models.Institution, error) {
-	apiEndpointUrl := c.ApiURL + "/institutions"
+func (c * Client) ListCredentials(institutionCode string) ([]*models.Credential, error) {
+	if institutionCode == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/institutions/" + institutionCode + "/credentials"
 	response, err := Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
@@ -24,9 +28,9 @@ func (c *Client) ListInstitutions() ([]*models.Institution, error) {
 	response.Body.Close()
 
 	if response.StatusCode == 200 {
-		institutionResponse := &models.InstitutionsResponse{}
-		json.Unmarshal([]byte(bufferStr), institutionResponse)
-		return institutionResponse.Institutions, nil
+		credentialResponse := &models.CredentialsResponse{}
+		json.Unmarshal([]byte(bufferStr), credentialResponse)
+		return credentialResponse.Credentials, nil
 	}
 
 	return nil, makeGenericError(response.StatusCode, bufferStr)
