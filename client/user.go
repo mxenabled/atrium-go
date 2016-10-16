@@ -3,30 +3,27 @@ package client
 import (
 	"github.com/mxenabled/atrium-go/models"
 	"bytes"
-	"strconv"
 	"encoding/json"
 	"net/http"
-	"errors"
 )
 
 func parseUserResponse(response *http.Response) (*models.User, error) {
+	if err := parseResponseErrors(response.StatusCode); err != nil {
+		return nil, err
+	}
+
 	buffer := new(bytes.Buffer)
 	buffer.ReadFrom(response.Body)
 	bufferStr := buffer.String()
 	response.Body.Close()
 
-	switch response.StatusCode {
-	case 200:
+	if response.StatusCode == 200  {
 		userResponse := &models.UserResponse{}
 		json.Unmarshal([]byte(bufferStr), userResponse)
 		return userResponse.User, nil
-	case 422:
-		return nil, UserLimitExceeded
-	case 509:
-		return nil, RateLimitExceeded
 	}
 
-	return nil, errors.New("Received response " + strconv.Itoa(response.StatusCode) + " - " + bufferStr)
+	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
 func (c *Client) CreateUser(user *models.User) (*models.User, error) {
