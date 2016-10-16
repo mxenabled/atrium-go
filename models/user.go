@@ -1,15 +1,15 @@
 package models
 
 type UserAttributes struct {
-	Metadata string `json:"metadata,omitempty"`
-	IsDisabled bool `json:"is_disabled,omitempty"`
+	Metadata   string `json:"metadata,omitempty"`
+	IsDisabled bool   `json:"is_disabled,omitempty"`
 	Identifier string `json:"identifier,omitempty"`
 }
 
 type User struct {
-	Guid string `json:"guid,omitempty"`
-	Metadata string `json:"metadata,omitempty"`
-	IsDisabled bool `json:"is_disabled,omitempty"`
+	Guid       string `json:"guid,omitempty"`
+	Metadata   string `json:"metadata,omitempty"`
+	IsDisabled bool   `json:"is_disabled,omitempty"`
 	Identifier string `json:"identifier,omitempty"`
 }
 
@@ -24,7 +24,7 @@ type UserRequest struct {
 func NewUserRequest(user *User) *UserRequest {
 	return &UserRequest{
 		UserAttributes: &UserAttributes{
-			Metadata: user.Metadata,
+			Metadata:   user.Metadata,
 			Identifier: user.Identifier,
 			IsDisabled: user.IsDisabled,
 		},

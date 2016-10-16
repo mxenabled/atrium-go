@@ -1,9 +1,9 @@
 package client
 
 import (
-	"github.com/mxenabled/atrium-go/models"
 	"bytes"
 	"encoding/json"
+	"github.com/mxenabled/atrium-go/models"
 	"net/http"
 )
 
@@ -17,7 +17,7 @@ func parseUserResponse(response *http.Response) (*models.User, error) {
 	bufferStr := buffer.String()
 	response.Body.Close()
 
-	if response.StatusCode == 200  {
+	if response.StatusCode == 200 {
 		userResponse := &models.UserResponse{}
 		json.Unmarshal([]byte(bufferStr), userResponse)
 		return userResponse.User, nil
@@ -65,7 +65,6 @@ func (c *Client) UpdateUser(user *models.User) (*models.User, error) {
 
 	return parseUserResponse(response)
 }
-
 
 func (c *Client) GetUser(userGuid string) (*models.User, error) {
 	if userGuid == "" {

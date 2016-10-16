@@ -1,9 +1,9 @@
 package client
 
 import (
-	"github.com/mxenabled/atrium-go/models"
-	"encoding/json"
 	"bytes"
+	"encoding/json"
+	"github.com/mxenabled/atrium-go/models"
 )
 
 func (c *Client) ListInstitutions() ([]*models.Institution, error) {

@@ -8,14 +8,14 @@ import (
 var (
 	UserLimitExceeded = errors.New("You have exceeded the maximum amount of users for your account.")
 	RateLimitExceeded = errors.New("The server is under load, please try again later.")
-	MissingGuid = errors.New("A guid is missing.")
-	NotFound = errors.New("Resource was not found.")
+	MissingGuid       = errors.New("A guid is missing.")
+	NotFound          = errors.New("Resource was not found.")
 )
 
 type Client struct {
-	ApiKey string
+	ApiKey   string
 	ClientId string
-	ApiURL string
+	ApiURL   string
 }
 
 func (c *Client) defaultHeaders() *Headers {

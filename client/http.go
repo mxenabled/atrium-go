@@ -1,14 +1,14 @@
 package client
 
 import (
+	"io"
 	"net/http"
 	"strings"
-	"io"
 )
 
 type Headers map[string]string
 
-func request(method, url string, body io.Reader,  headers *Headers) (*http.Response, error) {
+func request(method, url string, body io.Reader, headers *Headers) (*http.Response, error) {
 	request, err := http.NewRequest(method, url, body)
 	if err != nil {
 		return nil, err

@@ -1,12 +1,12 @@
 package client
 
 import (
-	"github.com/mxenabled/atrium-go/models"
-	"encoding/json"
 	"bytes"
+	"encoding/json"
+	"github.com/mxenabled/atrium-go/models"
 )
 
-func (c * Client) ListCredentials(institutionCode string) ([]*models.Credential, error) {
+func (c *Client) ListCredentials(institutionCode string) ([]*models.Credential, error) {
 	if institutionCode == "" {
 		return nil, MissingGuid
 	}
