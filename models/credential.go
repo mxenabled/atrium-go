@@ -7,7 +7,7 @@ type Credential struct {
 	Type      string `json:"type,omitempty"`
 
 	// Only for creating
-	Value      string `json:"value,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type CredentialsResponse struct {

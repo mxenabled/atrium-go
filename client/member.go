@@ -1,10 +1,10 @@
 package client
 
 import (
+	"bytes"
+	"encoding/json"
 	"github.com/mxenabled/atrium-go/models"
 	"net/http"
-	"encoding/json"
-	"bytes"
 )
 
 func parseMembersResponse(response *http.Response) ([]*models.Member, error) {

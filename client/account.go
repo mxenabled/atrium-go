@@ -1,9 +1,9 @@
 package client
 
 import (
-	"github.com/mxenabled/atrium-go/models"
 	"bytes"
 	"encoding/json"
+	"github.com/mxenabled/atrium-go/models"
 )
 
 func (c *Client) ListAccounts(userGuid string) ([]*models.Account, error) {

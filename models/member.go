@@ -7,11 +7,11 @@ type Option struct {
 
 type Challenge struct {
 	FieldName string `json:"field_name,omitempty"`
-	Guid string `json:"guid,omitempty"`
-	Label string `json:"label,omitempty"`
+	Guid      string `json:"guid,omitempty"`
+	Label     string `json:"label,omitempty"`
 	//TODO: What is this? - Optional string `json:"optional,omitempty"`
 	Options []*Option `json:"options,omitempty"`
-	Type string `json:"type,omitempty"`
+	Type    string    `json:"type,omitempty"`
 
 	Value string `json:"value,omitempty"`
 }
@@ -21,22 +21,22 @@ type ChallengesResponse struct {
 }
 
 type Member struct {
-	AggregatedAt string `json:"aggregated_at,omitempty"`
-	Guid string `json:"guid,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	InstitutionCode string `json:"institution_code,omitempty"`
-	Metadata string `json:"metadata,omitempty"`
-	Name string `json:"name,omitempty"`
-	Status string `json:"status,omitempty"`
+	AggregatedAt             string `json:"aggregated_at,omitempty"`
+	Guid                     string `json:"guid,omitempty"`
+	Identifier               string `json:"identifier,omitempty"`
+	InstitutionCode          string `json:"institution_code,omitempty"`
+	Metadata                 string `json:"metadata,omitempty"`
+	Name                     string `json:"name,omitempty"`
+	Status                   string `json:"status,omitempty"`
 	SuccessfullyAggregatedAt string `json:"successfully_aggregated_at,omitempty"`
-	UserGuid string `json:"user_guid,omitempty"`
+	UserGuid                 string `json:"user_guid,omitempty"`
 }
 
 type MemberCreate struct {
-	Credentials []*Credential `json:"credentials"`
-	Identifier string `json:"identifier,omitempty"`
-	InstitutionCode string `json:"institution_code,omitempty"`
-	Metadata string `json:"metadata,omitempty"`
+	Credentials     []*Credential `json:"credentials"`
+	Identifier      string        `json:"identifier,omitempty"`
+	InstitutionCode string        `json:"institution_code,omitempty"`
+	Metadata        string        `json:"metadata,omitempty"`
 }
 
 type MemberCreateRequest struct {
@@ -44,20 +44,20 @@ type MemberCreateRequest struct {
 }
 
 func NewMemberCreateRequest(member *Member, credentials []*Credential) *MemberCreateRequest {
-	return &MemberCreateRequest {
+	return &MemberCreateRequest{
 		Member: &MemberCreate{
-			Credentials: credentials,
-			Identifier: member.Identifier,
+			Credentials:     credentials,
+			Identifier:      member.Identifier,
 			InstitutionCode: member.InstitutionCode,
-			Metadata: member.Metadata,
+			Metadata:        member.Metadata,
 		},
 	}
 }
 
 type MemberUpdate struct {
 	Credentials []*Credential `json:"credentials,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	Metadata string `json:"metadata,omitempty"`
+	Identifier  string        `json:"identifier,omitempty"`
+	Metadata    string        `json:"metadata,omitempty"`
 }
 
 type MemberUpdateRequest struct {
@@ -66,10 +66,10 @@ type MemberUpdateRequest struct {
 
 func NewMemberUpdateRequest(member *Member, credentials []*Credential) *MemberUpdateRequest {
 	return &MemberUpdateRequest{
-		Member: &MemberUpdate {
+		Member: &MemberUpdate{
 			Credentials: credentials,
-			Identifier: member.Identifier,
-			Metadata: member.Metadata,
+			Identifier:  member.Identifier,
+			Metadata:    member.Metadata,
 		},
 	}
 }
@@ -83,7 +83,7 @@ type MemberResumeRequest struct {
 }
 
 func NewMemberResumeRequest(challenges []*Challenge) *MemberResumeRequest {
-	return &MemberResumeRequest {
+	return &MemberResumeRequest{
 		&MemberResume{
 			Challenges: challenges,
 		},
