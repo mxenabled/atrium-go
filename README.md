@@ -13,6 +13,8 @@ $ go get -u github.com/mxenabled/atrium-go
 
 #### Example
 
+Check out the examples directory of this repo for more working examples.
+
 ```go
 package main
 
