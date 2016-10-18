@@ -31,7 +31,7 @@ func main() {
 
     newUser := &models.User{
         Identifier: "my_unique_id",
-        Metadata: "info to store on the user",
+        Metadata:   "info to store on the user",
     }
 
     user, _ := client.CreateUser(newUser)
@@ -39,6 +39,8 @@ func main() {
 
     err := client.DeleteUser(user)
     if err != nil {
+        fmt.Println("Error deleting user:", err)
+    } else {
         fmt.Println("User", user.Guid, "was deleted")
     }
 }
