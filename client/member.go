@@ -227,3 +227,32 @@ func (c *Client) ResumeMember(userGuid, memberGuid string, challenges []*models.
 
 	return parseMemberResponse(response)
 }
+
+func (c *Client) ListMemberTransations(userGuid, memberGuid string) ([]*models.Transaction, error) {
+	if userGuid == "" || memberGuid == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/transactions"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	if err := parseResponseErrors(response.StatusCode); err != nil {
+		return nil, err
+	}
+
+	buffer := new(bytes.Buffer)
+	buffer.ReadFrom(response.Body)
+	bufferStr := buffer.String()
+
+	if response.StatusCode == 200 {
+		transactionsResponse := &models.TransactionsResponse{}
+		json.Unmarshal([]byte(bufferStr), transactionsResponse)
+		return transactionsResponse.Transactions, nil
+	}
+
+	return nil, makeGenericError(response.StatusCode, bufferStr)
+}
