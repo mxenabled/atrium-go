@@ -88,7 +88,7 @@ func (c *Client) DeleteUser(userGuid string) error {
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := Delete(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return err
 	}
@@ -97,6 +97,7 @@ func (c *Client) DeleteUser(userGuid string) error {
 	if response.StatusCode == 204 {
 		return nil
 	}
+
 	_, err = parseUserResponse(response)
 	return err
 }
