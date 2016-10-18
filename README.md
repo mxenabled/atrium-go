@@ -1,7 +1,7 @@
 atrium-go
 =========
 
-This is wrapper for the [MX Atrium API](https://atrium.mx.com/).
+This is a wrapper for the [MX Atrium API](https://atrium.mx.com/).
 
 #### Installation
 
