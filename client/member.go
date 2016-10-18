@@ -61,7 +61,7 @@ func parseMemberResponse(response *http.Response) (*models.Member, error) {
 }
 
 func (c *Client) GetMember(userGuid, memberGuid string) (*models.Member, error) {
-	if userGuid == "" {
+	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}
 
@@ -76,7 +76,7 @@ func (c *Client) GetMember(userGuid, memberGuid string) (*models.Member, error) 
 }
 
 func (c *Client) GetMemberStatus(userGuid, memberGuid string) (*models.Member, error) {
-	if userGuid == "" {
+	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}
 
@@ -90,8 +90,33 @@ func (c *Client) GetMemberStatus(userGuid, memberGuid string) (*models.Member, e
 	return parseMemberResponse(response)
 }
 
+func (c *Client) GetMemberChallenges(userGuid, memberGuid string) ([]*models.Challenge, error) {
+	if userGuid == "" || memberGuid == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/challenges"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+
+	buffer := new(bytes.Buffer)
+	buffer.ReadFrom(response.Body)
+	bufferStr := buffer.String()
+	response.Body.Close()
+
+	if response.StatusCode == 200 {
+		challengesResponse := &models.ChallengesResponse{}
+		json.Unmarshal([]byte(bufferStr), challengesResponse)
+		return challengesResponse.Challenges, nil
+	}
+
+	return nil, makeGenericError(response.StatusCode, bufferStr)
+}
+
 func (c *Client) CreateMember(userGuid string, member *models.Member, credentials []*models.Credential) (*models.Member, error) {
-	if userGuid == "" {
+	if userGuid == "" || len(credentials) == 0 {
 		return nil, MissingGuid
 	}
 
@@ -181,10 +206,24 @@ func (c *Client) AggregateMember(userGuid string, memberGuid string) (*models.Me
 	return parseMemberResponse(response)
 }
 
-func (c *Client) ResumeMember(userGuid string, member *models.Member, challenges []*models.Challenge) (*models.Member, error) {
-	if userGuid == "" {
+func (c *Client) ResumeMember(userGuid, memberGuid string, challenges []*models.Challenge) (*models.Member, error) {
+	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}
 
-	return nil, nil
+	memberResumeRequest := models.NewMemberResumeRequest(challenges)
+	jsonStr, err := json.Marshal(memberResumeRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/resume"
+	response, err := Put(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+
+	defer response.Body.Close()
+
+	return parseMemberResponse(response)
 }

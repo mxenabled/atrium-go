@@ -11,7 +11,13 @@ type Challenge struct {
 	Label string `json:"label,omitempty"`
 	//TODO: What is this? - Optional string `json:"optional,omitempty"`
 	Options []*Option `json:"options,omitempty"`
-	Type string
+	Type string `json:"type,omitempty"`
+
+	Value string `json:"value,omitempty"`
+}
+
+type ChallengesResponse struct {
+	Challenges []*Challenge `json:"challenges"`
 }
 
 type Member struct {
@@ -68,8 +74,20 @@ func NewMemberUpdateRequest(member *Member, credentials []*Credential) *MemberUp
 	}
 }
 
+type MemberResume struct {
+	Challenges []*Challenge `json:"challenges"`
+}
+
 type MemberResumeRequest struct {
-	Challenges []*Challenge
+	Member *MemberResume `json:"member"`
+}
+
+func NewMemberResumeRequest(challenges []*Challenge) *MemberResumeRequest {
+	return &MemberResumeRequest {
+		&MemberResume{
+			Challenges: challenges,
+		},
+	}
 }
 
 type MemberResponse struct {
