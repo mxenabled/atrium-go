@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"encoding/json"
 	"bytes"
-	"fmt"
 )
 
 func parseMembersResponse(response *http.Response) ([]*models.Member, error) {
@@ -76,6 +75,21 @@ func (c *Client) GetMember(userGuid, memberGuid string) (*models.Member, error) 
 	return parseMemberResponse(response)
 }
 
+func (c *Client) GetMemberStatus(userGuid, memberGuid string) (*models.Member, error) {
+	if userGuid == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/status"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	return parseMemberResponse(response)
+}
+
 func (c *Client) CreateMember(userGuid string, member *models.Member, credentials []*models.Credential) (*models.Member, error) {
 	if userGuid == "" {
 		return nil, MissingGuid
@@ -86,8 +100,6 @@ func (c *Client) CreateMember(userGuid string, member *models.Member, credential
 	if err != nil {
 		return nil, err
 	}
-
-	fmt.Println(string(jsonStr))
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members"
 	response, err := Post(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
@@ -149,11 +161,24 @@ func (c *Client) DeleteMember(userGuid string, memberGuid string) error {
 }
 
 func (c *Client) AggregateMember(userGuid string, memberGuid string) (*models.Member, error) {
-	if userGuid == "" {
+	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}
 
-	return nil, nil
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/aggregate"
+	response, err := Post(apiEndpointUrl, "", c.defaultHeaders())
+	defer response.Body.Close()
+	if err != nil {
+		return nil, err
+	}
+
+	if err = parseResponseErrors(response.StatusCode); err != nil {
+		return nil, err
+	}
+
+	defer response.Body.Close()
+
+	return parseMemberResponse(response)
 }
 
 func (c *Client) ResumeMember(userGuid string, member *models.Member, challenges []*models.Challenge) (*models.Member, error) {
