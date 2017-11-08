@@ -9,3 +9,7 @@ type Institution struct {
 type InstitutionsResponse struct {
 	Institutions []*Institution `json"institutions"`
 }
+
+type InstitutionResponse struct {
+	Institution *Institution `json:"institution"`
+}

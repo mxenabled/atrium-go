@@ -228,12 +228,50 @@ func (c *Client) ResumeMember(userGuid, memberGuid string, challenges []*models.
 	return parseMemberResponse(response)
 }
 
-func (c *Client) ListMemberTransations(userGuid, memberGuid string) ([]*models.Transaction, error) {
+func (c *Client) ListMemberAccounts(userGuid, memberGuid string) ([]*models.Account, error) {
 	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}
 
-	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/transactions"
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/accounts"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	if err := parseResponseErrors(response.StatusCode); err != nil {
+		return nil, err
+	}
+
+	buffer := new(bytes.Buffer)
+	buffer.ReadFrom(response.Body)
+	bufferStr := buffer.String()
+
+	if response.StatusCode == 200 {
+		accountsResponse := &models.AccountsResponse{}
+		json.Unmarshal([]byte(bufferStr), accountsResponse)
+		return accountsResponse.Accounts, nil
+	}
+
+	return nil, makeGenericError(response.StatusCode, bufferStr)
+}
+
+func (c *Client) ListMemberTransactions(userGuid, memberGuid, fromDate, toDate string) ([]*models.Transaction, error) {
+	if userGuid == "" || memberGuid == "" {
+		return nil, MissingGuid
+	}
+
+	var params = "?"
+	if fromDate != "" {
+		params += "from_date=" + fromDate + "&"
+	}
+	if toDate != "" {
+		params += "to_date=" + toDate + "&";
+	}
+	params = params[:len(params)-1]
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/transactions" + params
 	response, err := Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
@@ -252,6 +290,36 @@ func (c *Client) ListMemberTransations(userGuid, memberGuid string) ([]*models.T
 		transactionsResponse := &models.TransactionsResponse{}
 		json.Unmarshal([]byte(bufferStr), transactionsResponse)
 		return transactionsResponse.Transactions, nil
+	}
+
+	return nil, makeGenericError(response.StatusCode, bufferStr)
+}
+
+func (c *Client) ListMemberCredentials(userGuid, memberGuid string) ([]*models.Credential, error) {
+	if userGuid == "" || memberGuid == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/credentials"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	if err := parseResponseErrors(response.StatusCode); err != nil {
+		return nil, err
+	}
+
+	buffer := new(bytes.Buffer)
+	buffer.ReadFrom(response.Body)
+	bufferStr := buffer.String()
+	response.Body.Close()
+
+	if response.StatusCode == 200 {
+		credentialResponse := &models.CredentialsResponse{}
+		json.Unmarshal([]byte(bufferStr), credentialResponse)
+		return credentialResponse.Credentials, nil
 	}
 
 	return nil, makeGenericError(response.StatusCode, bufferStr)

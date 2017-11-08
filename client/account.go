@@ -60,12 +60,21 @@ func (c *Client) GetAccount(userGuid, accountGuid string) (*models.Account, erro
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) ListAccountTransations(userGuid, accountGuid string) ([]*models.Transaction, error) {
+func (c *Client) ListAccountTransactions(userGuid, accountGuid, fromDate, toDate string) ([]*models.Transaction, error) {
 	if userGuid == "" || accountGuid == "" {
 		return nil, MissingGuid
 	}
 
-	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountGuid + "/transactions"
+	var params = "?"
+	if fromDate != "" {
+		params += "from_date=" + fromDate + "&"
+	}
+	if toDate != "" {
+		params += "to_date=" + toDate + "&";
+	}
+	params = params[:len(params)-1]
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountGuid + "/transactions" + params
 	response, err := Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err

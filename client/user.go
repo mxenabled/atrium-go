@@ -101,3 +101,29 @@ func (c *Client) DeleteUser(userGuid string) error {
 	_, err = parseUserResponse(response)
 	return err
 }
+
+func (c *Client) ListUsers() ([]*models.User, error) {
+	apiEndpointUrl := c.ApiURL + "/users"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	if err := parseResponseErrors(response.StatusCode); err != nil {
+		return nil, err
+	}
+
+	buffer := new(bytes.Buffer)
+	buffer.ReadFrom(response.Body)
+	bufferStr := buffer.String()
+	response.Body.Close()
+
+	if response.StatusCode == 200 {
+		userResponse := &models.UsersResponse{}
+		json.Unmarshal([]byte(bufferStr), userResponse)
+		return userResponse.Users, nil
+	}
+
+	return nil, makeGenericError(response.StatusCode, bufferStr)
+}
