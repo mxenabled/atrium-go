@@ -3,6 +3,7 @@ package client
 import (
 	"io"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -41,4 +42,19 @@ func Put(url, body string, headers *Headers) (*http.Response, error) {
 
 func Delete(url string, headers *Headers) (*http.Response, error) {
 	return request("DELETE", url, nil, headers)
+}
+
+func buildparams(name, fromDate, toDate string) (string) {
+	params := url.Values{}
+	if len(name) > 0 {
+  	params.Add("name", name)
+	}
+	if len(fromDate) > 0 {
+		params.Add("from_date", fromDate)
+	}
+	if len(toDate) > 0 {
+		params.Add("to_date", toDate)
+	}
+	paramsStr := "?" + params.Encode()
+	return paramsStr
 }
