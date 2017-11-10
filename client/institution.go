@@ -27,14 +27,8 @@ func parseInstitutionResponse(response *http.Response) (*models.Institution, err
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) ListInstitutions(Name string) ([]*models.Institution, error) {
-	var param = "?"
-	if Name != "" {
-		param += "name=" + Name + "&"
-	}
-	param = param[:len(param)-1]
-
-	apiEndpointUrl := c.ApiURL + "/institutions" + param
+func (c *Client) ListInstitutions(name string) ([]*models.Institution, error) {
+	apiEndpointUrl := c.ApiURL + "/institutions" + buildparams(name, "", "")
 	response, err := Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
@@ -59,12 +53,12 @@ func (c *Client) ListInstitutions(Name string) ([]*models.Institution, error) {
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) GetInstitution(Code string) (*models.Institution, error) {
-	if Code == "" {
+func (c *Client) GetInstitution(code string) (*models.Institution, error) {
+	if code == "" {
 		return nil, MissingGuid
 	}
 
-	apiEndpointUrl := c.ApiURL + "/institutions/" + Code
+	apiEndpointUrl := c.ApiURL + "/institutions/" + code
 	response, err := Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err

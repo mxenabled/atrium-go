@@ -26,21 +26,16 @@ func parseTransactionResponse(response *http.Response) (*models.Transaction, err
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) ListTransactions(userGuid, fromDate, toDate string) ([]*models.Transaction, error) {
+func (c *Client) ListTransactions(userGuid string) ([]*models.Transaction, error) {
+	return c.ListTransactionsWithDateRange(userGuid, "", "")
+}
+
+func (c *Client) ListTransactionsWithDateRange(userGuid, fromDate, toDate string) ([]*models.Transaction, error) {
 	if userGuid == "" {
 		return nil, MissingGuid
 	}
 
-	var params = "?"
-	if fromDate != "" {
-		params += "from_date=" + fromDate + "&"
-	}
-	if toDate != "" {
-		params += "to_date=" + toDate + "&";
-	}
-	params = params[:len(params)-1]
-
-	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/transactions" + params
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/transactions" + buildparams("", fromDate, toDate)
 	response, err := Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err

@@ -257,21 +257,16 @@ func (c *Client) ListMemberAccounts(userGuid, memberGuid string) ([]*models.Acco
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) ListMemberTransactions(userGuid, memberGuid, fromDate, toDate string) ([]*models.Transaction, error) {
+func (c *Client) ListMemberTransactions(userGuid, memberGuid string) ([]*models.Transaction, error) {
+	return c.ListMemberTransactionsWithDateRange(userGuid, memberGuid, "", "")
+}
+
+func (c *Client) ListMemberTransactionsWithDateRange(userGuid, memberGuid, fromDate, toDate string) ([]*models.Transaction, error) {
 	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}
 
-	var params = "?"
-	if fromDate != "" {
-		params += "from_date=" + fromDate + "&"
-	}
-	if toDate != "" {
-		params += "to_date=" + toDate + "&";
-	}
-	params = params[:len(params)-1]
-
-	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/transactions" + params
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/transactions" + buildparams("", fromDate, toDate)
 	response, err := Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
