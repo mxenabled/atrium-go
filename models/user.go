@@ -32,5 +32,5 @@ func NewUserRequest(user *User) *UserRequest {
 }
 
 type UsersResponse struct {
-	Users []*User `json"users"`
+	Users []*User `json:"users"`
 }

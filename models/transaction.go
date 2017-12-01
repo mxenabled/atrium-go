@@ -31,9 +31,9 @@ type Transaction struct {
 }
 
 type TransactionResponse struct {
-	Transaction *Transaction `json"transaction"`
+	Transaction *Transaction `json:"transaction"`
 }
 
 type TransactionsResponse struct {
-	Transactions []*Transaction `json"transactions"`
+	Transactions []*Transaction `json:"transactions"`
 }
