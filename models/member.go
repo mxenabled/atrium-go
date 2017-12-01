@@ -23,6 +23,8 @@ type ChallengesResponse struct {
 type Member struct {
 	AggregatedAt             string `json:"aggregated_at,omitempty"`
 	Guid                     string `json:"guid,omitempty"`
+	HasProcessedAccounts     string `json:"has_processed_accounts,omitempty"`
+	HasProcessedTransactions string `json:"has_processed_transactions,omitempty"`
 	Identifier               string `json:"identifier,omitempty"`
 	InstitutionCode          string `json:"institution_code,omitempty"`
 	Metadata                 string `json:"metadata,omitempty"`
