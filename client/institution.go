@@ -7,7 +7,6 @@ import (
 	"net/http"
 )
 
-
 func parseInstitutionResponse(response *http.Response) (*models.Institution, error) {
 	if err := parseResponseErrors(response.StatusCode); err != nil {
 		return nil, err
