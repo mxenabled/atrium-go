@@ -5,7 +5,9 @@ type Transaction struct {
 	Amount               float64 `json:"amount,omitempty"`
 	Category             string  `json:"category,omitempty"`
 	CheckNumber          int64   `json:"check_number,omitempty"`
+	CheckNumberString    string   `json:"check_number_string,omitempty"`
 	CreatedAt            string  `json:"created_at,omitempty"`
+	Date		             string  `json:"date,omitempty"`
 	Description          string  `json:"description,omitempty"`
 	Guid                 string  `json:"guid,omitempty"`
 	IsBillPay            bool    `json:"is_bill_pay,omitempty"`
