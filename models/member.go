@@ -1,8 +1,9 @@
 package models
 
 type Option struct {
-	Label string `json:"label,omitempty"`
-	Value string `json:"value,omitempty"`
+	Label     string `json:"label,omitempty"`
+	ImageData string `json:"image_data,omitempty"`
+	Value     string `json:"value,omitempty"`
 }
 
 type Challenge struct {
