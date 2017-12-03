@@ -10,8 +10,8 @@ import (
 func main() {
 	// Create a new Client
 	client := &client.Client{
-		ApiKey:   "YOUR_MX_API_KEY",
-		ClientId: "YOUR_MX_CLIENT_ID",
+		ApiKey:   "2f86c113535c59e19ccf5022e2fdfc284541fdba",
+		ClientId: "8981eb0a-84c6-49d9-930a-c343e6cff7df",
 		ApiURL:   "https://vestibule.mx.com",
 	}
 
@@ -157,6 +157,16 @@ func main() {
 		return
 	}
 	fmt.Printf("%+v\n", member)
+	if len(member.Challenges) > 0 {
+		for _, challenge := range member.Challenges {
+			fmt.Printf("%+v\n", challenge)
+			if len(challenge.Options) > 0 {
+				for _, option := range challenge.Options {
+					fmt.Printf("%+v\n", option)
+				}
+			}
+		}
+	}
 
 	fmt.Println("\n************************** List Member MFA Challenges **************************")
 	challenges, err := client.GetMemberChallenges(userGUID, memberGUID)
@@ -166,6 +176,11 @@ func main() {
 	}
 	for _, challenge := range challenges {
 		fmt.Printf("%+v\n", challenge)
+		if len(challenge.Options) > 0 {
+			for _, option := range challenge.Options {
+				fmt.Printf("%+v\n", option)
+			}
+		}
 	}
 
 	fmt.Println("\n************************** Resume Aggregation **************************")
