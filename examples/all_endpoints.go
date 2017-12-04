@@ -157,6 +157,16 @@ func main() {
 		return
 	}
 	fmt.Printf("%+v\n", member)
+	if len(member.Challenges) > 0 {
+		for _, challenge := range member.Challenges {
+			fmt.Printf("%+v\n", challenge)
+			if len(challenge.Options) > 0 {
+				for _, option := range challenge.Options {
+					fmt.Printf("%+v\n", option)
+				}
+			}
+		}
+	}
 
 	fmt.Println("\n************************** List Member MFA Challenges **************************")
 	challenges, err := client.GetMemberChallenges(userGUID, memberGUID)
@@ -166,6 +176,11 @@ func main() {
 	}
 	for _, challenge := range challenges {
 		fmt.Printf("%+v\n", challenge)
+		if len(challenge.Options) > 0 {
+			for _, option := range challenge.Options {
+				fmt.Printf("%+v\n", option)
+			}
+		}
 	}
 
 	fmt.Println("\n************************** Resume Aggregation **************************")
