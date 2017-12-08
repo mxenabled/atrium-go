@@ -30,6 +30,7 @@ type Member struct {
 	HasProcessedTransactions string       `json:"has_processed_transactions,omitempty"`
 	Identifier               string       `json:"identifier,omitempty"`
 	InstitutionCode          string       `json:"institution_code,omitempty"`
+	IsBeingAggregated        bool         `json:"is_being_aggregated,omitempty"`
 	Metadata                 string       `json:"metadata,omitempty"`
 	Name                     string       `json:"name,omitempty"`
 	Status                   string       `json:"status,omitempty"`
