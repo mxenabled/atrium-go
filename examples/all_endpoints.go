@@ -10,15 +10,14 @@ import (
 func main() {
 	// Create a new Client
 	client := &client.Client{
-		ApiKey:   "YOUR_MX_API_KEY",
-		ClientId: "YOUR_MX_CLIENT_ID",
+		ApiKey:   "2f86c113535c59e19ccf5022e2fdfc284541fdba",
+		ClientId: "8981eb0a-84c6-49d9-930a-c343e6cff7df",
 		ApiURL:   "https://vestibule.mx.com",
 	}
 
 	fmt.Println("\n************************** Create User **************************")
 	newUser := &models.User{
-		Identifier: "unique_id",
-		Metadata:   "{\"first_name\": \"Steven\"}",
+		Metadata: "{\"first_name\": \"Steven\"}",
 	}
 	user, err := client.CreateUser(newUser)
 	if err != nil {
