@@ -17,8 +17,8 @@ var counter = 0
 func main() {
 	// Create a new Client
 	client := &client.Client{
-		ApiKey:   "YOUR_MX_API_KEY",
-		ClientId: "YOUR_MX_CLIENT_ID",
+		ApiKey:   "2f86c113535c59e19ccf5022e2fdfc284541fdba",
+		ClientId: "8981eb0a-84c6-49d9-930a-c343e6cff7df",
 		ApiURL:   "https://vestibule.mx.com",
 	}
 
@@ -122,14 +122,6 @@ func main() {
 		fmt.Println("\nEnd user must be present to create a new member")
 		os.Exit(0)
 	}
-
-	fmt.Println("\n* Deleting test user *")
-	err := client.DeleteUser(userGUID)
-	if err != nil {
-		fmt.Println("Error deleting user:", err)
-		return
-	}
-	fmt.Println("Deleted user:", userGUID)
 }
 
 func checkJobStatus(client *client.Client, userGUID string, memberGUID string) {
