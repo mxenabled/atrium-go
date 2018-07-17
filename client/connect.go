@@ -26,13 +26,18 @@ func parseConnectResponse(response *http.Response) (*models.Connect, error) {
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) GetWidget(userGuid string) (*models.Connect, error) {
+func (c *Client) GetWidget(userGuid string, params models.ConnectParams) (*models.Connect, error) {
 	if userGuid == "" {
 		return nil, MissingGuid
 	}
 
+	paramsJSON, err := json.Marshal(params)
+	if err != nil {
+		return nil, err
+	}
+
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/connect_widget_url"
-	response, err := Post(apiEndpointUrl, "", c.defaultHeaders())
+	response, err := Post(apiEndpointUrl, string(paramsJSON), c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
