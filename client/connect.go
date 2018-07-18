@@ -26,7 +26,11 @@ func parseConnectResponse(response *http.Response) (*models.Connect, error) {
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) GetWidget(userGuid string, params models.ConnectParams) (*models.Connect, error) {
+func (c *Client) GetWidget(userGuid string) (*models.Connect, error) {
+	return c.GetWidgetWithConnectParams(userGuid, models.ConnectParams{})
+}
+
+func (c *Client) GetWidgetWithConnectParams(userGuid string, params models.ConnectParams) (*models.Connect, error) {
 	if userGuid == "" {
 		return nil, MissingGuid
 	}
