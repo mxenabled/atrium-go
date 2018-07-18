@@ -8,3 +8,10 @@ type Connect struct {
 type ConnectResponse struct {
 	Connect *Connect `json:"user,omitempty"`
 }
+
+type ConnectParams struct {
+	IsMobileWebView        bool    `json:"is_mobile_webview"`
+	UpdateCredentials      bool    `json:"update_credentials"`
+	CurrentInstitutionCode *string `json:"current_institution_code"`
+	CurrentMemberGuid      *string `json:"current_member_guid"`
+}
