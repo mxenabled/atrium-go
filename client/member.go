@@ -319,3 +319,33 @@ func (c *Client) ListMemberCredentials(userGuid, memberGuid string) ([]*models.C
 
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
+
+func (c *Client) VerifyMember(userGuid, memberGuid string) (*models.Member, error) {
+	if userGuid == "" || memberGuid == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/verify"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	return parseMemberResponse(response)
+}
+
+func (c *Client) IdentifyMember(userGuid, memberGuid string) (*models.Member, error) {
+	if userGuid == "" || memberGuid == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/identify"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	return parseMemberResponse(response)
+}
