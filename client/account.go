@@ -60,21 +60,6 @@ func (c *Client) GetAccount(userGuid, accountGuid string) (*models.Account, erro
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) ListAccountNumbers(userGuid, accountGuid string) ([]*models.AccountNumber, error) {
-	if userGuid == "" || accountGuid == "" {
-		return nil, MissingGuid
-	}
-
-	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountGuid + "/account_numbers"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
-	if err != nil {
-		return nil, err
-	}
-	defer response.Body.Close()
-
-	return parseAccountNumbersResponse(response)
-}
-
 func (c *Client) ListAccountTransactions(userGuid, accountGuid string) ([]*models.Transaction, error) {
 	return c.ListAccountTransactionsWithDateRange(userGuid, accountGuid, "", "")
 }
