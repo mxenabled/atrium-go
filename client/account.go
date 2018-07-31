@@ -6,6 +6,27 @@ import (
 	"github.com/mxenabled/atrium-go/models"
 )
 
+func parseAccountNumbersResponse(response *http.Response) ([]*models.AccountNumber, error) {
+	if err := parseResponseErrors(response.StatusCode); err != nil {
+		return nil, err
+	}
+
+	buffer := new(bytes.Buffer)
+	buffer.ReadFrom(response.Body)
+	bufferStr := buffer.String()
+	response.Body.Close()
+
+	if response.StatusCode == 200 {
+		accountNumbersResponse := &models.AccountNumbersResponse{}
+		if err := json.Unmarshal([]byte(bufferStr), accountNumbersResponse); err != nil {
+			return nil, err
+		}
+		return accountNumbersResponse.AccountNumbers, nil
+	}
+
+	return nil, makeGenericError(response.StatusCode, bufferStr)
+}
+
 func (c *Client) ListAccounts(userGuid string) ([]*models.Account, error) {
 	if userGuid == "" {
 		return nil, MissingGuid
@@ -58,6 +79,21 @@ func (c *Client) GetAccount(userGuid, accountGuid string) (*models.Account, erro
 	}
 
 	return nil, makeGenericError(response.StatusCode, bufferStr)
+}
+
+func (c *Client) ListAccountNumbers(userGuid, accountGuid string) ([]*models.AccountNumber, error) {
+	if userGuid == "" || accountGuid == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountGuid + "/account_numbers"
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	return parseAccountNumbersResponse(response)
 }
 
 func (c *Client) ListAccountTransactions(userGuid, accountGuid string) ([]*models.Transaction, error) {
