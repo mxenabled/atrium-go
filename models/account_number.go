@@ -12,24 +12,3 @@ type AccountNumber struct {
 type AccountNumbersResponse struct {
 	AccountNumbers []*AccountNumber `json:"account_numbers"`
 }
-
-func parseAccountNumbersResponse(response *http.Response) ([]*models.AccountNumber, error) {
-	if err := parseResponseErrors(response.StatusCode); err != nil {
-		return nil, err
-	}
-
-	buffer := new(bytes.Buffer)
-	buffer.ReadFrom(response.Body)
-	bufferStr := buffer.String()
-	response.Body.Close()
-
-	if response.StatusCode == 200 {
-		accountNumbersResponse := &models.AccountNumbersResponse{}
-		if err := json.Unmarshal([]byte(bufferStr), accountNumbersResponse); err != nil {
-			return nil, err
-		}
-		return accountNumbersResponse.AccountNumbers, nil
-	}
-
-	return nil, makeGenericError(response.StatusCode, bufferStr)
-}

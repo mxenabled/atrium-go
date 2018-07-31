@@ -7,27 +7,6 @@ import (
 	"net/http"
 )
 
-func parseAccountOwnersResponse(response *http.Response) ([]*models.AccountOwner, error) {
-	if err := parseResponseErrors(response.StatusCode); err != nil {
-		return nil, err
-	}
-
-	buffer := new(bytes.Buffer)
-	buffer.ReadFrom(response.Body)
-	bufferStr := buffer.String()
-	response.Body.Close()
-
-	if response.StatusCode == 200 {
-		accountOwnersResponse := &models.AccountOwnersResponse{}
-		if err := json.Unmarshal([]byte(bufferStr), accountOwnersResponse); err != nil {
-			return nil, err
-		}
-		return accountOwnersResponse.AccountOwners, nil
-	}
-
-	return nil, makeGenericError(response.StatusCode, bufferStr)
-}
-
 func parseMembersResponse(response *http.Response) ([]*models.Member, error) {
 	if err := parseResponseErrors(response.StatusCode); err != nil {
 		return nil, err
@@ -356,21 +335,6 @@ func (c *Client) VerifyMember(userGuid, memberGuid string) (*models.Member, erro
 	return parseMemberResponse(response)
 }
 
-func (c *Client) ListAccountNumbers(userGuid, memberGuid string) ([]*models.AccountNumber, error) {
-	if userGuid == "" || memberGuid == "" {
-		return nil, MissingGuid
-	}
-
-	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/account_numbers"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
-	if err != nil {
-		return nil, err
-	}
-	defer response.Body.Close()
-
-	return parseAccountNumbersResponse(response)
-}
-
 func (c *Client) IdentifyMember(userGuid, memberGuid string) (*models.Member, error) {
 	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
@@ -384,19 +348,4 @@ func (c *Client) IdentifyMember(userGuid, memberGuid string) (*models.Member, er
 	defer response.Body.Close()
 
 	return parseMemberResponse(response)
-}
-
-func (c *Client) ListAccountOwners(userGuid, memberGuid string) ([]*models.AccountOwner, error) {
-	if userGuid == "" || memberGuid == "" {
-		return nil, MissingGuid
-	}
-
-	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/account_owners"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
-	if err != nil {
-		return nil, err
-	}
-	defer response.Body.Close()
-
-	return parseAccountOwnersResponse(response)
 }
