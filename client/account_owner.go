@@ -28,7 +28,7 @@ func parseAccountOwnersResponse(response *http.Response) ([]*models.AccountOwner
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) ListAccountOwners(userGuid, memberGuid string) ([]*models.AccountOwner, error) {
+func (c *Client) ListMemberAccountOwners(userGuid, memberGuid string) ([]*models.AccountOwner, error) {
 	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}

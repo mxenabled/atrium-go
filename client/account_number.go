@@ -28,16 +28,28 @@ func parseAccountNumbersResponse(response *http.Response) ([]*models.AccountNumb
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) ListAccountNumbers(userGuid, accountOrMemberGuid string) ([]*models.AccountNumber, error) {
+func (c *Client) ListAccountAccountNumbers(userGuid, accountGuid string) ([]*models.AccountNumber, error) {
 	if userGuid == "" || accountOrMemberGuid == "" {
 		return nil, MissingGuid
 	}
 
-	if accountOrMemberGuid[0:3] == "ACT" {
-		apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountOrMemberGuid + "/account_numbers"
-	} else {
-		apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + accountOrMemberGuid + "/account_numbers"
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountGuid + "/account_numbers"
+
+	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	if err != nil {
+		return nil, err
 	}
+	defer response.Body.Close()
+
+	return parseAccountNumbersResponse(response)
+}
+
+func (c *Client) ListMemberAccountNumbers(userGuid, memberGuid string) ([]*models.AccountNumber, error) {
+	if userGuid == "" || accountOrMemberGuid == "" {
+		return nil, MissingGuid
+	}
+
+	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/account_numbers"
 
 	response, err := Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
