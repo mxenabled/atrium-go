@@ -19,7 +19,9 @@ func parseConnectResponse(response *http.Response) (*models.Connect, error) {
 
 	if response.StatusCode == 200 {
 		connectResponse := &models.ConnectResponse{}
-		json.Unmarshal([]byte(bufferStr), connectResponse)
+		if err := json.Unmarshal([]byte(bufferStr), connectResponse); err != nil {
+			return nil, err
+		}
 		return connectResponse.Connect, nil
 	}
 

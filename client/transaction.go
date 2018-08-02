@@ -19,7 +19,9 @@ func parseTransactionResponse(response *http.Response) (*models.Transaction, err
 
 	if response.StatusCode == 200 {
 		transactionResponse := &models.TransactionResponse{}
-		json.Unmarshal([]byte(bufferStr), transactionResponse)
+		if err := json.Unmarshal([]byte(bufferStr), transactionResponse); err != nil {
+			return nil, err
+		}
 		return transactionResponse.Transaction, nil
 	}
 
@@ -52,7 +54,9 @@ func (c *Client) ListTransactionsWithDateRange(userGuid, fromDate, toDate string
 
 	if response.StatusCode == 200 {
 		transactionsResponse := &models.TransactionsResponse{}
-		json.Unmarshal([]byte(bufferStr), transactionsResponse)
+		if err := json.Unmarshal([]byte(bufferStr), transactionsResponse); err != nil {
+			return nil, err
+		}
 		return transactionsResponse.Transactions, nil
 	}
 
