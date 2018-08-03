@@ -19,7 +19,9 @@ func parseUserResponse(response *http.Response) (*models.User, error) {
 
 	if response.StatusCode == 200 {
 		userResponse := &models.UserResponse{}
-		json.Unmarshal([]byte(bufferStr), userResponse)
+		if err := json.Unmarshal([]byte(bufferStr), userResponse); err != nil {
+			return nil, err
+		}
 		return userResponse.User, nil
 	}
 
@@ -121,7 +123,9 @@ func (c *Client) ListUsers() ([]*models.User, error) {
 
 	if response.StatusCode == 200 {
 		userResponse := &models.UsersResponse{}
-		json.Unmarshal([]byte(bufferStr), userResponse)
+		if err := json.Unmarshal([]byte(bufferStr), userResponse); err != nil {
+			return nil, err
+		}
 		return userResponse.Users, nil
 	}
 

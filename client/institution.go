@@ -19,7 +19,9 @@ func parseInstitutionResponse(response *http.Response) (*models.Institution, err
 
 	if response.StatusCode == 200 {
 		institutionResponse := &models.InstitutionResponse{}
-		json.Unmarshal([]byte(bufferStr), institutionResponse)
+		if err := json.Unmarshal([]byte(bufferStr), institutionResponse); err != nil {
+			return nil, err
+		}
 		return institutionResponse.Institution, nil
 	}
 
@@ -45,7 +47,9 @@ func (c *Client) ListInstitutions(name string) ([]*models.Institution, error) {
 
 	if response.StatusCode == 200 {
 		institutionResponse := &models.InstitutionsResponse{}
-		json.Unmarshal([]byte(bufferStr), institutionResponse)
+		if err := json.Unmarshal([]byte(bufferStr), institutionResponse); err != nil {
+			return nil, err
+		}
 		return institutionResponse.Institutions, nil
 	}
 

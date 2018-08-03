@@ -28,7 +28,9 @@ func (c *Client) ListAccounts(userGuid string) ([]*models.Account, error) {
 
 	if response.StatusCode == 200 {
 		accountsResponse := &models.AccountsResponse{}
-		json.Unmarshal([]byte(bufferStr), accountsResponse)
+		if err := json.Unmarshal([]byte(bufferStr), accountsResponse); err != nil {
+			return nil, err
+		}
 		return accountsResponse.Accounts, nil
 	}
 
@@ -53,7 +55,9 @@ func (c *Client) GetAccount(userGuid, accountGuid string) (*models.Account, erro
 
 	if response.StatusCode == 200 {
 		accountResponse := &models.AccountResponse{}
-		json.Unmarshal([]byte(bufferStr), accountResponse)
+		if err := json.Unmarshal([]byte(bufferStr), accountResponse); err != nil {
+			return nil, err
+		}
 		return accountResponse.Account, nil
 	}
 
@@ -86,7 +90,9 @@ func (c *Client) ListAccountTransactionsWithDateRange(userGuid, accountGuid, fro
 
 	if response.StatusCode == 200 {
 		transactionsResponse := &models.TransactionsResponse{}
-		json.Unmarshal([]byte(bufferStr), transactionsResponse)
+		if err := json.Unmarshal([]byte(bufferStr), transactionsResponse); err != nil {
+			return nil, err
+		}
 		return transactionsResponse.Transactions, nil
 	}
 

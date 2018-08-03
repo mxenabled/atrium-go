@@ -29,7 +29,9 @@ func (c *Client) ListCredentials(institutionCode string) ([]*models.Credential, 
 
 	if response.StatusCode == 200 {
 		credentialResponse := &models.CredentialsResponse{}
-		json.Unmarshal([]byte(bufferStr), credentialResponse)
+		if err := json.Unmarshal([]byte(bufferStr), credentialResponse); err != nil {
+			return nil, err
+		}
 		return credentialResponse.Credentials, nil
 	}
 

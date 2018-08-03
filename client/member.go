@@ -19,7 +19,9 @@ func parseMembersResponse(response *http.Response) ([]*models.Member, error) {
 
 	if response.StatusCode == 200 {
 		membersResponse := &models.MembersResponse{}
-		json.Unmarshal([]byte(bufferStr), membersResponse)
+		if err := json.Unmarshal([]byte(bufferStr), membersResponse); err != nil {
+			return nil, err
+		}
 		return membersResponse.Members, nil
 	}
 
@@ -53,7 +55,9 @@ func parseMemberResponse(response *http.Response) (*models.Member, error) {
 
 	if response.StatusCode == 200 || response.StatusCode == 202 {
 		memberResponse := &models.MemberResponse{}
-		json.Unmarshal([]byte(bufferStr), memberResponse)
+		if err := json.Unmarshal([]byte(bufferStr), memberResponse); err != nil {
+			return nil, err
+		}
 		return memberResponse.Member, nil
 	}
 
@@ -108,7 +112,9 @@ func (c *Client) GetMemberChallenges(userGuid, memberGuid string) ([]*models.Cha
 
 	if response.StatusCode == 200 {
 		challengesResponse := &models.ChallengesResponse{}
-		json.Unmarshal([]byte(bufferStr), challengesResponse)
+		if err := json.Unmarshal([]byte(bufferStr), challengesResponse); err != nil {
+			return nil, err
+		}
 		return challengesResponse.Challenges, nil
 	}
 
@@ -250,7 +256,9 @@ func (c *Client) ListMemberAccounts(userGuid, memberGuid string) ([]*models.Acco
 
 	if response.StatusCode == 200 {
 		accountsResponse := &models.AccountsResponse{}
-		json.Unmarshal([]byte(bufferStr), accountsResponse)
+		if err := json.Unmarshal([]byte(bufferStr), accountsResponse); err != nil {
+			return nil, err
+		}
 		return accountsResponse.Accounts, nil
 	}
 
@@ -283,7 +291,9 @@ func (c *Client) ListMemberTransactionsWithDateRange(userGuid, memberGuid, fromD
 
 	if response.StatusCode == 200 {
 		transactionsResponse := &models.TransactionsResponse{}
-		json.Unmarshal([]byte(bufferStr), transactionsResponse)
+		if err := json.Unmarshal([]byte(bufferStr), transactionsResponse); err != nil {
+			return nil, err
+		}
 		return transactionsResponse.Transactions, nil
 	}
 
@@ -313,7 +323,9 @@ func (c *Client) ListMemberCredentials(userGuid, memberGuid string) ([]*models.C
 
 	if response.StatusCode == 200 {
 		credentialResponse := &models.CredentialsResponse{}
-		json.Unmarshal([]byte(bufferStr), credentialResponse)
+		if err := json.Unmarshal([]byte(bufferStr), credentialResponse); err != nil {
+			return nil, err
+		}
 		return credentialResponse.Credentials, nil
 	}
 
