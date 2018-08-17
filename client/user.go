@@ -34,7 +34,7 @@ func (c *Client) CreateUser(user *models.User) (*models.User, error) {
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users"
-	response, err := Post(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
+	response, err := Post(apiEndpointUrl, string(jsonStr), c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *Client) UpdateUser(user *models.User) (*models.User, error) {
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + user.Guid
-	response, err := Put(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
+	response, err := Put(apiEndpointUrl, string(jsonStr), c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +72,7 @@ func (c *Client) GetUser(userGuid string) (*models.User, error) {
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := Get(apiEndpointUrl, c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func (c *Client) DeleteUser(userGuid string) error {
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid
-	response, err := Delete(apiEndpointUrl, c.defaultHeaders())
+	response, err := Delete(apiEndpointUrl, c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return err
 	}
@@ -104,7 +104,7 @@ func (c *Client) DeleteUser(userGuid string) error {
 
 func (c *Client) ListUsers() ([]*models.User, error) {
 	apiEndpointUrl := c.ApiURL + "/users"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := Get(apiEndpointUrl, c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}

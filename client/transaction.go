@@ -36,7 +36,7 @@ func (c *Client) ListTransactionsWithDateRange(userGuid, fromDate, toDate string
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/transactions" + buildparams("", fromDate, toDate)
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := Get(apiEndpointUrl, c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +65,7 @@ func (c *Client) GetTransaction(userGuid, transactionGuid string) (*models.Trans
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/transactions/" + transactionGuid
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := Get(apiEndpointUrl, c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}

@@ -41,7 +41,7 @@ func (c *Client) GetWidgetWithConnectParams(userGuid string, params models.Conne
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/connect_widget_url"
-	response, err := Post(apiEndpointUrl, string(paramsJSON), c.defaultHeaders())
+	response, err := Post(apiEndpointUrl, string(paramsJSON), c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}
