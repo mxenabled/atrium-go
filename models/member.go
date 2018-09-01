@@ -36,6 +36,7 @@ type Member struct {
 	Status                   string       `json:"status,omitempty"`
 	SuccessfullyAggregatedAt string       `json:"successfully_aggregated_at,omitempty"`
 	UserGuid                 string       `json:"user_guid,omitempty"`
+	ConnectionStatus         string       `json:"connection_status,omitempty"`
 }
 
 type MemberCreate struct {
