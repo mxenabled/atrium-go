@@ -12,7 +12,7 @@ func (c *Client) ListAccounts(userGuid string) ([]*models.Account, error) {
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := Get(apiEndpointUrl, c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +43,7 @@ func (c *Client) GetAccount(userGuid, accountGuid string) (*models.Account, erro
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountGuid
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := Get(apiEndpointUrl, c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func (c *Client) ListAccountTransactionsWithDateRange(userGuid, accountGuid, fro
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountGuid + "/transactions" + buildparams("", fromDate, toDate)
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := Get(apiEndpointUrl, c.defaultHeaders(), c.LocalIP)
 	if err != nil {
 		return nil, err
 	}

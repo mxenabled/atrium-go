@@ -16,6 +16,7 @@ type Client struct {
 	ApiKey   string
 	ClientId string
 	ApiURL   string
+	LocalIP  *string
 }
 
 func (c *Client) defaultHeaders() *Headers {
