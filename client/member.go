@@ -338,7 +338,7 @@ func (c *Client) VerifyMember(userGuid, memberGuid string) (*models.Member, erro
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/verify"
-	response, err := Post(apiEndpointUrl, c.defaultHeaders())
+	response, err := Post(apiEndpointUrl, "", c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -353,7 +353,7 @@ func (c *Client) IdentifyMember(userGuid, memberGuid string) (*models.Member, er
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/identify"
-	response, err := Post(apiEndpointUrl, c.defaultHeaders())
+	response, err := Post(apiEndpointUrl, "", c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
