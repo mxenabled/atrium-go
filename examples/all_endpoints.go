@@ -6,7 +6,20 @@ import (
 
 	"github.com/mxenabled/atrium-go/client"
 	"github.com/mxenabled/atrium-go/models"
+	"os"
+	"time"
 )
+
+func getEnv(key string) string {
+	value, isPresent := os.LookupEnv(key)
+
+	if !isPresent {
+		fmt.Println("You need to set the", key, "as an environment variable.")
+		os.Exit(1)
+	}
+
+	return value
+}
 
 func main() {
 	// Create a new Client

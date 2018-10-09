@@ -12,7 +12,7 @@ func (c *Client) ListCredentials(institutionCode string) ([]*models.Credential, 
 	}
 
 	apiEndpointUrl := c.ApiURL + "/institutions/" + institutionCode + "/credentials"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}

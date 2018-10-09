@@ -3,6 +3,7 @@ package client
 import (
 	"errors"
 	"strconv"
+	"net/http"
 )
 
 var (
@@ -16,14 +17,16 @@ type Client struct {
 	ApiKey   string
 	ClientId string
 	ApiURL   string
+
+	HttpClient *http.Client
 }
 
-func (c *Client) defaultHeaders() *Headers {
+func (c *Client) defaultHeaders() Headers {
 	headers := Headers{}
 	headers["Content-Type"] = "application/json"
 	headers["MX-API-KEY"] = c.ApiKey
 	headers["MX-CLIENT-ID"] = c.ClientId
-	return &headers
+	return headers
 }
 
 func parseResponseErrors(statusCode int) error {

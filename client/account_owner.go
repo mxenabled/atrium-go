@@ -34,7 +34,7 @@ func (c *Client) ListMemberAccountOwners(userGuid, memberGuid string) ([]*models
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/account_owners"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}

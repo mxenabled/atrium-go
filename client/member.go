@@ -35,7 +35,7 @@ func (c *Client) ListMembers(userGuid string) ([]*models.Member, error) {
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +71,7 @@ func (c *Client) GetMember(userGuid, memberGuid string) (*models.Member, error) 
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +86,7 @@ func (c *Client) GetMemberStatus(userGuid, memberGuid string) (*models.Member, e
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/status"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func (c *Client) GetMemberChallenges(userGuid, memberGuid string) ([]*models.Cha
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/challenges"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -134,7 +134,7 @@ func (c *Client) CreateMember(userGuid string, member *models.Member, credential
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members"
-	response, err := Post(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
+	response, err := c.Post(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -156,7 +156,7 @@ func (c *Client) UpdateMember(userGuid string, member *models.Member, credential
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + member.Guid
-	response, err := Put(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
+	response, err := c.Put(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -172,7 +172,7 @@ func (c *Client) DeleteMember(userGuid string, memberGuid string) error {
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid
-	response, err := Delete(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Delete(apiEndpointUrl, c.defaultHeaders())
 	defer response.Body.Close()
 	if err != nil {
 		return err
@@ -198,7 +198,7 @@ func (c *Client) AggregateMember(userGuid string, memberGuid string) (*models.Me
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/aggregate"
-	response, err := Post(apiEndpointUrl, "", c.defaultHeaders())
+	response, err := c.Post(apiEndpointUrl, "", c.defaultHeaders())
 	defer response.Body.Close()
 	if err != nil {
 		return nil, err
@@ -225,7 +225,7 @@ func (c *Client) ResumeMember(userGuid, memberGuid string, challenges []*models.
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/resume"
-	response, err := Put(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
+	response, err := c.Put(apiEndpointUrl, string(jsonStr), c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -241,7 +241,7 @@ func (c *Client) ListMemberAccounts(userGuid, memberGuid string) ([]*models.Acco
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/accounts"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -276,7 +276,7 @@ func (c *Client) ListMemberTransactionsWithDateRange(userGuid, memberGuid, fromD
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/transactions" + buildparams("", fromDate, toDate)
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -307,7 +307,7 @@ func (c *Client) ListMemberCredentials(userGuid, memberGuid string) ([]*models.C
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/credentials"
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -339,7 +339,7 @@ func (c *Client) VerifyMember(userGuid, memberGuid string) (*models.Member, erro
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/verify"
-	response, err := Post(apiEndpointUrl, "", c.defaultHeaders())
+	response, err := c.Post(apiEndpointUrl, "", c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -354,7 +354,7 @@ func (c *Client) IdentifyMember(userGuid, memberGuid string) (*models.Member, er
 	}
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/identify"
-	response, err := Post(apiEndpointUrl, "", c.defaultHeaders())
+	response, err := c.Post(apiEndpointUrl, "", c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}

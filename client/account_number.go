@@ -36,7 +36,7 @@ func (c *Client) ListAccountAccountNumbers(userGuid, accountGuid string) ([]*mod
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/accounts/" + accountGuid + "/account_numbers"
 
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +52,7 @@ func (c *Client) ListMemberAccountNumbers(userGuid, memberGuid string) ([]*model
 
 	apiEndpointUrl := c.ApiURL + "/users/" + userGuid + "/members/" + memberGuid + "/account_numbers"
 
-	response, err := Get(apiEndpointUrl, c.defaultHeaders())
+	response, err := c.Get(apiEndpointUrl, c.defaultHeaders())
 	if err != nil {
 		return nil, err
 	}

@@ -4,13 +4,25 @@ import (
 	"fmt"
 	"github.com/mxenabled/atrium-go/client"
 	"github.com/mxenabled/atrium-go/models"
+	"os"
 )
+
+func getEnv(key string) string {
+	value, isPresent := os.LookupEnv(key)
+
+	if !isPresent {
+		fmt.Println("You need to set the", key, "as an environment variable.")
+		os.Exit(1)
+	}
+
+	return value
+}
 
 func main() {
 	// Create a new Client
 	client := &client.Client{
-		ApiKey:   "YOUR_MX_API_KEY",
-		ClientId: "YOUR_MX_CLIENT_ID",
+		ApiKey:   getEnv("API_KEY"),
+		ClientId: getEnv("CLIENT_ID"),
 		ApiURL:   "https://vestibule.mx.com",
 	}
 
