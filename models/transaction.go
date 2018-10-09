@@ -10,6 +10,7 @@ type Transaction struct {
 	Date                 string  `json:"date,omitempty"`
 	Description          string  `json:"description,omitempty"`
 	Guid                 string  `json:"guid,omitempty"`
+	ID                   string  `json:"id,omitempty"`
 	IsBillPay            bool    `json:"is_bill_pay,omitempty"`
 	IsDirectDeposit      bool    `json:"is_direct_deposit,omitempty"`
 	IsExpense            bool    `json:"is_expense,omitempty"`

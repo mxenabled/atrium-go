@@ -34,6 +34,8 @@ func parseResponseErrors(statusCode int) error {
 		return UserLimitExceeded
 	case 509:
 		return RateLimitExceeded
+	case 200: // Make OK explicitly nil
+		return nil
 	}
 
 	return nil

@@ -3,8 +3,9 @@ package client
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/mxenabled/atrium-go/models"
 	"net/http"
+
+	"github.com/mxenabled/atrium-go/models"
 )
 
 func parseAccountNumbersResponse(response *http.Response) ([]*models.AccountNumber, error) {
@@ -29,7 +30,7 @@ func parseAccountNumbersResponse(response *http.Response) ([]*models.AccountNumb
 }
 
 func (c *Client) ListAccountAccountNumbers(userGuid, accountGuid string) ([]*models.AccountNumber, error) {
-	if userGuid == "" || accountOrMemberGuid == "" {
+	if userGuid == "" || accountGuid == "" {
 		return nil, MissingGuid
 	}
 
@@ -45,7 +46,7 @@ func (c *Client) ListAccountAccountNumbers(userGuid, accountGuid string) ([]*mod
 }
 
 func (c *Client) ListMemberAccountNumbers(userGuid, memberGuid string) ([]*models.AccountNumber, error) {
-	if userGuid == "" || accountOrMemberGuid == "" {
+	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}
 

@@ -3,8 +3,10 @@ package client
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/mxenabled/atrium-go/models"
+	"fmt"
 	"net/http"
+
+	"github.com/mxenabled/atrium-go/models"
 )
 
 func parseTransactionResponse(response *http.Response) (*models.Transaction, error) {
@@ -26,6 +28,47 @@ func parseTransactionResponse(response *http.Response) (*models.Transaction, err
 	}
 
 	return nil, makeGenericError(response.StatusCode, bufferStr)
+}
+
+func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []models.Transaction) ([]*models.Transaction, error) {
+	apiEndpointURL := c.ApiURL + "/categorize_and_describe"
+
+	var transactionsRequest = struct {
+		Transaction []models.Transaction `json:"transactions"`
+	}{transactionsToCategorize}
+
+	transactionsJSON, err := json.Marshal(transactionsRequest)
+
+	if err != nil {
+		return nil, err
+	}
+
+	body := string(transactionsJSON)
+
+	fmt.Println(body)
+	response, err := Post(apiEndpointURL, body, c.defaultHeaders())
+
+	defer response.Body.Close()
+
+	if err != nil {
+		return nil, err
+	}
+
+	if err = parseResponseErrors(response.StatusCode); err != nil {
+		return nil, err
+	}
+
+	buffer := new(bytes.Buffer)
+	buffer.ReadFrom(response.Body)
+	bufferStr := buffer.String()
+
+	fmt.Printf("Response: %+v\n", bufferStr)
+
+	transactionsResponse := &models.TransactionsResponse{}
+	if err = json.Unmarshal([]byte(bufferStr), transactionsResponse); err != nil {
+		return nil, err
+	}
+	return transactionsResponse.Transactions, nil
 }
 
 func (c *Client) ListTransactions(userGuid string) ([]*models.Transaction, error) {
