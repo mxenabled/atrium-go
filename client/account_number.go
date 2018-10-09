@@ -29,7 +29,7 @@ func parseAccountNumbersResponse(response *http.Response) ([]*models.AccountNumb
 }
 
 func (c *Client) ListAccountAccountNumbers(userGuid, accountGuid string) ([]*models.AccountNumber, error) {
-	if userGuid == "" || accountOrMemberGuid == "" {
+	if userGuid == "" || accountGuid == "" {
 		return nil, MissingGuid
 	}
 
@@ -45,7 +45,7 @@ func (c *Client) ListAccountAccountNumbers(userGuid, accountGuid string) ([]*mod
 }
 
 func (c *Client) ListMemberAccountNumbers(userGuid, memberGuid string) ([]*models.AccountNumber, error) {
-	if userGuid == "" || accountOrMemberGuid == "" {
+	if userGuid == "" || memberGuid == "" {
 		return nil, MissingGuid
 	}
 
