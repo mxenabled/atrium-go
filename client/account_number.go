@@ -3,8 +3,9 @@ package client
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/mxenabled/atrium-go/models"
 	"net/http"
+
+	"github.com/mxenabled/atrium-go/models"
 )
 
 func parseAccountNumbersResponse(response *http.Response) ([]*models.AccountNumber, error) {

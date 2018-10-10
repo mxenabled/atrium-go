@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/mxenabled/atrium-go/client"
 	"github.com/mxenabled/atrium-go/models"
 	"os"
@@ -281,6 +283,39 @@ func main() {
 		fmt.Println("Error listing transactions:", err)
 		return
 	}
+	for _, transaction := range transactions {
+		fmt.Printf("%+v\n", transaction)
+	}
+
+	// 	fmt.Println("\n*********************** Categorize Transactions ***********************")
+	transactionsToCategorize := []models.Transaction{
+		{
+			Amount:      11.22,
+			Description: "BEER BAR 65000000764SALT LAKE C",
+			ID:          "12",
+			Type:        "DEBIT",
+		},
+		{
+			Amount:      21.33,
+			Description: "IN-N-OUT BURGER #239AMERICAN FO",
+			ID:          "13",
+			Type:        "DEBIT",
+		},
+		{
+			Amount:      1595.33,
+			Description: "ONLINE PAYMENT - THANK YOU",
+			ID:          "14",
+			Type:        "CREDIT",
+		},
+	}
+
+	transactions, err := client.CategorizeAndDescribeTransactions(transactionsToCategorize)
+
+	if err != nil {
+		fmt.Println("Error categorizing transactions", err)
+		return
+	}
+
 	for _, transaction := range transactions {
 		fmt.Printf("%+v\n", transaction)
 	}
