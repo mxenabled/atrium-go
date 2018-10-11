@@ -287,7 +287,7 @@ func main() {
 	}
 
 	// 	fmt.Println("\n*********************** Categorize Transactions ***********************")
-	transactionsToCategorize := []models.Transaction{
+	transactionsToCategorize := []*models.Transaction{
 		{
 			Amount:      11.22,
 			Description: "BEER BAR 65000000764SALT LAKE C",
