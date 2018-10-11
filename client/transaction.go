@@ -3,7 +3,6 @@ package client
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/mxenabled/atrium-go/models"
@@ -41,8 +40,6 @@ func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []*m
 	}
 
 	body := string(transactionsJSON)
-
-	fmt.Println(body)
 	response, err := c.Post(apiEndpointURL, body, c.defaultHeaders())
 
 	defer response.Body.Close()
@@ -58,8 +55,6 @@ func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []*m
 	buffer := new(bytes.Buffer)
 	buffer.ReadFrom(response.Body)
 	bufferStr := buffer.String()
-
-	fmt.Printf("Response: %+v\n", bufferStr)
 
 	transactionsResponse := &models.TransactionsResponse{}
 	if err = json.Unmarshal([]byte(bufferStr), transactionsResponse); err != nil {
