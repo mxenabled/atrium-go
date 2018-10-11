@@ -30,13 +30,10 @@ func parseTransactionResponse(response *http.Response) (*models.Transaction, err
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []models.Transaction) ([]*models.Transaction, error) {
+func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []*models.Transaction) ([]*models.Transaction, error) {
 	apiEndpointURL := c.ApiURL + "/categorize_and_describe"
 
-	var transactionsRequest = struct {
-		Transaction []models.Transaction `json:"transactions"`
-	}{transactionsToCategorize}
-
+	transactionsRequest := &models.TransactionsRequest{Transactions: transactionsToCategorize}
 	transactionsJSON, err := json.Marshal(transactionsRequest)
 
 	if err != nil {
