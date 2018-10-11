@@ -40,3 +40,7 @@ type TransactionResponse struct {
 type TransactionsResponse struct {
 	Transactions []*Transaction `json:"transactions"`
 }
+
+type TransactionsRequest struct {
+	Transactions []*Transaction `json:"transactions"`
+}

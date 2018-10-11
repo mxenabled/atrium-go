@@ -9,13 +9,11 @@ import (
 )
 
 func getEnv(key string) string {
-	value, isPresent := os.LookupEnv(key)
-
-	if !isPresent {
+	value := os.Getenv(key)
+	if len(value) == 0 {
 		fmt.Println("You need to set the", key, "as an environment variable.")
 		os.Exit(1)
 	}
-
 	return value
 }
 
@@ -27,7 +25,7 @@ func main() {
 		ApiURL:   "https://vestibule.mx.com",
 	}
 
-	fmt.Println("\n* Creating user and member with \"CHALLENGED\" aggregation status *")
+	fmt.Println("\n* Creating user and member with \"DENIED\" aggregation status *")
 	newUser := &models.User{
 		Metadata:   "some metadata",
 		IsDisabled: false,
@@ -42,7 +40,7 @@ func main() {
 	loginCredentials := []*models.Credential{}
 	username := &models.Credential{Guid: "CRD-9f61fb4c-912c-bd1e-b175-ccc7f0275cc1", Value: "test_atrium"}
 	loginCredentials = append(loginCredentials, username)
-	password := &models.Credential{Guid: "CRD-e3d7ea81-aac7-05e9-fbdd-4b493c6e474d", Value: "challenge"}
+	password := &models.Credential{Guid: "CRD-e3d7ea81-aac7-05e9-fbdd-4b493c6e474d", Value: "INVALID"}
 	loginCredentials = append(loginCredentials, password)
 
 	newMember := &models.Member{
@@ -65,24 +63,26 @@ func main() {
 	}
 	fmt.Println("Member aggregation status:", memberStatus.Status)
 
-	fmt.Println("\n* MFA Challenge *")
-	challenges, chalError := client.GetMemberChallenges(user.Guid, member.Guid)
+	fmt.Println("\n* Updating credentials *")
+	credentials, listError := client.ListCredentials("mxbank")
 	if err != nil {
-		fmt.Println("Error getting member challenge", chalError)
+		fmt.Println("Error creating user:", listError)
 		return
 	}
-	for _, challenge := range challenges {
-		fmt.Println("Challenge Guid: ", challenge.Guid)
-		fmt.Println("Challenge Label: ", challenge.Label)
+
+	updatedCredentials := []*models.Credential{}
+	userName := &models.Credential{Guid: credentials[0].Guid, Value: "test_atrium"}
+	updatedCredentials = append(updatedCredentials, userName)
+	passWord := &models.Credential{Guid: credentials[1].Guid, Value: "password"}
+	updatedCredentials = append(updatedCredentials, passWord)
+
+	updatedMember := &models.Member{
+		Guid: member.Guid,
 	}
 
-	challengeResponses := []*models.Challenge{}
-	challengeOne := &models.Challenge{Guid: challenges[0].Guid, Value: "correct"}
-	challengeResponses = append(challengeResponses, challengeOne)
-
-	member, resumeError := client.ResumeMember(user.Guid, member.Guid, challengeResponses)
+	_, updateError := client.UpdateMember(user.Guid, updatedMember, updatedCredentials)
 	if err != nil {
-		fmt.Println("Error resuming member:", resumeError)
+		fmt.Println("Error updating member:", updateError)
 		return
 	}
 	time.Sleep(time.Second)

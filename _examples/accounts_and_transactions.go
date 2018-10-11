@@ -5,16 +5,15 @@ import (
 	"github.com/mxenabled/atrium-go/client"
 	"github.com/mxenabled/atrium-go/models"
 	"os"
+	"time"
 )
 
 func getEnv(key string) string {
-	value, isPresent := os.LookupEnv(key)
-
-	if !isPresent {
+	value := os.Getenv(key)
+	if len(value) == 0 {
 		fmt.Println("You need to set the", key, "as an environment variable.")
 		os.Exit(1)
 	}
-
 	return value
 }
 
@@ -26,7 +25,7 @@ func main() {
 		ApiURL:   "https://vestibule.mx.com",
 	}
 
-	fmt.Println("\n* Creating test user *")
+	fmt.Println("\n* Creating test user and member *")
 	newUser := &models.User{
 		Metadata:   "some metadata",
 		IsDisabled: false,
@@ -36,27 +35,8 @@ func main() {
 		fmt.Println("Error creating user:", err)
 		return
 	}
-	fmt.Println("Created User:", user.Guid)
+	fmt.Println("Created user:", user.Guid)
 
-	fmt.Println("\n* Listing institutions with query string \"bank\" *")
-	institutions, listError := client.ListInstitutions("bank")
-	if listError != nil {
-		fmt.Println("Error listing institutions:", listError)
-		return
-	}
-	for _, institution := range institutions {
-		fmt.Println("Name:", institution.Name, ": institution code =", institution.Code)
-	}
-
-	fmt.Println("\n* Reading institution \"mxbank\" *")
-	institution, readError := client.GetInstitution("mxbank")
-	if err != nil {
-		fmt.Println("Error reading institution:", readError)
-		return
-	}
-	fmt.Println("Read Institution:", institution.Name)
-
-	fmt.Println("\n* Creating member *")
 	loginCredentials := []*models.Credential{}
 	username := &models.Credential{Guid: "CRD-9f61fb4c-912c-bd1e-b175-ccc7f0275cc1", Value: "test_atrium"}
 	loginCredentials = append(loginCredentials, username)
@@ -71,7 +51,35 @@ func main() {
 		fmt.Println("Error creating member:", memberError)
 		return
 	}
-	fmt.Println("Created member: ", member.Guid)
+	fmt.Println("Created member:", member.Guid)
+	time.Sleep(time.Second)
+
+	fmt.Println("\n* Aggregating member *")
+	_, aggError := client.AggregateMember(user.Guid, member.Guid)
+	if err != nil {
+		fmt.Println("Error aggregating member:", aggError)
+		return
+	}
+	time.Sleep(4 * time.Second)
+
+	fmt.Println("\n* Listing all member accounts and transactions *")
+	accounts, err := client.ListMemberAccounts(user.Guid, member.Guid)
+	if err != nil {
+		fmt.Println("Error listing member accounts:", err)
+		return
+	}
+	for _, account := range accounts {
+		fmt.Println("Type:", account.Type, "\tName:", account.Name, "\tAvailable Balance:", account.AvailableBalance, "\tAvailable Credit:", account.AvailableCredit)
+		fmt.Println("Transactions")
+		transactions, accountError := client.ListAccountTransactions(user.Guid, account.Guid)
+		if err != nil {
+			fmt.Println("Error listing account transactions:", accountError)
+			return
+		}
+		for _, transaction := range transactions {
+			fmt.Println("\tDate:", transaction.PostedAt, "\tDescription:", transaction.Description, "\tAmount:", transaction.Amount)
+		}
+	}
 
 	fmt.Println("\n* Deleting test user *")
 	deleteError := client.DeleteUser(user.Guid)

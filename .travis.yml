@@ -1,0 +1,12 @@
+language: go
+
+go:
+  - 1.10
+
+script:
+  - diff <(echo -n) <(gofmt -s -d .)
+  - go build ./...
+  - for example in $(ls _examples/*.go); do go build $example || exit 1; done
+
+notifications:
+  email: false

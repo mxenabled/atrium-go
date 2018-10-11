@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/mxenabled/atrium-go/client"
 	"github.com/mxenabled/atrium-go/models"
@@ -11,13 +10,11 @@ import (
 )
 
 func getEnv(key string) string {
-	value, isPresent := os.LookupEnv(key)
-
-	if !isPresent {
+	value := os.Getenv(key)
+	if len(value) == 0 {
 		fmt.Println("You need to set the", key, "as an environment variable.")
 		os.Exit(1)
 	}
-
 	return value
 }
 
@@ -288,7 +285,7 @@ func main() {
 	}
 
 	// 	fmt.Println("\n*********************** Categorize Transactions ***********************")
-	transactionsToCategorize := []models.Transaction{
+	transactionsToCategorize := []*models.Transaction{
 		{
 			Amount:      11.22,
 			Description: "BEER BAR 65000000764SALT LAKE C",
@@ -309,8 +306,7 @@ func main() {
 		},
 	}
 
-	transactions, err := client.CategorizeAndDescribeTransactions(transactionsToCategorize)
-
+	transactions, err = client.CategorizeAndDescribeTransactions(transactionsToCategorize)
 	if err != nil {
 		fmt.Println("Error categorizing transactions", err)
 		return

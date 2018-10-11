@@ -3,7 +3,6 @@ package client
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/mxenabled/atrium-go/models"
@@ -30,13 +29,10 @@ func parseTransactionResponse(response *http.Response) (*models.Transaction, err
 	return nil, makeGenericError(response.StatusCode, bufferStr)
 }
 
-func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []models.Transaction) ([]*models.Transaction, error) {
+func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []*models.Transaction) ([]*models.Transaction, error) {
 	apiEndpointURL := c.ApiURL + "/categorize_and_describe"
 
-	var transactionsRequest = struct {
-		Transaction []models.Transaction `json:"transactions"`
-	}{transactionsToCategorize}
-
+	transactionsRequest := &models.TransactionsRequest{Transactions: transactionsToCategorize}
 	transactionsJSON, err := json.Marshal(transactionsRequest)
 
 	if err != nil {
@@ -44,9 +40,7 @@ func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []mo
 	}
 
 	body := string(transactionsJSON)
-
-	fmt.Println(body)
-	response, err := Post(apiEndpointURL, body, c.defaultHeaders())
+	response, err := c.Post(apiEndpointURL, body, c.defaultHeaders())
 
 	defer response.Body.Close()
 
@@ -61,8 +55,6 @@ func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []mo
 	buffer := new(bytes.Buffer)
 	buffer.ReadFrom(response.Body)
 	bufferStr := buffer.String()
-
-	fmt.Printf("Response: %+v\n", bufferStr)
 
 	transactionsResponse := &models.TransactionsResponse{}
 	if err = json.Unmarshal([]byte(bufferStr), transactionsResponse); err != nil {

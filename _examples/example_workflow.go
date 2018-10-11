@@ -15,13 +15,11 @@ import (
 var counter = 0
 
 func getEnv(key string) string {
-	value, isPresent := os.LookupEnv(key)
-
-	if !isPresent {
+	value := os.Getenv(key)
+	if len(value) == 0 {
 		fmt.Println("You need to set the", key, "as an environment variable.")
 		os.Exit(1)
 	}
-
 	return value
 }
 

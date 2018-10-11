@@ -9,13 +9,11 @@ import (
 )
 
 func getEnv(key string) string {
-	value, isPresent := os.LookupEnv(key)
-
-	if !isPresent {
+	value := os.Getenv(key)
+	if len(value) == 0 {
 		fmt.Println("You need to set the", key, "as an environment variable.")
 		os.Exit(1)
 	}
-
 	return value
 }
 
@@ -109,7 +107,7 @@ func main() {
 		fmt.Println(user.Guid, account.Guid, account.Name)
 
 		// Get transactions for an Account
-		transactions, err := client.ListAccountTransations(user.Guid, account.Guid)
+		transactions, err := client.ListAccountTransactions(user.Guid, account.Guid)
 		if err != nil {
 			fmt.Println(err)
 			return

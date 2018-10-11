@@ -2,8 +2,8 @@ package client
 
 import (
 	"errors"
-	"strconv"
 	"net/http"
+	"strconv"
 )
 
 var (
