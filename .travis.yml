@@ -5,8 +5,7 @@ go:
 
 script:
   - diff <(echo -n) <(gofmt -s -d .)
-  - go build github.com/mxenabled/atrium-go/client
-  - go build github.com/mxenabled/atrium-go/models
+  - go build ./...
   - for example in $(ls _examples/*.go); do go build $example; done
 
 notifications:
