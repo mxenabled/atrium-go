@@ -46,7 +46,7 @@ func (c *Client) CategorizeAndDescribeTransactions(transactionsToCategorize []mo
 	body := string(transactionsJSON)
 
 	fmt.Println(body)
-	response, err := Post(apiEndpointURL, body, c.defaultHeaders())
+	response, err := c.Post(apiEndpointURL, body, c.defaultHeaders())
 
 	defer response.Body.Close()
 

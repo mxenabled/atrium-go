@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/mxenabled/atrium-go/client"
 	"github.com/mxenabled/atrium-go/models"
@@ -309,8 +308,7 @@ func main() {
 		},
 	}
 
-	transactions, err := client.CategorizeAndDescribeTransactions(transactionsToCategorize)
-
+	transactions, err = client.CategorizeAndDescribeTransactions(transactionsToCategorize)
 	if err != nil {
 		fmt.Println("Error categorizing transactions", err)
 		return
