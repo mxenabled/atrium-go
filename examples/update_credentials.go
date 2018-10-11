@@ -5,6 +5,7 @@ import (
 	"github.com/mxenabled/atrium-go/client"
 	"github.com/mxenabled/atrium-go/models"
 	"os"
+	"time"
 )
 
 func getEnv(key string) string {
