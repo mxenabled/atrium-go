@@ -1,0 +1,13 @@
+language: go
+
+go:
+  - 1.10
+
+script:
+  - diff <(echo -n) <(gofmt -s -d .)
+  - go build github.com/mxenabled/atrium-go/client
+  - go build github.com/mxenabled/atrium-go/models
+  - for example in $(ls examples/*.go); do go build $example; done
+
+notifications:
+  email: false
