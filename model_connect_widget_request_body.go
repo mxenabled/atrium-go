@@ -6,7 +6,7 @@
  * API version: 0.1
  */
 
-package atrium-go
+package atrium
 
 type ConnectWidgetRequestBody struct {
 	IsMobileWebview bool `json:"is_mobile_webview,omitempty"`

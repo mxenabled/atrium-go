@@ -18,20 +18,18 @@ Use this endpoint to categorize, cleanse, and classify transactions. These trans
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
-  body := atrium-go.TransactionsCleanseAndCategorizeRequestBody{} // TransactionsCleanseAndCategorizeRequestBody | User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
+  body := atrium.TransactionsCleanseAndCategorizeRequestBody{} // TransactionsCleanseAndCategorizeRequestBody | User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
 
-  response, _, err := client.TransactionsApi.CleanseAndCategorizeTransactions(nil, body)
+  response, _, err := client.TransactionsApi.CleanseAndCategorizeTransactions(ctx, body)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -64,27 +62,25 @@ Use this endpoint to get all transactions that belong to a specific user, across
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  opts := &mx.ListUserTransactionsOpts{ 
+  opts := &atrium.ListUserTransactionsOpts{ 
     Page: optional.NewInt32(12), // int32 | Specify current page.
     FromDate: optional.NewString("fromDate_example"), // string | Filter transactions from this date.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
     ToDate: optional.NewString("toDate_example"), // string | Filter transactions to this date.
   }
 
-  response, _, err := client.TransactionsApi.ListUserTransactions(nil, userGuid, opts)
+  response, _, err := client.TransactionsApi.ListUserTransactions(ctx, userGuid, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -129,21 +125,19 @@ This endpoint allows you to view information about a specific transaction that b
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   transactionGuid := "transactionGuid_example" // string | The unique identifier for a `transaction`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.TransactionsApi.ReadTransaction(nil, transactionGuid, userGuid)
+  response, _, err := client.TransactionsApi.ReadTransaction(ctx, transactionGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

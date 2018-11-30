@@ -6,7 +6,7 @@
  * API version: 0.1
  */
 
-package atrium-go
+package atrium
 
 type UserCreateRequestBody struct {
 	User *interface{} `json:"user,omitempty"`

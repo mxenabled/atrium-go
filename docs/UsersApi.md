@@ -20,20 +20,18 @@ Call this endpoint to create a new user. Atrium will respond with the newly-crea
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
-  body := atrium-go.UserCreateRequestBody{} // UserCreateRequestBody | User object to be created with optional parameters (identifier, is_disabled, metadata)
+  body := atrium.UserCreateRequestBody{} // UserCreateRequestBody | User object to be created with optional parameters (identifier, is_disabled, metadata)
 
-  response, _, err := client.UsersApi.CreateUser(nil, body)
+  response, _, err := client.UsersApi.CreateUser(ctx, body)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -66,20 +64,18 @@ Calling this endpoint will permanently delete a user from Atrium. If successful,
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.UsersApi.DeleteUser(nil, userGuid)
+  response, _, err := client.UsersApi.DeleteUser(ctx, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -112,24 +108,22 @@ Use this endpoint to list every user you've created in Atrium.
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
-  opts := &mx.ListUsersOpts{ 
+  opts := &atrium.ListUsersOpts{ 
     Page: optional.NewInt32(12), // int32 | Specify current page.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.UsersApi.ListUsers(nil, opts)
+  response, _, err := client.UsersApi.ListUsers(ctx, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -170,20 +164,18 @@ Use this endpoint to read the attributes of a specific user.
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.UsersApi.ReadUser(nil, userGuid)
+  response, _, err := client.UsersApi.ReadUser(ctx, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -216,24 +208,22 @@ Use this endpoint to update the attributes of a specific user. Atrium will respo
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  opts := &mx.UpdateUserOpts{ 
-    Body: optional.NewInterface(atrium-go.UserUpdateRequestBody{}), // UserUpdateRequestBody | User object to be updated with optional parameters (identifier, is_disabled, metadata)
+  opts := &atrium.UpdateUserOpts{ 
+    Body: optional.NewInterface(atrium.UserUpdateRequestBody{}), // UserUpdateRequestBody | User object to be updated with optional parameters (identifier, is_disabled, metadata)
   }
 
-  response, _, err := client.UsersApi.UpdateUser(nil, userGuid, opts)
+  response, _, err := client.UsersApi.UpdateUser(ctx, userGuid, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

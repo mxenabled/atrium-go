@@ -18,25 +18,23 @@ This endpoint allows you to see what institutions are available for connection. 
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
-  opts := &mx.ListInstitutionsOpts{ 
+  opts := &atrium.ListInstitutionsOpts{ 
     Name: optional.NewString("name_example"), // string | This will list only institutions in which the appended string appears.
     Page: optional.NewInt32(12), // int32 | Specify current page.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.InstitutionsApi.ListInstitutions(nil, opts)
+  response, _, err := client.InstitutionsApi.ListInstitutions(ctx, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -78,20 +76,18 @@ This endpoint allows you to see information for a specific institution.
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   institutionCode := "institutionCode_example" // string | The institution_code of the institution.
 
-  response, _, err := client.InstitutionsApi.ReadInstitution(nil, institutionCode)
+  response, _, err := client.InstitutionsApi.ReadInstitution(ctx, institutionCode)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -124,20 +120,18 @@ Use this endpoint to see which credentials will be needed to create a member for
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   institutionCode := "institutionCode_example" // string | The institution_code of the institution.
 
-  response, _, err := client.InstitutionsApi.ReadInstitutionCredentials(nil, institutionCode)
+  response, _, err := client.InstitutionsApi.ReadInstitutionCredentials(ctx, institutionCode)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

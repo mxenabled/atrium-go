@@ -18,21 +18,19 @@ Use this endpoint to check whether account and routing numbers are available for
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.VerificationApi.ListAccountNumbers(nil, memberGuid, userGuid)
+  response, _, err := client.VerificationApi.ListAccountNumbers(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -66,21 +64,19 @@ Use this endpoint to check whether account and routing numbers are available for
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   accountGuid := "accountGuid_example" // string | The unique identifier for an `account`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.VerificationApi.ListAccountNumbersByAccount(nil, accountGuid, userGuid)
+  response, _, err := client.VerificationApi.ListAccountNumbersByAccount(ctx, accountGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -114,21 +110,19 @@ The verify endpoint begins a verification process for a member.
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.VerificationApi.VerifyMember(nil, memberGuid, userGuid)
+  response, _, err := client.VerificationApi.VerifyMember(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

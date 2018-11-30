@@ -17,21 +17,19 @@ The identify endpoint begins an identification process for an already-existing m
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.IdentityApi.IdentifyMember(nil, memberGuid, userGuid)
+  response, _, err := client.IdentityApi.IdentifyMember(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -65,21 +63,19 @@ This endpoint returns an array with information about every account associated w
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.IdentityApi.ListAccountOwners(nil, memberGuid, userGuid)
+  response, _, err := client.IdentityApi.ListAccountOwners(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

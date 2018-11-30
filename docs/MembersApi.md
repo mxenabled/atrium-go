@@ -27,21 +27,19 @@ Calling this endpoint initiates an aggregation event for the member. This brings
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.MembersApi.AggregateMember(nil, memberGuid, userGuid)
+  response, _, err := client.MembersApi.AggregateMember(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -75,21 +73,19 @@ This endpoint allows you to create a new member. Members are created with the re
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  body := atrium-go.MemberCreateRequestBody{} // MemberCreateRequestBody | Member object to be created with optional parameters (identifier and metadata) and required parameters (credentials and institution_code)
+  body := atrium.MemberCreateRequestBody{} // MemberCreateRequestBody | Member object to be created with optional parameters (identifier and metadata) and required parameters (credentials and institution_code)
 
-  response, _, err := client.MembersApi.CreateMember(nil, userGuidbody)
+  response, _, err := client.MembersApi.CreateMember(ctx, userGuidbody)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -123,21 +119,19 @@ Accessing this endpoint will permanently delete a member.
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.MembersApi.DeleteMember(nil, memberGuid, userGuid)
+  response, _, err := client.MembersApi.DeleteMember(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -171,26 +165,24 @@ This endpoint returns an array with information about every account associated w
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  opts := &mx.ListMemberAccountsOpts{ 
+  opts := &atrium.ListMemberAccountsOpts{ 
     Page: optional.NewInt32(12), // int32 | Specify current page.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.MembersApi.ListMemberAccounts(nil, memberGuid, userGuid, opts)
+  response, _, err := client.MembersApi.ListMemberAccounts(ctx, memberGuid, userGuid, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -235,21 +227,19 @@ This endpoint returns an array which contains information on every non-MFA crede
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.MembersApi.ListMemberCredentials(nil, memberGuid, userGuid)
+  response, _, err := client.MembersApi.ListMemberCredentials(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -283,21 +273,19 @@ Use this endpoint for information on what multi-factor authentication challenges
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.MembersApi.ListMemberMFAChallenges(nil, memberGuid, userGuid)
+  response, _, err := client.MembersApi.ListMemberMFAChallenges(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -331,28 +319,26 @@ Use this endpoint to get all transactions from all accounts associated with a sp
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  opts := &mx.ListMemberTransactionsOpts{ 
+  opts := &atrium.ListMemberTransactionsOpts{ 
     FromDate: optional.NewString("fromDate_example"), // string | Filter transactions from this date.
     ToDate: optional.NewString("toDate_example"), // string | Filter transactions to this date.
     Page: optional.NewInt32(12), // int32 | Specify current page.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.MembersApi.ListMemberTransactions(nil, memberGuid, userGuid, opts)
+  response, _, err := client.MembersApi.ListMemberTransactions(ctx, memberGuid, userGuid, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -399,25 +385,23 @@ This endpoint returns an array which contains information on every member associ
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  opts := &mx.ListMembersOpts{ 
+  opts := &atrium.ListMembersOpts{ 
     Page: optional.NewInt32(12), // int32 | Specify current page.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.MembersApi.ListMembers(nil, userGuid, opts)
+  response, _, err := client.MembersApi.ListMembers(ctx, userGuid, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -460,21 +444,19 @@ Use this endpoint to read the attributes of a specific member.
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.MembersApi.ReadMember(nil, memberGuid, userGuid)
+  response, _, err := client.MembersApi.ReadMember(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -508,21 +490,19 @@ This endpoint provides the status of the member's most recent aggregation event.
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.MembersApi.ReadMemberStatus(nil, memberGuid, userGuid)
+  response, _, err := client.MembersApi.ReadMemberStatus(ctx, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -556,22 +536,20 @@ This endpoint answers the challenges needed when a member has been challenged by
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  body := atrium-go.MemberResumeRequestBody{} // MemberResumeRequestBody | Member object with MFA challenge answers
+  body := atrium.MemberResumeRequestBody{} // MemberResumeRequestBody | Member object with MFA challenge answers
 
-  response, _, err := client.MembersApi.ResumeMember(nil, memberGuid, userGuidbody)
+  response, _, err := client.MembersApi.ResumeMember(ctx, memberGuid, userGuidbody)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -606,25 +584,23 @@ Use this endpoint to update a member's attributes. Only the credentials, identif
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  opts := &mx.UpdateMemberOpts{ 
-    Body: optional.NewInterface(atrium-go.MemberUpdateRequestBody{}), // MemberUpdateRequestBody | Member object to be updated with optional parameters (credentials, identifier, metadata)
+  opts := &atrium.UpdateMemberOpts{ 
+    Body: optional.NewInterface(atrium.MemberUpdateRequestBody{}), // MemberUpdateRequestBody | Member object to be updated with optional parameters (credentials, identifier, metadata)
   }
 
-  response, _, err := client.MembersApi.UpdateMember(nil, memberGuid, userGuid, opts)
+  response, _, err := client.MembersApi.UpdateMember(ctx, memberGuid, userGuid, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

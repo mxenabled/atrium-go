@@ -6,7 +6,7 @@
  * API version: 0.1
  */
 
-package atrium-go
+package atrium
 
 type Institution struct {
 	Institution *interface{} `json:"institution,omitempty"`

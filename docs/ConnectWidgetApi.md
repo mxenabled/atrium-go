@@ -16,21 +16,19 @@ This endpoint will return a URL for an embeddable version of MX Connect.
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  body := atrium-go.ConnectWidgetRequestBody{} // ConnectWidgetRequestBody | Optional config options for WebView (is_mobile_webview, current_institution_code, current_member_guid, update_credentials)
+  body := atrium.ConnectWidgetRequestBody{} // ConnectWidgetRequestBody | Optional config options for WebView (is_mobile_webview, current_institution_code, current_member_guid, update_credentials)
 
-  response, _, err := client.ConnectWidgetApi.GetConnectWidget(nil, userGuidbody)
+  response, _, err := client.ConnectWidgetApi.GetConnectWidget(ctx, userGuidbody)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

@@ -19,28 +19,26 @@ This endpoint allows you to see every transaction that belongs to a specific acc
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   accountGuid := "accountGuid_example" // string | The unique identifier for an `account`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  opts := &mx.ListAccountTransactionsOpts{ 
+  opts := &atrium.ListAccountTransactionsOpts{ 
     FromDate: optional.NewString("fromDate_example"), // string | Filter transactions from this date.
     ToDate: optional.NewString("toDate_example"), // string | Filter transactions to this date.
     Page: optional.NewInt32(12), // int32 | Specify current page.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.AccountsApi.ListAccountTransactions(nil, accountGuid, userGuid, opts)
+  response, _, err := client.AccountsApi.ListAccountTransactions(ctx, accountGuid, userGuid, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -87,25 +85,23 @@ Use this endpoint to view information about every account that belongs to a user
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
   "github.com/antihax/optional"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
-  opts := &mx.ListUserAccountsOpts{ 
+  opts := &atrium.ListUserAccountsOpts{ 
     Page: optional.NewInt32(12), // int32 | Specify current page.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.AccountsApi.ListUserAccounts(nil, userGuid, opts)
+  response, _, err := client.AccountsApi.ListUserAccounts(ctx, userGuid, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -148,21 +144,19 @@ Reading an account allows you to get information about a specific account that b
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   accountGuid := "accountGuid_example" // string | The unique identifier for an `account`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.AccountsApi.ReadAccount(nil, accountGuid, userGuid)
+  response, _, err := client.AccountsApi.ReadAccount(ctx, accountGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -196,22 +190,20 @@ Reading an account allows you to get information about a specific account that b
 package main
 
 import (
+  "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
 )
 
 func main() {
-  config := mx.NewConfiguration()
-  config.DefaultHeader["MX-Client-ID"] = "YOUR MX-Client-ID"
-  config.DefaultHeader["MX-API-Key"] = "YOUR MX-API-Key"
-
-  client := mx.NewAPIClient(config)
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
   
   accountGuid := "accountGuid_example" // string | The unique identifier for an `account`.
   memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
   userGuid := "userGuid_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.AccountsApi.ReadAccountByMemberGUID(nil, accountGuid, memberGuid, userGuid)
+  response, _, err := client.AccountsApi.ReadAccountByMemberGUID(ctx, accountGuid, memberGuid, userGuid)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

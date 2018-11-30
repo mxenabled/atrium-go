@@ -6,7 +6,7 @@
  * API version: 0.1
  */
 
-package atrium-go
+package atrium
 
 type ChallengeAttributes struct {
 	FieldName string `json:"field_name,omitempty"`

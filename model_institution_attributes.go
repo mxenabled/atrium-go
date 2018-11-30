@@ -6,7 +6,7 @@
  * API version: 0.1
  */
 
-package atrium-go
+package atrium
 
 type InstitutionAttributes struct {
 	Code string `json:"code,omitempty"`
