@@ -9,5 +9,5 @@
 package atrium
 
 type Institution struct {
-	Institution *interface{} `json:"institution,omitempty"`
+	Institution *InstitutionAttributes `json:"institution,omitempty"`
 }

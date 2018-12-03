@@ -9,6 +9,6 @@
 package atrium
 
 type Institutions struct {
-	Institutions []interface{} `json:"institutions,omitempty"`
-	Pagination *interface{} `json:"pagination,omitempty"`
+	Institutions []InstitutionAttributes `json:"institutions,omitempty"`
+	Pagination *Pagination `json:"pagination,omitempty"`
 }

@@ -9,5 +9,5 @@
 package atrium
 
 type Challenges struct {
-	Challenges []interface{} `json:"challenges,omitempty"`
+	Challenges []ChallengeAttributes `json:"challenges,omitempty"`
 }

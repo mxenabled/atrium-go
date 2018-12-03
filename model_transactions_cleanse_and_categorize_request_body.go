@@ -9,5 +9,5 @@
 package atrium
 
 type TransactionsCleanseAndCategorizeRequestBody struct {
-	Transactions []interface{} `json:"transactions,omitempty"`
+	Transactions []TransactionsCleanseAndCategorizeRequestBodyAttributes `json:"transactions,omitempty"`
 }

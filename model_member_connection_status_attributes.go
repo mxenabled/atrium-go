@@ -10,7 +10,7 @@ package atrium
 
 type MemberConnectionStatusAttributes struct {
 	AggregatedAt string `json:"aggregated_at,omitempty"`
-	Challenges []interface{} `json:"challenges,omitempty"`
+	Challenges []ChallengeAttributes `json:"challenges,omitempty"`
 	ConnectionStatus string `json:"connection_status,omitempty"`
 	Guid bool `json:"guid,omitempty"`
 	HasProcessedAccounts bool `json:"has_processed_accounts,omitempty"`

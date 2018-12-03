@@ -9,7 +9,7 @@
 package atrium
 
 type MemberCreateRequestBodyAttributes struct {
-	Credentials []interface{} `json:"credentials"`
+	Credentials []CredentialResponseAttributes `json:"credentials"`
 	Identifier string `json:"identifier,omitempty"`
 	InstitutionCode string `json:"institution_code"`
 	Metadata string `json:"metadata,omitempty"`

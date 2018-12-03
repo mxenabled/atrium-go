@@ -9,5 +9,5 @@
 package atrium
 
 type MemberResumeRequestBody struct {
-	Member *interface{} `json:"member,omitempty"`
+	Member *MemberResumeRequestBodyAttributes `json:"member,omitempty"`
 }

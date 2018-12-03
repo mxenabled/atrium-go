@@ -12,6 +12,6 @@ type CredentialAttributes struct {
 	FieldName string `json:"field_name,omitempty"`
 	Guid string `json:"guid,omitempty"`
 	Label string `json:"label,omitempty"`
-	Options []interface{} `json:"options,omitempty"`
+	Options []CredentialOptionAttributes `json:"options,omitempty"`
 	Type_ string `json:"type,omitempty"`
 }

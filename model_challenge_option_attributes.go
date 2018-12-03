@@ -8,7 +8,7 @@
 
 package atrium
 
-type ChallengeAttributesOptions struct {
+type ChallengeOptionAttributes struct {
 	ImageData string `json:"image_data,omitempty"`
 	Label string `json:"label,omitempty"`
 	Value string `json:"value,omitempty"`

@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AggregatedAt** | **string** |  | [optional] [default to null]
-**Challenges** | [**[]interface{}**](interface{}.md) |  | [optional] [default to null]
+**Challenges** | [**[]ChallengeAttributes**](ChallengeAttributes.md) |  | [optional] [default to null]
 **ConnectionStatus** | **string** |  | [optional] [default to null]
 **Guid** | **bool** |  | [optional] [default to null]
 **HasProcessedAccounts** | **bool** |  | [optional] [default to null]

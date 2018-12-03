@@ -9,6 +9,6 @@
 package atrium
 
 type Transactions struct {
-	Transactions []interface{} `json:"transactions,omitempty"`
-	Pagination *interface{} `json:"pagination,omitempty"`
+	Transactions []TransactionAttributes `json:"transactions,omitempty"`
+	Pagination *Pagination `json:"pagination,omitempty"`
 }

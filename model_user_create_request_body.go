@@ -9,5 +9,5 @@
 package atrium
 
 type UserCreateRequestBody struct {
-	User *interface{} `json:"user,omitempty"`
+	User *UserAttributes `json:"user,omitempty"`
 }

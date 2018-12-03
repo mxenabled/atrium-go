@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Credentials** | [**[]interface{}**](interface{}.md) |  | [optional] [default to null]
+**Credentials** | [**[]CredentialResponseAttributes**](CredentialResponseAttributes.md) |  | [optional] [default to null]
 **Identifier** | **string** |  | [optional] [default to null]
 **Metadata** | **string** |  | [optional] [default to null]
 

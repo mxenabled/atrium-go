@@ -9,5 +9,5 @@
 package atrium
 
 type Account struct {
-	Account *interface{} `json:"account,omitempty"`
+	Account *AccountAttributes `json:"account,omitempty"`
 }

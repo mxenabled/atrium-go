@@ -9,5 +9,5 @@
 package atrium
 
 type Member struct {
-	Member *interface{} `json:"member,omitempty"`
+	Member *MemberAttributes `json:"member,omitempty"`
 }

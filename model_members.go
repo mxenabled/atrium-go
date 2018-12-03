@@ -9,6 +9,6 @@
 package atrium
 
 type Members struct {
-	Members []interface{} `json:"members,omitempty"`
-	Pagination *interface{} `json:"pagination,omitempty"`
+	Members []MemberAttributes `json:"members,omitempty"`
+	Pagination *Pagination `json:"pagination,omitempty"`
 }

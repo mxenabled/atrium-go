@@ -9,5 +9,5 @@
 package atrium
 
 type MemberResumeRequestBodyAttributes struct {
-	Challenges []interface{} `json:"challenges,omitempty"`
+	Challenges []CredentialResponseAttributes `json:"challenges,omitempty"`
 }

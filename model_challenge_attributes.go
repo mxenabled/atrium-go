@@ -13,5 +13,5 @@ type ChallengeAttributes struct {
 	Guid string `json:"guid,omitempty"`
 	ImageData string `json:"image_data,omitempty"`
 	Label string `json:"label,omitempty"`
-	Options []ChallengeAttributesOptions `json:"options,omitempty"`
+	Options []ChallengeOptionAttributes `json:"options,omitempty"`
 }

@@ -9,5 +9,5 @@
 package atrium
 
 type Credentials struct {
-	Credentials []interface{} `json:"credentials,omitempty"`
+	Credentials []CredentialAttributes `json:"credentials,omitempty"`
 }

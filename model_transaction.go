@@ -9,5 +9,5 @@
 package atrium
 
 type Transaction struct {
-	Transaction *interface{} `json:"transaction,omitempty"`
+	Transaction *TransactionAttributes `json:"transaction,omitempty"`
 }
