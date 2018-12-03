@@ -25,7 +25,7 @@ var (
 
 type InstitutionsApiService service
 
-/* 
+/*
 InstitutionsApiService List institutions
 This endpoint allows you to see what institutions are available for connection. Information returned will include the institution_code assigned to a particular institution, URLs for the financial institution&#39;s logo, and the URL for its website.&lt;br&gt; This endpoint takes an optional query string, name&#x3D;{string}. This will list only institutions in which the appended string appears. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -130,13 +130,13 @@ func (a *InstitutionsApiService) ListInstitutions(ctx context.Context, localVarO
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -158,7 +158,7 @@ func (a *InstitutionsApiService) ListInstitutions(ctx context.Context, localVarO
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 InstitutionsApiService Read institution
 This endpoint allows you to see information for a specific institution.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -245,13 +245,13 @@ func (a *InstitutionsApiService) ReadInstitution(ctx context.Context, institutio
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -273,7 +273,7 @@ func (a *InstitutionsApiService) ReadInstitution(ctx context.Context, institutio
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 InstitutionsApiService Read institution credentials
 Use this endpoint to see which credentials will be needed to create a member for a specific institution.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -360,13 +360,13 @@ func (a *InstitutionsApiService) ReadInstitutionCredentials(ctx context.Context,
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -387,3 +387,4 @@ func (a *InstitutionsApiService) ReadInstitutionCredentials(ctx context.Context,
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+

@@ -25,7 +25,7 @@ var (
 
 type MembersApiService service
 
-/* 
+/*
 MembersApiService Aggregate member
 Calling this endpoint initiates an aggregation event for the member. This brings in the latest account and transaction data from the connected institution. If this data has recently been updated, MX may not initiate an aggregation event. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -114,13 +114,13 @@ func (a *MembersApiService) AggregateMember(ctx context.Context, memberGuid stri
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -142,7 +142,7 @@ func (a *MembersApiService) AggregateMember(ctx context.Context, memberGuid stri
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService Create member
 This endpoint allows you to create a new member. Members are created with the required parameters credentials and institution_code, and the optional parameters identifier and metadata.&lt;br&gt; When creating a member, you&#39;ll need to include the correct type of credential required by the financial institution and provided by the user. You can find out which credential type is required with the /institutions/{institution_code}/credentials endpoint.&lt;br&gt; If successful, Atrium will respond with the newly-created member object.&lt;br&gt; Once you successfully create a member, MX will immediately validate the provided credentials and attempt to aggregate data for accounts and transactions. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -232,13 +232,13 @@ func (a *MembersApiService) CreateMember(ctx context.Context, userGuid string, b
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -260,7 +260,7 @@ func (a *MembersApiService) CreateMember(ctx context.Context, userGuid string, b
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService Delete member
 Accessing this endpoint will permanently delete a member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -348,7 +348,7 @@ func (a *MembersApiService) DeleteMember(ctx context.Context, memberGuid string,
 
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -359,7 +359,7 @@ func (a *MembersApiService) DeleteMember(ctx context.Context, memberGuid string,
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService List member accounts
 This endpoint returns an array with information about every account associated with a particular member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -463,13 +463,13 @@ func (a *MembersApiService) ListMemberAccounts(ctx context.Context, memberGuid s
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -491,7 +491,7 @@ func (a *MembersApiService) ListMemberAccounts(ctx context.Context, memberGuid s
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService List member credentials
 This endpoint returns an array which contains information on every non-MFA credential associated with a specific member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -580,13 +580,13 @@ func (a *MembersApiService) ListMemberCredentials(ctx context.Context, memberGui
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -608,7 +608,7 @@ func (a *MembersApiService) ListMemberCredentials(ctx context.Context, memberGui
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService List member MFA challenges
 Use this endpoint for information on what multi-factor authentication challenges need to be answered in order to aggregate a member.&lt;br&gt; If the aggregation is not challenged, i.e., the member does not have a connection status of CHALLENGED, then code 204 No Content will be returned.&lt;br&gt; If the aggregation has been challenged, i.e., the member does have a connection status of CHALLENGED, then code 200 OK will be returned — along with the corresponding credentials. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -697,13 +697,13 @@ func (a *MembersApiService) ListMemberMFAChallenges(ctx context.Context, memberG
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -725,7 +725,7 @@ func (a *MembersApiService) ListMemberMFAChallenges(ctx context.Context, memberG
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService List member transactions
 Use this endpoint to get all transactions from all accounts associated with a specific member.&lt;br&gt; This endpoint accepts optional URL query parameters — from_date and to_date — which are used to filter transactions according to the date they were posted. If no values are given for the query parameters, from_date will default to 90 days prior to the request and to_date will default to 5 days from the time of the request. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -839,13 +839,13 @@ func (a *MembersApiService) ListMemberTransactions(ctx context.Context, memberGu
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -867,7 +867,7 @@ func (a *MembersApiService) ListMemberTransactions(ctx context.Context, memberGu
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService List members
 This endpoint returns an array which contains information on every member associated with a specific user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -969,13 +969,13 @@ func (a *MembersApiService) ListMembers(ctx context.Context, userGuid string, lo
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -997,7 +997,7 @@ func (a *MembersApiService) ListMembers(ctx context.Context, userGuid string, lo
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService Read member
 Use this endpoint to read the attributes of a specific member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1086,13 +1086,13 @@ func (a *MembersApiService) ReadMember(ctx context.Context, memberGuid string, u
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -1114,7 +1114,7 @@ func (a *MembersApiService) ReadMember(ctx context.Context, memberGuid string, u
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService Read member connection status
 This endpoint provides the status of the member&#39;s most recent aggregation event. This is an important step in the aggregation process, and the results returned by this endpoint should determine what you do next in order to successfully aggregate a member.&lt;br&gt; MX has introduced new, more detailed information on the current status of a member&#39;s connection to a financial institution and the state of its aggregation: the connection_status field. These are intended to replace and expand upon the information provided in the status field, which will soon be deprecated; support for the status field remains for the time being. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1203,13 +1203,13 @@ func (a *MembersApiService) ReadMemberStatus(ctx context.Context, memberGuid str
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -1231,7 +1231,7 @@ func (a *MembersApiService) ReadMemberStatus(ctx context.Context, memberGuid str
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService Resume aggregation from MFA
 This endpoint answers the challenges needed when a member has been challenged by multi-factor authentication.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1323,13 +1323,13 @@ func (a *MembersApiService) ResumeMember(ctx context.Context, memberGuid string,
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -1351,7 +1351,7 @@ func (a *MembersApiService) ResumeMember(ctx context.Context, memberGuid string,
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 MembersApiService Update member
 Use this endpoint to update a member&#39;s attributes. Only the credentials, identifier, and metadata parameters can be updated. To get a list of the required credentials for the member, use the list member credentials endpoint. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1456,13 +1456,13 @@ func (a *MembersApiService) UpdateMember(ctx context.Context, memberGuid string,
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -1483,3 +1483,4 @@ func (a *MembersApiService) UpdateMember(ctx context.Context, memberGuid string,
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+

@@ -25,7 +25,7 @@ var (
 
 type TransactionsApiService service
 
-/* 
+/*
 TransactionsApiService Categorize transactions
 Use this endpoint to categorize, cleanse, and classify transactions. These transactions are not persisted or stored on the MX platform.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -113,13 +113,13 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -141,7 +141,7 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 TransactionsApiService List transactions for a user
 Use this endpoint to get all transactions that belong to a specific user, across all the user&#39;s members and accounts.&lt;br&gt; This endpoint accepts optional query parameters, from_date and to_date, which filter transactions according to the date they were posted. If no values are given, from_date will default to 90 days prior to the request, and to_date will default to 5 days from the time of the request. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -253,13 +253,13 @@ func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userG
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -281,7 +281,7 @@ func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userG
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 TransactionsApiService Read a transaction
 This endpoint allows you to view information about a specific transaction that belongs to a user.&lt;br&gt;
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -370,13 +370,13 @@ func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactio
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -397,3 +397,4 @@ func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactio
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+

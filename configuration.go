@@ -61,7 +61,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://vestibule.mx.com",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "Swagger-Codegen/2.0/go",
+		UserAgent:     "MX-Codegen/2.0/go",
 	}
 	return cfg
 }

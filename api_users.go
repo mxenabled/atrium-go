@@ -25,7 +25,7 @@ var (
 
 type UsersApiService service
 
-/* 
+/*
 UsersApiService Create user
 Call this endpoint to create a new user. Atrium will respond with the newly-created user object if successful. This endpoint accepts several parameters: identifier, metadata, and is_disabled.&lt;br&gt; Disabling a user means that accounts and transactions associated with it will not be updated in the background by MX. It will also restrict access to that user&#39;s data until they are no longer disabled. Users who are disabled for the entirety of an Atrium billing period will not be factored into that month&#39;s bill. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -113,13 +113,13 @@ func (a *UsersApiService) CreateUser(ctx context.Context, body UserCreateRequest
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -141,7 +141,7 @@ func (a *UsersApiService) CreateUser(ctx context.Context, body UserCreateRequest
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService Delete user
 Calling this endpoint will permanently delete a user from Atrium. If successful, the API will respond with Status: 204 No Content. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -227,7 +227,7 @@ func (a *UsersApiService) DeleteUser(ctx context.Context, userGuid string) (*htt
 
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -238,7 +238,7 @@ func (a *UsersApiService) DeleteUser(ctx context.Context, userGuid string) (*htt
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService List users
 Use this endpoint to list every user you&#39;ve created in Atrium.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -338,13 +338,13 @@ func (a *UsersApiService) ListUsers(ctx context.Context, localVarOptionals *List
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -366,7 +366,7 @@ func (a *UsersApiService) ListUsers(ctx context.Context, localVarOptionals *List
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService Read user
 Use this endpoint to read the attributes of a specific user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -453,13 +453,13 @@ func (a *UsersApiService) ReadUser(ctx context.Context, userGuid string) (User, 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -481,7 +481,7 @@ func (a *UsersApiService) ReadUser(ctx context.Context, userGuid string) (User, 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 UsersApiService Update user
 Use this endpoint to update the attributes of a specific user. Atrium will respond with the updated user object.&lt;br&gt; Disabling a user means that accounts and transactions associated with it will not be updated in the background by MX. It will also restrict access to that user&#39;s data until they are no longer disabled. Users who are disabled for the entirety of an Atrium billing period will not be factored into that month&#39;s bill.&lt;br&gt; To disable a user, update it and set the is_disabled parameter to true. Set it to false to re-enable the user. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -584,13 +584,13 @@ func (a *UsersApiService) UpdateUser(ctx context.Context, userGuid string, local
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -611,3 +611,4 @@ func (a *UsersApiService) UpdateUser(ctx context.Context, userGuid string, local
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+

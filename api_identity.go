@@ -24,7 +24,7 @@ var (
 
 type IdentityApiService service
 
-/* 
+/*
 IdentityApiService Identify
 The identify endpoint begins an identification process for an already-existing member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -113,13 +113,13 @@ func (a *IdentityApiService) IdentifyMember(ctx context.Context, memberGuid stri
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -141,7 +141,7 @@ func (a *IdentityApiService) IdentifyMember(ctx context.Context, memberGuid stri
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 IdentityApiService List member account owners
 This endpoint returns an array with information about every account associated with a particular member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -230,13 +230,13 @@ func (a *IdentityApiService) ListAccountOwners(ctx context.Context, memberGuid s
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -257,3 +257,4 @@ func (a *IdentityApiService) ListAccountOwners(ctx context.Context, memberGuid s
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+

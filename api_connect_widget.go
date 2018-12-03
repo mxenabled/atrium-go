@@ -24,7 +24,7 @@ var (
 
 type ConnectWidgetApiService service
 
-/* 
+/*
 ConnectWidgetApiService Embedding in a website
 This endpoint will return a URL for an embeddable version of MX Connect.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -114,13 +114,13 @@ func (a *ConnectWidgetApiService) GetConnectWidget(ctx context.Context, userGuid
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
+		newErr := GenericError{
 			body: localVarBody,
 			error: localVarHttpResponse.Status,
 		}
@@ -141,3 +141,4 @@ func (a *ConnectWidgetApiService) GetConnectWidget(ctx context.Context, userGuid
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
