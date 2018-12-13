@@ -10,7 +10,7 @@ package atrium
 
 type ChallengeAttributes struct {
 	FieldName string `json:"field_name,omitempty"`
-	Guid string `json:"guid,omitempty"`
+	GUID string `json:"guid,omitempty"`
 	ImageData string `json:"image_data,omitempty"`
 	Label string `json:"label,omitempty"`
 	Options []ChallengeOptionAttributes `json:"options,omitempty"`

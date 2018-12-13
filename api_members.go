@@ -23,18 +23,18 @@ var (
 	_ context.Context
 )
 
-type MembersApiService service
+type MembersAPIService service
 
 /*
-MembersApiService Aggregate member
+MembersAPIService Aggregate member
 Calling this endpoint initiates an aggregation event for the member. This brings in the latest account and transaction data from the connected institution. If this data has recently been updated, MX may not initiate an aggregation event. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Member
 */
-func (a *MembersApiService) AggregateMember(ctx context.Context, memberGuid string, userGuid string) (Member, *http.Response, error) {
+func (a *MembersAPIService) AggregateMember(ctx context.Context, memberGUID string, userGUID string) (Member, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -45,8 +45,8 @@ func (a *MembersApiService) AggregateMember(ctx context.Context, memberGuid stri
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/aggregate"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -143,15 +143,15 @@ func (a *MembersApiService) AggregateMember(ctx context.Context, memberGuid stri
 }
 
 /*
-MembersApiService Create member
+MembersAPIService Create member
 This endpoint allows you to create a new member. Members are created with the required parameters credentials and institution_code, and the optional parameters identifier and metadata.&lt;br&gt; When creating a member, you&#39;ll need to include the correct type of credential required by the financial institution and provided by the user. You can find out which credential type is required with the /institutions/{institution_code}/credentials endpoint.&lt;br&gt; If successful, Atrium will respond with the newly-created member object.&lt;br&gt; Once you successfully create a member, MX will immediately validate the provided credentials and attempt to aggregate data for accounts and transactions. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param body Member object to be created with optional parameters (identifier and metadata) and required parameters (credentials and institution_code)
 
 @return Member
 */
-func (a *MembersApiService) CreateMember(ctx context.Context, userGuid string, body MemberCreateRequestBody) (Member, *http.Response, error) {
+func (a *MembersAPIService) CreateMember(ctx context.Context, userGUID string, body MemberCreateRequestBody) (Member, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -162,7 +162,7 @@ func (a *MembersApiService) CreateMember(ctx context.Context, userGuid string, b
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -261,15 +261,15 @@ func (a *MembersApiService) CreateMember(ctx context.Context, userGuid string, b
 }
 
 /*
-MembersApiService Delete member
+MembersAPIService Delete member
 Accessing this endpoint will permanently delete a member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 
 */
-func (a *MembersApiService) DeleteMember(ctx context.Context, memberGuid string, userGuid string) (*http.Response, error) {
+func (a *MembersAPIService) DeleteMember(ctx context.Context, memberGUID string, userGUID string) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -280,8 +280,8 @@ func (a *MembersApiService) DeleteMember(ctx context.Context, memberGuid string,
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -360,11 +360,11 @@ func (a *MembersApiService) DeleteMember(ctx context.Context, memberGuid string,
 }
 
 /*
-MembersApiService List member accounts
+MembersAPIService List member accounts
 This endpoint returns an array with information about every account associated with a particular member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *ListMemberAccountsOpts - Optional Parameters:
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
@@ -377,7 +377,7 @@ type ListMemberAccountsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *MembersApiService) ListMemberAccounts(ctx context.Context, memberGuid string, userGuid string, localVarOptionals *ListMemberAccountsOpts) (Accounts, *http.Response, error) {
+func (a *MembersAPIService) ListMemberAccounts(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *ListMemberAccountsOpts) (Accounts, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -388,8 +388,8 @@ func (a *MembersApiService) ListMemberAccounts(ctx context.Context, memberGuid s
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/accounts"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -492,15 +492,15 @@ func (a *MembersApiService) ListMemberAccounts(ctx context.Context, memberGuid s
 }
 
 /*
-MembersApiService List member credentials
+MembersAPIService List member credentials
 This endpoint returns an array which contains information on every non-MFA credential associated with a specific member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Credentials
 */
-func (a *MembersApiService) ListMemberCredentials(ctx context.Context, memberGuid string, userGuid string) (Credentials, *http.Response, error) {
+func (a *MembersAPIService) ListMemberCredentials(ctx context.Context, memberGUID string, userGUID string) (Credentials, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -511,8 +511,8 @@ func (a *MembersApiService) ListMemberCredentials(ctx context.Context, memberGui
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/credentials"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -609,15 +609,15 @@ func (a *MembersApiService) ListMemberCredentials(ctx context.Context, memberGui
 }
 
 /*
-MembersApiService List member MFA challenges
+MembersAPIService List member MFA challenges
 Use this endpoint for information on what multi-factor authentication challenges need to be answered in order to aggregate a member.&lt;br&gt; If the aggregation is not challenged, i.e., the member does not have a connection status of CHALLENGED, then code 204 No Content will be returned.&lt;br&gt; If the aggregation has been challenged, i.e., the member does have a connection status of CHALLENGED, then code 200 OK will be returned — along with the corresponding credentials. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Challenges
 */
-func (a *MembersApiService) ListMemberMFAChallenges(ctx context.Context, memberGuid string, userGuid string) (Challenges, *http.Response, error) {
+func (a *MembersAPIService) ListMemberMFAChallenges(ctx context.Context, memberGUID string, userGUID string) (Challenges, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -628,8 +628,8 @@ func (a *MembersApiService) ListMemberMFAChallenges(ctx context.Context, memberG
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/challenges"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -726,11 +726,11 @@ func (a *MembersApiService) ListMemberMFAChallenges(ctx context.Context, memberG
 }
 
 /*
-MembersApiService List member transactions
+MembersAPIService List member transactions
 Use this endpoint to get all transactions from all accounts associated with a specific member.&lt;br&gt; This endpoint accepts optional URL query parameters — from_date and to_date — which are used to filter transactions according to the date they were posted. If no values are given for the query parameters, from_date will default to 90 days prior to the request and to_date will default to 5 days from the time of the request. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *ListMemberTransactionsOpts - Optional Parameters:
      * @param "FromDate" (optional.String) -  Filter transactions from this date.
      * @param "ToDate" (optional.String) -  Filter transactions to this date.
@@ -747,7 +747,7 @@ type ListMemberTransactionsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *MembersApiService) ListMemberTransactions(ctx context.Context, memberGuid string, userGuid string, localVarOptionals *ListMemberTransactionsOpts) (Transactions, *http.Response, error) {
+func (a *MembersAPIService) ListMemberTransactions(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *ListMemberTransactionsOpts) (Transactions, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -758,8 +758,8 @@ func (a *MembersApiService) ListMemberTransactions(ctx context.Context, memberGu
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/transactions"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -868,10 +868,10 @@ func (a *MembersApiService) ListMemberTransactions(ctx context.Context, memberGu
 }
 
 /*
-MembersApiService List members
+MembersAPIService List members
 This endpoint returns an array which contains information on every member associated with a specific user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *ListMembersOpts - Optional Parameters:
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
@@ -884,7 +884,7 @@ type ListMembersOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *MembersApiService) ListMembers(ctx context.Context, userGuid string, localVarOptionals *ListMembersOpts) (Members, *http.Response, error) {
+func (a *MembersAPIService) ListMembers(ctx context.Context, userGUID string, localVarOptionals *ListMembersOpts) (Members, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -895,7 +895,7 @@ func (a *MembersApiService) ListMembers(ctx context.Context, userGuid string, lo
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -998,15 +998,15 @@ func (a *MembersApiService) ListMembers(ctx context.Context, userGuid string, lo
 }
 
 /*
-MembersApiService Read member
+MembersAPIService Read member
 Use this endpoint to read the attributes of a specific member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Member
 */
-func (a *MembersApiService) ReadMember(ctx context.Context, memberGuid string, userGuid string) (Member, *http.Response, error) {
+func (a *MembersAPIService) ReadMember(ctx context.Context, memberGUID string, userGUID string) (Member, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -1017,8 +1017,8 @@ func (a *MembersApiService) ReadMember(ctx context.Context, memberGuid string, u
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1115,15 +1115,15 @@ func (a *MembersApiService) ReadMember(ctx context.Context, memberGuid string, u
 }
 
 /*
-MembersApiService Read member connection status
+MembersAPIService Read member connection status
 This endpoint provides the status of the member&#39;s most recent aggregation event. This is an important step in the aggregation process, and the results returned by this endpoint should determine what you do next in order to successfully aggregate a member.&lt;br&gt; MX has introduced new, more detailed information on the current status of a member&#39;s connection to a financial institution and the state of its aggregation: the connection_status field. These are intended to replace and expand upon the information provided in the status field, which will soon be deprecated; support for the status field remains for the time being. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return MemberConnectionStatus
 */
-func (a *MembersApiService) ReadMemberStatus(ctx context.Context, memberGuid string, userGuid string) (MemberConnectionStatus, *http.Response, error) {
+func (a *MembersAPIService) ReadMemberStatus(ctx context.Context, memberGUID string, userGUID string) (MemberConnectionStatus, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -1134,8 +1134,8 @@ func (a *MembersApiService) ReadMemberStatus(ctx context.Context, memberGuid str
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1232,16 +1232,16 @@ func (a *MembersApiService) ReadMemberStatus(ctx context.Context, memberGuid str
 }
 
 /*
-MembersApiService Resume aggregation from MFA
+MembersAPIService Resume aggregation from MFA
 This endpoint answers the challenges needed when a member has been challenged by multi-factor authentication.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param body Member object with MFA challenge answers
 
 @return Member
 */
-func (a *MembersApiService) ResumeMember(ctx context.Context, memberGuid string, userGuid string, body MemberResumeRequestBody) (Member, *http.Response, error) {
+func (a *MembersAPIService) ResumeMember(ctx context.Context, memberGUID string, userGUID string, body MemberResumeRequestBody) (Member, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -1252,8 +1252,8 @@ func (a *MembersApiService) ResumeMember(ctx context.Context, memberGuid string,
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/resume"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1352,11 +1352,11 @@ func (a *MembersApiService) ResumeMember(ctx context.Context, memberGuid string,
 }
 
 /*
-MembersApiService Update member
+MembersAPIService Update member
 Use this endpoint to update a member&#39;s attributes. Only the credentials, identifier, and metadata parameters can be updated. To get a list of the required credentials for the member, use the list member credentials endpoint. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *UpdateMemberOpts - Optional Parameters:
      * @param "Body" (optional.Interface of MemberUpdateRequestBody) -  Member object to be updated with optional parameters (credentials, identifier, metadata)
 
@@ -1367,7 +1367,7 @@ type UpdateMemberOpts struct {
 	Body optional.Interface
 }
 
-func (a *MembersApiService) UpdateMember(ctx context.Context, memberGuid string, userGuid string, localVarOptionals *UpdateMemberOpts) (Member, *http.Response, error) {
+func (a *MembersAPIService) UpdateMember(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *UpdateMemberOpts) (Member, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -1378,8 +1378,8 @@ func (a *MembersApiService) UpdateMember(ctx context.Context, memberGuid string,
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

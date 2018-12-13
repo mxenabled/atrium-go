@@ -9,7 +9,7 @@
 package atrium
 
 type TransactionAttributes struct {
-	AccountGuid string `json:"account_guid,omitempty"`
+	AccountGUID string `json:"account_guid,omitempty"`
 	Amount float32 `json:"amount,omitempty"`
 	Category string `json:"category,omitempty"`
 	CheckNumber int32 `json:"check_number,omitempty"`
@@ -18,7 +18,7 @@ type TransactionAttributes struct {
 	CurrencyCode string `json:"currency_code,omitempty"`
 	Date string `json:"date,omitempty"`
 	Description string `json:"description,omitempty"`
-	Guid string `json:"guid,omitempty"`
+	GUID string `json:"guid,omitempty"`
 	IsBillPay bool `json:"is_bill_pay,omitempty"`
 	IsDirectDeposit bool `json:"is_direct_deposit,omitempty"`
 	IsExpense bool `json:"is_expense,omitempty"`
@@ -29,7 +29,7 @@ type TransactionAttributes struct {
 	IsPayrollAdvance bool `json:"is_payroll_advance,omitempty"`
 	Latitude float32 `json:"latitude,omitempty"`
 	Longitude float32 `json:"longitude,omitempty"`
-	MemberGuid string `json:"member_guid,omitempty"`
+	MemberGUID string `json:"member_guid,omitempty"`
 	Memo string `json:"memo,omitempty"`
 	MerchantCategoryCode int32 `json:"merchant_category_code,omitempty"`
 	OriginalDescription string `json:"original_description,omitempty"`
@@ -39,5 +39,5 @@ type TransactionAttributes struct {
 	TransactedAt string `json:"transacted_at,omitempty"`
 	Type_ string `json:"type,omitempty"`
 	UpdatedAt string `json:"updated_at,omitempty"`
-	UserGuid string `json:"user_guid,omitempty"`
+	UserGUID string `json:"user_guid,omitempty"`
 }

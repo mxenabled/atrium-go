@@ -1,10 +1,10 @@
-# \InstitutionsApi
+# \InstitutionsAPI
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListInstitutions**](InstitutionsApi.md#ListInstitutions) | **Get** /institutions | List institutions
-[**ReadInstitution**](InstitutionsApi.md#ReadInstitution) | **Get** /institutions/{institution_code} | Read institution
-[**ReadInstitutionCredentials**](InstitutionsApi.md#ReadInstitutionCredentials) | **Get** /institutions/{institution_code}/credentials | Read institution credentials
+[**ListInstitutions**](InstitutionsAPI.md#ListInstitutions) | **Get** /institutions | List institutions
+[**ReadInstitution**](InstitutionsAPI.md#ReadInstitution) | **Get** /institutions/{institution_code} | Read institution
+[**ReadInstitutionCredentials**](InstitutionsAPI.md#ReadInstitutionCredentials) | **Get** /institutions/{institution_code}/credentials | Read institution credentials
 
 
 # **ListInstitutions**
@@ -34,7 +34,7 @@ func main() {
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.InstitutionsApi.ListInstitutions(ctx, opts)
+  response, _, err := client.InstitutionsAPI.ListInstitutions(ctx, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -87,7 +87,7 @@ func main() {
   
   institutionCode := "institutionCode_example" // string | The institution_code of the institution.
 
-  response, _, err := client.InstitutionsApi.ReadInstitution(ctx, institutionCode)
+  response, _, err := client.InstitutionsAPI.ReadInstitution(ctx, institutionCode)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -131,7 +131,7 @@ func main() {
   
   institutionCode := "institutionCode_example" // string | The institution_code of the institution.
 
-  response, _, err := client.InstitutionsApi.ReadInstitutionCredentials(ctx, institutionCode)
+  response, _, err := client.InstitutionsAPI.ReadInstitutionCredentials(ctx, institutionCode)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

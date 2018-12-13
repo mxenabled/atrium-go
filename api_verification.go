@@ -22,18 +22,18 @@ var (
 	_ context.Context
 )
 
-type VerificationApiService service
+type VerificationAPIService service
 
 /*
-VerificationApiService Read account numbers
+VerificationAPIService Read account numbers
 Use this endpoint to check whether account and routing numbers are available for accounts associated with a particular member. It returns the account_numbers object, which contains account and routing number data for each account associated with the member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return AccountNumbers
 */
-func (a *VerificationApiService) ListAccountNumbers(ctx context.Context, memberGuid string, userGuid string) (AccountNumbers, *http.Response, error) {
+func (a *VerificationAPIService) ListAccountNumbers(ctx context.Context, memberGUID string, userGUID string) (AccountNumbers, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -44,8 +44,8 @@ func (a *VerificationApiService) ListAccountNumbers(ctx context.Context, memberG
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/account_numbers"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -142,15 +142,15 @@ func (a *VerificationApiService) ListAccountNumbers(ctx context.Context, memberG
 }
 
 /*
-VerificationApiService Read account numbers by account GUID
+VerificationAPIService Read account numbers by account GUID
 Use this endpoint to check whether account and routing numbers are available for a specific account. It returns the account_numbers object, which contains account and routing number data.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountGuid The unique identifier for an &#x60;account&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param accountGUID The unique identifier for an &#x60;account&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return AccountNumbers
 */
-func (a *VerificationApiService) ListAccountNumbersByAccount(ctx context.Context, accountGuid string, userGuid string) (AccountNumbers, *http.Response, error) {
+func (a *VerificationAPIService) ListAccountNumbersByAccount(ctx context.Context, accountGUID string, userGUID string) (AccountNumbers, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -161,8 +161,8 @@ func (a *VerificationApiService) ListAccountNumbersByAccount(ctx context.Context
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/accounts/{account_guid}/account_numbers"
-	localVarPath = strings.Replace(localVarPath, "{"+"account_guid"+"}", fmt.Sprintf("%v", accountGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"account_guid"+"}", fmt.Sprintf("%v", accountGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -259,15 +259,15 @@ func (a *VerificationApiService) ListAccountNumbersByAccount(ctx context.Context
 }
 
 /*
-VerificationApiService Verify
+VerificationAPIService Verify
 The verify endpoint begins a verification process for a member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Member
 */
-func (a *VerificationApiService) VerifyMember(ctx context.Context, memberGuid string, userGuid string) (Member, *http.Response, error) {
+func (a *VerificationAPIService) VerifyMember(ctx context.Context, memberGUID string, userGUID string) (Member, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -278,8 +278,8 @@ func (a *VerificationApiService) VerifyMember(ctx context.Context, memberGuid st
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/verify"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

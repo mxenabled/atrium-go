@@ -9,6 +9,6 @@
 package atrium
 
 type ConnectWidgetAttributes struct {
-	ConnectWidgetUrl string `json:"connect_widget_url,omitempty"`
-	Guid string `json:"guid,omitempty"`
+	ConnectWidgetURL string `json:"connect_widget_url,omitempty"`
+	GUID string `json:"guid,omitempty"`
 }

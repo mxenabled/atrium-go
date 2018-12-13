@@ -1,14 +1,14 @@
-# \VerificationApi
+# \VerificationAPI
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListAccountNumbers**](VerificationApi.md#ListAccountNumbers) | **Get** /users/{user_guid}/members/{member_guid}/account_numbers | Read account numbers
-[**ListAccountNumbersByAccount**](VerificationApi.md#ListAccountNumbersByAccount) | **Get** /users/{user_guid}/accounts/{account_guid}/account_numbers | Read account numbers by account GUID
-[**VerifyMember**](VerificationApi.md#VerifyMember) | **Post** /users/{user_guid}/members/{member_guid}/verify | Verify
+[**ListAccountNumbers**](VerificationAPI.md#ListAccountNumbers) | **Get** /users/{user_guid}/members/{member_guid}/account_numbers | Read account numbers
+[**ListAccountNumbersByAccount**](VerificationAPI.md#ListAccountNumbersByAccount) | **Get** /users/{user_guid}/accounts/{account_guid}/account_numbers | Read account numbers by account GUID
+[**VerifyMember**](VerificationAPI.md#VerifyMember) | **Post** /users/{user_guid}/members/{member_guid}/verify | Verify
 
 
 # **ListAccountNumbers**
-> AccountNumbers ListAccountNumbers(ctx, memberGuid, userGuid)
+> AccountNumbers ListAccountNumbers(ctx, memberGUID, userGUID)
 Read account numbers
 
 Use this endpoint to check whether account and routing numbers are available for accounts associated with a particular member. It returns the account_numbers object, which contains account and routing number data for each account associated with the member.
@@ -27,10 +27,10 @@ func main() {
   client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
   ctx := context.Background()
   
-  memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
-  userGuid := "userGuid_example" // string | The unique identifier for a `user`.
+  memberGUID := "memberGUID_example" // string | The unique identifier for a `member`.
+  userGUID := "userGUID_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.VerificationApi.ListAccountNumbers(ctx, memberGuid, userGuid)
+  response, _, err := client.VerificationAPI.ListAccountNumbers(ctx, memberGUID, userGUID)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -44,8 +44,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
-  **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+  **memberGUID** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+  **userGUID** | **string**| The unique identifier for a &#x60;user&#x60;. | 
 
 ### Return type
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListAccountNumbersByAccount**
-> AccountNumbers ListAccountNumbersByAccount(ctx, accountGuid, userGuid)
+> AccountNumbers ListAccountNumbersByAccount(ctx, accountGUID, userGUID)
 Read account numbers by account GUID
 
 Use this endpoint to check whether account and routing numbers are available for a specific account. It returns the account_numbers object, which contains account and routing number data.
@@ -73,10 +73,10 @@ func main() {
   client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
   ctx := context.Background()
   
-  accountGuid := "accountGuid_example" // string | The unique identifier for an `account`.
-  userGuid := "userGuid_example" // string | The unique identifier for a `user`.
+  accountGUID := "accountGUID_example" // string | The unique identifier for an `account`.
+  userGUID := "userGUID_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.VerificationApi.ListAccountNumbersByAccount(ctx, accountGuid, userGuid)
+  response, _, err := client.VerificationAPI.ListAccountNumbersByAccount(ctx, accountGUID, userGUID)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -90,8 +90,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountGuid** | **string**| The unique identifier for an &#x60;account&#x60;. | 
-  **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+  **accountGUID** | **string**| The unique identifier for an &#x60;account&#x60;. | 
+  **userGUID** | **string**| The unique identifier for a &#x60;user&#x60;. | 
 
 ### Return type
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **VerifyMember**
-> Member VerifyMember(ctx, memberGuid, userGuid)
+> Member VerifyMember(ctx, memberGUID, userGUID)
 Verify
 
 The verify endpoint begins a verification process for a member.
@@ -119,10 +119,10 @@ func main() {
   client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
   ctx := context.Background()
   
-  memberGuid := "memberGuid_example" // string | The unique identifier for a `member`.
-  userGuid := "userGuid_example" // string | The unique identifier for a `user`.
+  memberGUID := "memberGUID_example" // string | The unique identifier for a `member`.
+  userGUID := "userGUID_example" // string | The unique identifier for a `user`.
 
-  response, _, err := client.VerificationApi.VerifyMember(ctx, memberGuid, userGuid)
+  response, _, err := client.VerificationAPI.VerifyMember(ctx, memberGUID, userGUID)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -136,8 +136,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **memberGuid** | **string**| The unique identifier for a &#x60;member&#x60;. | 
-  **userGuid** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+  **memberGUID** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+  **userGUID** | **string**| The unique identifier for a &#x60;user&#x60;. | 
 
 ### Return type
 

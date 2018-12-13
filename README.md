@@ -12,39 +12,39 @@ import "github.com/mxenabled/atrium-go"
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountsApi* | [**ListAccountTransactions**](docs/AccountsApi.md#listaccounttransactions) | **Get** /users/{user_guid}/accounts/{account_guid}/transactions | List account transactions
-*AccountsApi* | [**ListUserAccounts**](docs/AccountsApi.md#listuseraccounts) | **Get** /users/{user_guid}/accounts | List accounts for a user
-*AccountsApi* | [**ReadAccount**](docs/AccountsApi.md#readaccount) | **Get** /users/{user_guid}/accounts/{account_guid} | Read an account
-*AccountsApi* | [**ReadAccountByMemberGUID**](docs/AccountsApi.md#readaccountbymemberguid) | **Get** /users/{user_guid}/members/{member_guid}/accounts/{account_guid} | Read an account
-*ConnectWidgetApi* | [**GetConnectWidget**](docs/ConnectWidgetApi.md#getconnectwidget) | **Post** /users/{user_guid}/connect_widget_url | Embedding in a website
-*IdentityApi* | [**IdentifyMember**](docs/IdentityApi.md#identifymember) | **Post** /users/{user_guid}/members/{member_guid}/identify | Identify
-*IdentityApi* | [**ListAccountOwners**](docs/IdentityApi.md#listaccountowners) | **Get** /users/{user_guid}/members/{member_guid}/account_owners | List member account owners
-*InstitutionsApi* | [**ListInstitutions**](docs/InstitutionsApi.md#listinstitutions) | **Get** /institutions | List institutions
-*InstitutionsApi* | [**ReadInstitution**](docs/InstitutionsApi.md#readinstitution) | **Get** /institutions/{institution_code} | Read institution
-*InstitutionsApi* | [**ReadInstitutionCredentials**](docs/InstitutionsApi.md#readinstitutioncredentials) | **Get** /institutions/{institution_code}/credentials | Read institution credentials
-*MembersApi* | [**AggregateMember**](docs/MembersApi.md#aggregatemember) | **Post** /users/{user_guid}/members/{member_guid}/aggregate | Aggregate member
-*MembersApi* | [**CreateMember**](docs/MembersApi.md#createmember) | **Post** /users/{user_guid}/members | Create member
-*MembersApi* | [**DeleteMember**](docs/MembersApi.md#deletemember) | **Delete** /users/{user_guid}/members/{member_guid} | Delete member
-*MembersApi* | [**ListMemberAccounts**](docs/MembersApi.md#listmemberaccounts) | **Get** /users/{user_guid}/members/{member_guid}/accounts | List member accounts
-*MembersApi* | [**ListMemberCredentials**](docs/MembersApi.md#listmembercredentials) | **Get** /users/{user_guid}/members/{member_guid}/credentials | List member credentials
-*MembersApi* | [**ListMemberMFAChallenges**](docs/MembersApi.md#listmembermfachallenges) | **Get** /users/{user_guid}/members/{member_guid}/challenges | List member MFA challenges
-*MembersApi* | [**ListMemberTransactions**](docs/MembersApi.md#listmembertransactions) | **Get** /users/{user_guid}/members/{member_guid}/transactions | List member transactions
-*MembersApi* | [**ListMembers**](docs/MembersApi.md#listmembers) | **Get** /users/{user_guid}/members | List members
-*MembersApi* | [**ReadMember**](docs/MembersApi.md#readmember) | **Get** /users/{user_guid}/members/{member_guid} | Read member
-*MembersApi* | [**ReadMemberStatus**](docs/MembersApi.md#readmemberstatus) | **Get** /users/{user_guid}/members/{member_guid}/status | Read member connection status
-*MembersApi* | [**ResumeMember**](docs/MembersApi.md#resumemember) | **Put** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
-*MembersApi* | [**UpdateMember**](docs/MembersApi.md#updatemember) | **Put** /users/{user_guid}/members/{member_guid} | Update member
-*TransactionsApi* | [**CleanseAndCategorizeTransactions**](docs/TransactionsApi.md#cleanseandcategorizetransactions) | **Post** /cleanse_and_categorize | Categorize transactions
-*TransactionsApi* | [**ListUserTransactions**](docs/TransactionsApi.md#listusertransactions) | **Get** /users/{user_guid}/transactions | List transactions for a user
-*TransactionsApi* | [**ReadTransaction**](docs/TransactionsApi.md#readtransaction) | **Get** /users/{user_guid}/transactions/{transaction_guid} | Read a transaction
-*UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /users | Create user
-*UsersApi* | [**DeleteUser**](docs/UsersApi.md#deleteuser) | **Delete** /users/{user_guid} | Delete user
-*UsersApi* | [**ListUsers**](docs/UsersApi.md#listusers) | **Get** /users | List users
-*UsersApi* | [**ReadUser**](docs/UsersApi.md#readuser) | **Get** /users/{user_guid} | Read user
-*UsersApi* | [**UpdateUser**](docs/UsersApi.md#updateuser) | **Put** /users/{user_guid} | Update user
-*VerificationApi* | [**ListAccountNumbers**](docs/VerificationApi.md#listaccountnumbers) | **Get** /users/{user_guid}/members/{member_guid}/account_numbers | Read account numbers
-*VerificationApi* | [**ListAccountNumbersByAccount**](docs/VerificationApi.md#listaccountnumbersbyaccount) | **Get** /users/{user_guid}/accounts/{account_guid}/account_numbers | Read account numbers by account GUID
-*VerificationApi* | [**VerifyMember**](docs/VerificationApi.md#verifymember) | **Post** /users/{user_guid}/members/{member_guid}/verify | Verify
+*AccountsAPI* | [**ListAccountTransactions**](docs/AccountsAPI.md#listaccounttransactions) | **Get** /users/{user_guid}/accounts/{account_guid}/transactions | List account transactions
+*AccountsAPI* | [**ListUserAccounts**](docs/AccountsAPI.md#listuseraccounts) | **Get** /users/{user_guid}/accounts | List accounts for a user
+*AccountsAPI* | [**ReadAccount**](docs/AccountsAPI.md#readaccount) | **Get** /users/{user_guid}/accounts/{account_guid} | Read an account
+*AccountsAPI* | [**ReadAccountByMemberGUID**](docs/AccountsAPI.md#readaccountbymemberguid) | **Get** /users/{user_guid}/members/{member_guid}/accounts/{account_guid} | Read an account
+*ConnectWidgetAPI* | [**GetConnectWidget**](docs/ConnectWidgetAPI.md#getconnectwidget) | **Post** /users/{user_guid}/connect_widget_url | Embedding in a website
+*IdentityAPI* | [**IdentifyMember**](docs/IdentityAPI.md#identifymember) | **Post** /users/{user_guid}/members/{member_guid}/identify | Identify
+*IdentityAPI* | [**ListAccountOwners**](docs/IdentityAPI.md#listaccountowners) | **Get** /users/{user_guid}/members/{member_guid}/account_owners | List member account owners
+*InstitutionsAPI* | [**ListInstitutions**](docs/InstitutionsAPI.md#listinstitutions) | **Get** /institutions | List institutions
+*InstitutionsAPI* | [**ReadInstitution**](docs/InstitutionsAPI.md#readinstitution) | **Get** /institutions/{institution_code} | Read institution
+*InstitutionsAPI* | [**ReadInstitutionCredentials**](docs/InstitutionsAPI.md#readinstitutioncredentials) | **Get** /institutions/{institution_code}/credentials | Read institution credentials
+*MembersAPI* | [**AggregateMember**](docs/MembersAPI.md#aggregatemember) | **Post** /users/{user_guid}/members/{member_guid}/aggregate | Aggregate member
+*MembersAPI* | [**CreateMember**](docs/MembersAPI.md#createmember) | **Post** /users/{user_guid}/members | Create member
+*MembersAPI* | [**DeleteMember**](docs/MembersAPI.md#deletemember) | **Delete** /users/{user_guid}/members/{member_guid} | Delete member
+*MembersAPI* | [**ListMemberAccounts**](docs/MembersAPI.md#listmemberaccounts) | **Get** /users/{user_guid}/members/{member_guid}/accounts | List member accounts
+*MembersAPI* | [**ListMemberCredentials**](docs/MembersAPI.md#listmembercredentials) | **Get** /users/{user_guid}/members/{member_guid}/credentials | List member credentials
+*MembersAPI* | [**ListMemberMFAChallenges**](docs/MembersAPI.md#listmembermfachallenges) | **Get** /users/{user_guid}/members/{member_guid}/challenges | List member MFA challenges
+*MembersAPI* | [**ListMemberTransactions**](docs/MembersAPI.md#listmembertransactions) | **Get** /users/{user_guid}/members/{member_guid}/transactions | List member transactions
+*MembersAPI* | [**ListMembers**](docs/MembersAPI.md#listmembers) | **Get** /users/{user_guid}/members | List members
+*MembersAPI* | [**ReadMember**](docs/MembersAPI.md#readmember) | **Get** /users/{user_guid}/members/{member_guid} | Read member
+*MembersAPI* | [**ReadMemberStatus**](docs/MembersAPI.md#readmemberstatus) | **Get** /users/{user_guid}/members/{member_guid}/status | Read member connection status
+*MembersAPI* | [**ResumeMember**](docs/MembersAPI.md#resumemember) | **Put** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
+*MembersAPI* | [**UpdateMember**](docs/MembersAPI.md#updatemember) | **Put** /users/{user_guid}/members/{member_guid} | Update member
+*TransactionsAPI* | [**CleanseAndCategorizeTransactions**](docs/TransactionsAPI.md#cleanseandcategorizetransactions) | **Post** /cleanse_and_categorize | Categorize transactions
+*TransactionsAPI* | [**ListUserTransactions**](docs/TransactionsAPI.md#listusertransactions) | **Get** /users/{user_guid}/transactions | List transactions for a user
+*TransactionsAPI* | [**ReadTransaction**](docs/TransactionsAPI.md#readtransaction) | **Get** /users/{user_guid}/transactions/{transaction_guid} | Read a transaction
+*UsersAPI* | [**CreateUser**](docs/UsersAPI.md#createuser) | **Post** /users | Create user
+*UsersAPI* | [**DeleteUser**](docs/UsersAPI.md#deleteuser) | **Delete** /users/{user_guid} | Delete user
+*UsersAPI* | [**ListUsers**](docs/UsersAPI.md#listusers) | **Get** /users | List users
+*UsersAPI* | [**ReadUser**](docs/UsersAPI.md#readuser) | **Get** /users/{user_guid} | Read user
+*UsersAPI* | [**UpdateUser**](docs/UsersAPI.md#updateuser) | **Put** /users/{user_guid} | Update user
+*VerificationAPI* | [**ListAccountNumbers**](docs/VerificationAPI.md#listaccountnumbers) | **Get** /users/{user_guid}/members/{member_guid}/account_numbers | Read account numbers
+*VerificationAPI* | [**ListAccountNumbersByAccount**](docs/VerificationAPI.md#listaccountnumbersbyaccount) | **Get** /users/{user_guid}/accounts/{account_guid}/account_numbers | Read account numbers by account GUID
+*VerificationAPI* | [**VerifyMember**](docs/VerificationAPI.md#verifymember) | **Post** /users/{user_guid}/members/{member_guid}/verify | Verify
 
 
 ## Documentation For Models

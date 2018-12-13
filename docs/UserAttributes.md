@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Guid** | **string** |  | [optional] [default to null]
+**GUID** | **string** |  | [optional] [default to null]
 **Identifier** | **string** |  | [optional] [default to null]
 **IsDisabled** | **bool** |  | [optional] [default to null]
 **Metadata** | **string** |  | [optional] [default to null]

@@ -23,17 +23,17 @@ var (
 	_ context.Context
 )
 
-type UsersApiService service
+type UsersAPIService service
 
 /*
-UsersApiService Create user
+UsersAPIService Create user
 Call this endpoint to create a new user. Atrium will respond with the newly-created user object if successful. This endpoint accepts several parameters: identifier, metadata, and is_disabled.&lt;br&gt; Disabling a user means that accounts and transactions associated with it will not be updated in the background by MX. It will also restrict access to that user&#39;s data until they are no longer disabled. Users who are disabled for the entirety of an Atrium billing period will not be factored into that month&#39;s bill. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param body User object to be created with optional parameters (identifier, is_disabled, metadata)
 
 @return User
 */
-func (a *UsersApiService) CreateUser(ctx context.Context, body UserCreateRequestBody) (User, *http.Response, error) {
+func (a *UsersAPIService) CreateUser(ctx context.Context, body UserCreateRequestBody) (User, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -142,14 +142,14 @@ func (a *UsersApiService) CreateUser(ctx context.Context, body UserCreateRequest
 }
 
 /*
-UsersApiService Delete user
+UsersAPIService Delete user
 Calling this endpoint will permanently delete a user from Atrium. If successful, the API will respond with Status: 204 No Content. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 
 */
-func (a *UsersApiService) DeleteUser(ctx context.Context, userGuid string) (*http.Response, error) {
+func (a *UsersAPIService) DeleteUser(ctx context.Context, userGUID string) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -160,7 +160,7 @@ func (a *UsersApiService) DeleteUser(ctx context.Context, userGuid string) (*htt
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -239,7 +239,7 @@ func (a *UsersApiService) DeleteUser(ctx context.Context, userGuid string) (*htt
 }
 
 /*
-UsersApiService List users
+UsersAPIService List users
 Use this endpoint to list every user you&#39;ve created in Atrium.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ListUsersOpts - Optional Parameters:
@@ -254,7 +254,7 @@ type ListUsersOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *UsersApiService) ListUsers(ctx context.Context, localVarOptionals *ListUsersOpts) (Users, *http.Response, error) {
+func (a *UsersAPIService) ListUsers(ctx context.Context, localVarOptionals *ListUsersOpts) (Users, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -367,14 +367,14 @@ func (a *UsersApiService) ListUsers(ctx context.Context, localVarOptionals *List
 }
 
 /*
-UsersApiService Read user
+UsersAPIService Read user
 Use this endpoint to read the attributes of a specific user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return User
 */
-func (a *UsersApiService) ReadUser(ctx context.Context, userGuid string) (User, *http.Response, error) {
+func (a *UsersAPIService) ReadUser(ctx context.Context, userGUID string) (User, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -385,7 +385,7 @@ func (a *UsersApiService) ReadUser(ctx context.Context, userGuid string) (User, 
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -482,10 +482,10 @@ func (a *UsersApiService) ReadUser(ctx context.Context, userGuid string) (User, 
 }
 
 /*
-UsersApiService Update user
+UsersAPIService Update user
 Use this endpoint to update the attributes of a specific user. Atrium will respond with the updated user object.&lt;br&gt; Disabling a user means that accounts and transactions associated with it will not be updated in the background by MX. It will also restrict access to that user&#39;s data until they are no longer disabled. Users who are disabled for the entirety of an Atrium billing period will not be factored into that month&#39;s bill.&lt;br&gt; To disable a user, update it and set the is_disabled parameter to true. Set it to false to re-enable the user. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *UpdateUserOpts - Optional Parameters:
      * @param "Body" (optional.Interface of UserUpdateRequestBody) -  User object to be updated with optional parameters (identifier, is_disabled, metadata)
 
@@ -496,7 +496,7 @@ type UpdateUserOpts struct {
 	Body optional.Interface
 }
 
-func (a *UsersApiService) UpdateUser(ctx context.Context, userGuid string, localVarOptionals *UpdateUserOpts) (User, *http.Response, error) {
+func (a *UsersAPIService) UpdateUser(ctx context.Context, userGUID string, localVarOptionals *UpdateUserOpts) (User, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -507,7 +507,7 @@ func (a *UsersApiService) UpdateUser(ctx context.Context, userGuid string, local
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

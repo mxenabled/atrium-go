@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FieldName** | **string** |  | [optional] [default to null]
-**Guid** | **string** |  | [optional] [default to null]
+**GUID** | **string** |  | [optional] [default to null]
 **Label** | **string** |  | [optional] [default to null]
 **Options** | [**[]CredentialOptionAttributes**](CredentialOptionAttributes.md) |  | [optional] [default to null]
 **Type_** | **string** |  | [optional] [default to null]

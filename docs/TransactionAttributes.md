@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountGuid** | **string** |  | [optional] [default to null]
+**AccountGUID** | **string** |  | [optional] [default to null]
 **Amount** | **float32** |  | [optional] [default to null]
 **Category** | **string** |  | [optional] [default to null]
 **CheckNumber** | **int32** |  | [optional] [default to null]
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **CurrencyCode** | **string** |  | [optional] [default to null]
 **Date** | **string** |  | [optional] [default to null]
 **Description** | **string** |  | [optional] [default to null]
-**Guid** | **string** |  | [optional] [default to null]
+**GUID** | **string** |  | [optional] [default to null]
 **IsBillPay** | **bool** |  | [optional] [default to null]
 **IsDirectDeposit** | **bool** |  | [optional] [default to null]
 **IsExpense** | **bool** |  | [optional] [default to null]
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **IsPayrollAdvance** | **bool** |  | [optional] [default to null]
 **Latitude** | **float32** |  | [optional] [default to null]
 **Longitude** | **float32** |  | [optional] [default to null]
-**MemberGuid** | **string** |  | [optional] [default to null]
+**MemberGUID** | **string** |  | [optional] [default to null]
 **Memo** | **string** |  | [optional] [default to null]
 **MerchantCategoryCode** | **int32** |  | [optional] [default to null]
 **OriginalDescription** | **string** |  | [optional] [default to null]
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 **TransactedAt** | **string** |  | [optional] [default to null]
 **Type_** | **string** |  | [optional] [default to null]
 **UpdatedAt** | **string** |  | [optional] [default to null]
-**UserGuid** | **string** |  | [optional] [default to null]
+**UserGUID** | **string** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

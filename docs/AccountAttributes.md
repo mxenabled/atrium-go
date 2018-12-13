@@ -12,13 +12,13 @@ Name | Type | Description | Notes
 **CreditLimit** | **float32** |  | [optional] [default to null]
 **CurrencyCode** | **string** |  | [optional] [default to null]
 **DayPaymentIsDue** | **int32** |  | [optional] [default to null]
-**Guid** | **string** |  | [optional] [default to null]
+**GUID** | **string** |  | [optional] [default to null]
 **InstitutionCode** | **string** |  | [optional] [default to null]
 **InterestRate** | **float32** |  | [optional] [default to null]
 **IsClosed** | **bool** |  | [optional] [default to null]
 **LastPayment** | **float32** |  | [optional] [default to null]
 **MaturesOn** | **string** |  | [optional] [default to null]
-**MemberGuid** | **string** |  | [optional] [default to null]
+**MemberGUID** | **string** |  | [optional] [default to null]
 **MinimumBalance** | **float32** |  | [optional] [default to null]
 **MinimumPayment** | **float32** |  | [optional] [default to null]
 **Name** | **string** |  | [optional] [default to null]
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **TotalAccountValue** | **float32** |  | [optional] [default to null]
 **Type_** | **string** |  | [optional] [default to null]
 **UpdatedAt** | **string** |  | [optional] [default to null]
-**UserGuid** | **string** |  | [optional] [default to null]
+**UserGUID** | **string** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

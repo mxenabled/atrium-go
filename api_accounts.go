@@ -23,14 +23,14 @@ var (
 	_ context.Context
 )
 
-type AccountsApiService service
+type AccountsAPIService service
 
 /*
-AccountsApiService List account transactions
+AccountsAPIService List account transactions
 This endpoint allows you to see every transaction that belongs to a specific account. The default from_date is 90 days prior to the request, and the default to_date is 5 days from the time of the request.&lt;br&gt; The from_date and to_date parameters can optionally be appended to the request. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountGuid The unique identifier for an &#x60;account&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param accountGUID The unique identifier for an &#x60;account&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *ListAccountTransactionsOpts - Optional Parameters:
      * @param "FromDate" (optional.String) -  Filter transactions from this date.
      * @param "ToDate" (optional.String) -  Filter transactions to this date.
@@ -47,7 +47,7 @@ type ListAccountTransactionsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *AccountsApiService) ListAccountTransactions(ctx context.Context, accountGuid string, userGuid string, localVarOptionals *ListAccountTransactionsOpts) (Transactions, *http.Response, error) {
+func (a *AccountsAPIService) ListAccountTransactions(ctx context.Context, accountGUID string, userGUID string, localVarOptionals *ListAccountTransactionsOpts) (Transactions, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -58,8 +58,8 @@ func (a *AccountsApiService) ListAccountTransactions(ctx context.Context, accoun
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/accounts/{account_guid}/transactions"
-	localVarPath = strings.Replace(localVarPath, "{"+"account_guid"+"}", fmt.Sprintf("%v", accountGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"account_guid"+"}", fmt.Sprintf("%v", accountGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -168,10 +168,10 @@ func (a *AccountsApiService) ListAccountTransactions(ctx context.Context, accoun
 }
 
 /*
-AccountsApiService List accounts for a user
+AccountsAPIService List accounts for a user
 Use this endpoint to view information about every account that belongs to a user. You&#39;ll need the user&#39;s GUID to access this list. The information will include the account type — e.g., CHECKING, MONEY_MARKET, or PROPERTY — the account balance, the date the account was started, etc.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *ListUserAccountsOpts - Optional Parameters:
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
@@ -184,7 +184,7 @@ type ListUserAccountsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGuid string, localVarOptionals *ListUserAccountsOpts) (Accounts, *http.Response, error) {
+func (a *AccountsAPIService) ListUserAccounts(ctx context.Context, userGUID string, localVarOptionals *ListUserAccountsOpts) (Accounts, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -195,7 +195,7 @@ func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGuid stri
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/accounts"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -298,15 +298,15 @@ func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGuid stri
 }
 
 /*
-AccountsApiService Read an account
+AccountsAPIService Read an account
 Reading an account allows you to get information about a specific account that belongs to a user. That includes the account type — e.g., CHECKING, MONEY_MARKET, or PROPERTY — the balance, the date the account was started, and much more.&lt;br&gt; There are two endpoints for reading an account. Both will return the same information.&lt;br&gt; It&#39;s important to remember that balance and available_balance will normally be positive numbers — for all account types. But this should be interpreted differently for debt accounts and asset accounts.&lt;br&gt; An asset account, e.g., CHECKING, SAVINGS, or INVESTMENT, will have a positive balance unless it is in an overdraft condition, in which case the balance will be negative.&lt;br&gt; On the other hand, a debt account, e.g., CREDIT CARD, LOAN, MORTGAGE, would have a positivebalance when the user owes money on the account. It would have a negative balance if the account has been overpaid. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountGuid The unique identifier for an &#x60;account&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param accountGUID The unique identifier for an &#x60;account&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Account
 */
-func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGuid string, userGuid string) (Account, *http.Response, error) {
+func (a *AccountsAPIService) ReadAccount(ctx context.Context, accountGUID string, userGUID string) (Account, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -317,8 +317,8 @@ func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGuid string
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/accounts/{account_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"account_guid"+"}", fmt.Sprintf("%v", accountGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"account_guid"+"}", fmt.Sprintf("%v", accountGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -415,16 +415,16 @@ func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGuid string
 }
 
 /*
-AccountsApiService Read an account
+AccountsAPIService Read an account
 Reading an account allows you to get information about a specific account that belongs to a user. That includes the account type — e.g., CHECKING, MONEY_MARKET, or PROPERTY — the balance, the date the account was started, and much more.&lt;br&gt; There are two endpoints for reading an account. Both will return the same information.&lt;br&gt; It&#39;s important to remember that balance and available_balance will normally be positive numbers — for all account types. But this should be interpreted differently for debt accounts and asset accounts.&lt;br&gt; An asset account, e.g., CHECKING, SAVINGS, or INVESTMENT, will have a positive balance unless it is in an overdraft condition, in which case the balance will be negative.&lt;br&gt; On the other hand, a debt account, e.g., CREDIT CARD, LOAN, MORTGAGE, would have a positivebalance when the user owes money on the account. It would have a negative balance if the account has been overpaid. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountGuid The unique identifier for an &#x60;account&#x60;.
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param accountGUID The unique identifier for an &#x60;account&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Account
 */
-func (a *AccountsApiService) ReadAccountByMemberGUID(ctx context.Context, accountGuid string, memberGuid string, userGuid string) (Account, *http.Response, error) {
+func (a *AccountsAPIService) ReadAccountByMemberGUID(ctx context.Context, accountGUID string, memberGUID string, userGUID string) (Account, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -435,9 +435,9 @@ func (a *AccountsApiService) ReadAccountByMemberGUID(ctx context.Context, accoun
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/accounts/{account_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"account_guid"+"}", fmt.Sprintf("%v", accountGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"account_guid"+"}", fmt.Sprintf("%v", accountGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

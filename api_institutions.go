@@ -23,10 +23,10 @@ var (
 	_ context.Context
 )
 
-type InstitutionsApiService service
+type InstitutionsAPIService service
 
 /*
-InstitutionsApiService List institutions
+InstitutionsAPIService List institutions
 This endpoint allows you to see what institutions are available for connection. Information returned will include the institution_code assigned to a particular institution, URLs for the financial institution&#39;s logo, and the URL for its website.&lt;br&gt; This endpoint takes an optional query string, name&#x3D;{string}. This will list only institutions in which the appended string appears. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ListInstitutionsOpts - Optional Parameters:
@@ -43,7 +43,7 @@ type ListInstitutionsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *InstitutionsApiService) ListInstitutions(ctx context.Context, localVarOptionals *ListInstitutionsOpts) (Institutions, *http.Response, error) {
+func (a *InstitutionsAPIService) ListInstitutions(ctx context.Context, localVarOptionals *ListInstitutionsOpts) (Institutions, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -159,14 +159,14 @@ func (a *InstitutionsApiService) ListInstitutions(ctx context.Context, localVarO
 }
 
 /*
-InstitutionsApiService Read institution
+InstitutionsAPIService Read institution
 This endpoint allows you to see information for a specific institution.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param institutionCode The institution_code of the institution.
 
 @return Institution
 */
-func (a *InstitutionsApiService) ReadInstitution(ctx context.Context, institutionCode string) (Institution, *http.Response, error) {
+func (a *InstitutionsAPIService) ReadInstitution(ctx context.Context, institutionCode string) (Institution, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -274,14 +274,14 @@ func (a *InstitutionsApiService) ReadInstitution(ctx context.Context, institutio
 }
 
 /*
-InstitutionsApiService Read institution credentials
+InstitutionsAPIService Read institution credentials
 Use this endpoint to see which credentials will be needed to create a member for a specific institution.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param institutionCode The institution_code of the institution.
 
 @return Credentials
 */
-func (a *InstitutionsApiService) ReadInstitutionCredentials(ctx context.Context, institutionCode string) (Credentials, *http.Response, error) {
+func (a *InstitutionsAPIService) ReadInstitutionCredentials(ctx context.Context, institutionCode string) (Credentials, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}

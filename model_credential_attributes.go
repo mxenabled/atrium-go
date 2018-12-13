@@ -10,7 +10,7 @@ package atrium
 
 type CredentialAttributes struct {
 	FieldName string `json:"field_name,omitempty"`
-	Guid string `json:"guid,omitempty"`
+	GUID string `json:"guid,omitempty"`
 	Label string `json:"label,omitempty"`
 	Options []CredentialOptionAttributes `json:"options,omitempty"`
 	Type_ string `json:"type,omitempty"`

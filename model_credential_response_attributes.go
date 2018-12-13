@@ -9,6 +9,6 @@
 package atrium
 
 type CredentialResponseAttributes struct {
-	Guid string `json:"guid,omitempty"`
+	GUID string `json:"guid,omitempty"`
 	Value string `json:"value,omitempty"`
 }

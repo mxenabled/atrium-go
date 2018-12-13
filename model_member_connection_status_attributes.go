@@ -12,7 +12,7 @@ type MemberConnectionStatusAttributes struct {
 	AggregatedAt string `json:"aggregated_at,omitempty"`
 	Challenges []ChallengeAttributes `json:"challenges,omitempty"`
 	ConnectionStatus string `json:"connection_status,omitempty"`
-	Guid bool `json:"guid,omitempty"`
+	GUID bool `json:"guid,omitempty"`
 	HasProcessedAccounts bool `json:"has_processed_accounts,omitempty"`
 	HasProcessedTransactions bool `json:"has_processed_transactions,omitempty"`
 	IsBeingAggregated bool `json:"is_being_aggregated,omitempty"`

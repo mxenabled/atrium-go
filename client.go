@@ -44,21 +44,21 @@ type APIClient struct {
 
 	// API Services
 
-	AccountsApi *AccountsApiService
+	AccountsAPI *AccountsAPIService
 
-	ConnectWidgetApi *ConnectWidgetApiService
+	ConnectWidgetAPI *ConnectWidgetAPIService
 
-	IdentityApi *IdentityApiService
+	IdentityAPI *IdentityAPIService
 
-	InstitutionsApi *InstitutionsApiService
+	InstitutionsAPI *InstitutionsAPIService
 
-	MembersApi *MembersApiService
+	MembersAPI *MembersAPIService
 
-	TransactionsApi *TransactionsApiService
+	TransactionsAPI *TransactionsAPIService
 
-	UsersApi *UsersApiService
+	UsersAPI *UsersAPIService
 
-	VerificationApi *VerificationApiService
+	VerificationAPI *VerificationAPIService
 }
 
 type service struct {
@@ -77,14 +77,14 @@ func newAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AccountsApi = (*AccountsApiService)(&c.common)
-	c.ConnectWidgetApi = (*ConnectWidgetApiService)(&c.common)
-	c.IdentityApi = (*IdentityApiService)(&c.common)
-	c.InstitutionsApi = (*InstitutionsApiService)(&c.common)
-	c.MembersApi = (*MembersApiService)(&c.common)
-	c.TransactionsApi = (*TransactionsApiService)(&c.common)
-	c.UsersApi = (*UsersApiService)(&c.common)
-	c.VerificationApi = (*VerificationApiService)(&c.common)
+	c.AccountsAPI = (*AccountsAPIService)(&c.common)
+	c.ConnectWidgetAPI = (*ConnectWidgetAPIService)(&c.common)
+	c.IdentityAPI = (*IdentityAPIService)(&c.common)
+	c.InstitutionsAPI = (*InstitutionsAPIService)(&c.common)
+	c.MembersAPI = (*MembersAPIService)(&c.common)
+	c.TransactionsAPI = (*TransactionsAPIService)(&c.common)
+	c.UsersAPI = (*UsersAPIService)(&c.common)
+	c.VerificationAPI = (*VerificationAPIService)(&c.common)
 
 	return c
 }

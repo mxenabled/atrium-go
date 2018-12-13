@@ -22,18 +22,18 @@ var (
 	_ context.Context
 )
 
-type IdentityApiService service
+type IdentityAPIService service
 
 /*
-IdentityApiService Identify
+IdentityAPIService Identify
 The identify endpoint begins an identification process for an already-existing member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Member
 */
-func (a *IdentityApiService) IdentifyMember(ctx context.Context, memberGuid string, userGuid string) (Member, *http.Response, error) {
+func (a *IdentityAPIService) IdentifyMember(ctx context.Context, memberGUID string, userGUID string) (Member, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -44,8 +44,8 @@ func (a *IdentityApiService) IdentifyMember(ctx context.Context, memberGuid stri
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/identify"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -142,15 +142,15 @@ func (a *IdentityApiService) IdentifyMember(ctx context.Context, memberGuid stri
 }
 
 /*
-IdentityApiService List member account owners
+IdentityAPIService List member account owners
 This endpoint returns an array with information about every account associated with a particular member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param memberGuid The unique identifier for a &#x60;member&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param memberGUID The unique identifier for a &#x60;member&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return AccountOwners
 */
-func (a *IdentityApiService) ListAccountOwners(ctx context.Context, memberGuid string, userGuid string) (AccountOwners, *http.Response, error) {
+func (a *IdentityAPIService) ListAccountOwners(ctx context.Context, memberGUID string, userGUID string) (AccountOwners, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -161,8 +161,8 @@ func (a *IdentityApiService) ListAccountOwners(ctx context.Context, memberGuid s
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/members/{member_guid}/account_owners"
-	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"member_guid"+"}", fmt.Sprintf("%v", memberGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

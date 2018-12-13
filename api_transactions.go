@@ -23,17 +23,17 @@ var (
 	_ context.Context
 )
 
-type TransactionsApiService service
+type TransactionsAPIService service
 
 /*
-TransactionsApiService Categorize transactions
+TransactionsAPIService Categorize transactions
 Use this endpoint to categorize, cleanse, and classify transactions. These transactions are not persisted or stored on the MX platform.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param body User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
 
 @return TransactionsCleanseAndCategorize
 */
-func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Context, body TransactionsCleanseAndCategorizeRequestBody) (TransactionsCleanseAndCategorize, *http.Response, error) {
+func (a *TransactionsAPIService) CleanseAndCategorizeTransactions(ctx context.Context, body TransactionsCleanseAndCategorizeRequestBody) (TransactionsCleanseAndCategorize, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -142,10 +142,10 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 }
 
 /*
-TransactionsApiService List transactions for a user
+TransactionsAPIService List transactions for a user
 Use this endpoint to get all transactions that belong to a specific user, across all the user&#39;s members and accounts.&lt;br&gt; This endpoint accepts optional query parameters, from_date and to_date, which filter transactions according to the date they were posted. If no values are given, from_date will default to 90 days prior to the request, and to_date will default to 5 days from the time of the request. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *ListUserTransactionsOpts - Optional Parameters:
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "FromDate" (optional.String) -  Filter transactions from this date.
@@ -162,7 +162,7 @@ type ListUserTransactionsOpts struct {
 	ToDate optional.String
 }
 
-func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userGuid string, localVarOptionals *ListUserTransactionsOpts) (Transactions, *http.Response, error) {
+func (a *TransactionsAPIService) ListUserTransactions(ctx context.Context, userGUID string, localVarOptionals *ListUserTransactionsOpts) (Transactions, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -173,7 +173,7 @@ func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userG
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/transactions"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -282,15 +282,15 @@ func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userG
 }
 
 /*
-TransactionsApiService Read a transaction
+TransactionsAPIService Read a transaction
 This endpoint allows you to view information about a specific transaction that belongs to a user.&lt;br&gt;
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param transactionGuid The unique identifier for a &#x60;transaction&#x60;.
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param transactionGUID The unique identifier for a &#x60;transaction&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
 @return Transaction
 */
-func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactionGuid string, userGuid string) (Transaction, *http.Response, error) {
+func (a *TransactionsAPIService) ReadTransaction(ctx context.Context, transactionGUID string, userGUID string) (Transaction, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -301,8 +301,8 @@ func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactio
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/transactions/{transaction_guid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"transaction_guid"+"}", fmt.Sprintf("%v", transactionGuid), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"transaction_guid"+"}", fmt.Sprintf("%v", transactionGUID), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

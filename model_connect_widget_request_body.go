@@ -11,6 +11,6 @@ package atrium
 type ConnectWidgetRequestBody struct {
 	IsMobileWebview bool `json:"is_mobile_webview,omitempty"`
 	CurrentInstitutionCode string `json:"current_institution_code,omitempty"`
-	CurrentMemberGuid string `json:"current_member_guid,omitempty"`
+	CurrentMemberGUID string `json:"current_member_guid,omitempty"`
 	UpdateCredentials bool `json:"update_credentials,omitempty"`
 }

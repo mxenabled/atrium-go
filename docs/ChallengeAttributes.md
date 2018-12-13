@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FieldName** | **string** |  | [optional] [default to null]
-**Guid** | **string** |  | [optional] [default to null]
+**GUID** | **string** |  | [optional] [default to null]
 **ImageData** | **string** |  | [optional] [default to null]
 **Label** | **string** |  | [optional] [default to null]
 **Options** | [**[]ChallengeOptionAttributes**](ChallengeOptionAttributes.md) |  | [optional] [default to null]

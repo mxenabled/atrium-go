@@ -22,18 +22,18 @@ var (
 	_ context.Context
 )
 
-type ConnectWidgetApiService service
+type ConnectWidgetAPIService service
 
 /*
-ConnectWidgetApiService Embedding in a website
+ConnectWidgetAPIService Embedding in a website
 This endpoint will return a URL for an embeddable version of MX Connect.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userGuid The unique identifier for a &#x60;user&#x60;.
+ * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param body Optional config options for WebView (is_mobile_webview, current_institution_code, current_member_guid, update_credentials)
 
 @return ConnectWidget
 */
-func (a *ConnectWidgetApiService) GetConnectWidget(ctx context.Context, userGuid string, body ConnectWidgetRequestBody) (ConnectWidget, *http.Response, error) {
+func (a *ConnectWidgetAPIService) GetConnectWidget(ctx context.Context, userGUID string, body ConnectWidgetRequestBody) (ConnectWidget, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -44,7 +44,7 @@ func (a *ConnectWidgetApiService) GetConnectWidget(ctx context.Context, userGuid
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/users/{user_guid}/connect_widget_url"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGuid), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"user_guid"+"}", fmt.Sprintf("%v", userGUID), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

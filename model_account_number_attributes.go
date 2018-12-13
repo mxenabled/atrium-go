@@ -9,9 +9,9 @@
 package atrium
 
 type AccountNumberAttributes struct {
-	AccountGuid string `json:"account_guid,omitempty"`
+	AccountGUID string `json:"account_guid,omitempty"`
 	AccountNumber string `json:"account_number,omitempty"`
-	MemberGuid string `json:"member_guid,omitempty"`
+	MemberGUID string `json:"member_guid,omitempty"`
 	RoutingNumber string `json:"routing_number,omitempty"`
-	UserGuid string `json:"user_guid,omitempty"`
+	UserGUID string `json:"user_guid,omitempty"`
 }
