@@ -44,21 +44,7 @@ type APIClient struct {
 
 	// API Services
 
-	AccountsAPI *AccountsAPIService
-
-	ConnectWidgetAPI *ConnectWidgetAPIService
-
-	IdentityAPI *IdentityAPIService
-
-	InstitutionsAPI *InstitutionsAPIService
-
-	MembersAPI *MembersAPIService
-
-	TransactionsAPI *TransactionsAPIService
-
-	UsersAPI *UsersAPIService
-
-	VerificationAPI *VerificationAPIService
+	AtriumClient *AtriumClientService
 }
 
 type service struct {
@@ -77,14 +63,7 @@ func newAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AccountsAPI = (*AccountsAPIService)(&c.common)
-	c.ConnectWidgetAPI = (*ConnectWidgetAPIService)(&c.common)
-	c.IdentityAPI = (*IdentityAPIService)(&c.common)
-	c.InstitutionsAPI = (*InstitutionsAPIService)(&c.common)
-	c.MembersAPI = (*MembersAPIService)(&c.common)
-	c.TransactionsAPI = (*TransactionsAPIService)(&c.common)
-	c.UsersAPI = (*UsersAPIService)(&c.common)
-	c.VerificationAPI = (*VerificationAPIService)(&c.common)
+	c.AtriumClient = (*AtriumClientService)(&c.common)
 
 	return c
 }

@@ -20,23 +20,16 @@ import (
   "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
-  "github.com/antihax/optional"
 )
 
 func main() {
-  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  client := atrium.NewAtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
   ctx := context.Background()
   
-  accountGUID := "accountGUID_example" // string | The unique identifier for an `account`.
+  memberGUID := "memberGUID_example" // string | The unique identifier for a `member`.
   userGUID := "userGUID_example" // string | The unique identifier for a `user`.
-  opts := &atrium.ListAccountTransactionsOpts{ 
-    FromDate: optional.NewString("fromDate_example"), // string | Filter transactions from this date.
-    ToDate: optional.NewString("toDate_example"), // string | Filter transactions to this date.
-    Page: optional.NewInt32(12), // int32 | Specify current page.
-    RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
-  }
 
-  response, _, err := client.AccountsAPI.ListAccountTransactions(ctx, accountGUID, userGUID, opts)
+  response, _, err := client.AggregateMember(ctx, memberGUID, userGUID)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -50,39 +43,39 @@ func main() {
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountsAPI* | [**ListAccountTransactions**](docs/AccountsAPI.md#listaccounttransactions) | **Get** /users/{user_guid}/accounts/{account_guid}/transactions | List account transactions
-*AccountsAPI* | [**ListUserAccounts**](docs/AccountsAPI.md#listuseraccounts) | **Get** /users/{user_guid}/accounts | List accounts for a user
-*AccountsAPI* | [**ReadAccount**](docs/AccountsAPI.md#readaccount) | **Get** /users/{user_guid}/accounts/{account_guid} | Read an account
-*AccountsAPI* | [**ReadAccountByMemberGUID**](docs/AccountsAPI.md#readaccountbymemberguid) | **Get** /users/{user_guid}/members/{member_guid}/accounts/{account_guid} | Read an account
-*ConnectWidgetAPI* | [**GetConnectWidget**](docs/ConnectWidgetAPI.md#getconnectwidget) | **Post** /users/{user_guid}/connect_widget_url | Embedding in a website
-*IdentityAPI* | [**IdentifyMember**](docs/IdentityAPI.md#identifymember) | **Post** /users/{user_guid}/members/{member_guid}/identify | Identify
-*IdentityAPI* | [**ListAccountOwners**](docs/IdentityAPI.md#listaccountowners) | **Get** /users/{user_guid}/members/{member_guid}/account_owners | List member account owners
-*InstitutionsAPI* | [**ListInstitutions**](docs/InstitutionsAPI.md#listinstitutions) | **Get** /institutions | List institutions
-*InstitutionsAPI* | [**ReadInstitution**](docs/InstitutionsAPI.md#readinstitution) | **Get** /institutions/{institution_code} | Read institution
-*InstitutionsAPI* | [**ReadInstitutionCredentials**](docs/InstitutionsAPI.md#readinstitutioncredentials) | **Get** /institutions/{institution_code}/credentials | Read institution credentials
-*MembersAPI* | [**AggregateMember**](docs/MembersAPI.md#aggregatemember) | **Post** /users/{user_guid}/members/{member_guid}/aggregate | Aggregate member
-*MembersAPI* | [**CreateMember**](docs/MembersAPI.md#createmember) | **Post** /users/{user_guid}/members | Create member
-*MembersAPI* | [**DeleteMember**](docs/MembersAPI.md#deletemember) | **Delete** /users/{user_guid}/members/{member_guid} | Delete member
-*MembersAPI* | [**ListMemberAccounts**](docs/MembersAPI.md#listmemberaccounts) | **Get** /users/{user_guid}/members/{member_guid}/accounts | List member accounts
-*MembersAPI* | [**ListMemberCredentials**](docs/MembersAPI.md#listmembercredentials) | **Get** /users/{user_guid}/members/{member_guid}/credentials | List member credentials
-*MembersAPI* | [**ListMemberMFAChallenges**](docs/MembersAPI.md#listmembermfachallenges) | **Get** /users/{user_guid}/members/{member_guid}/challenges | List member MFA challenges
-*MembersAPI* | [**ListMemberTransactions**](docs/MembersAPI.md#listmembertransactions) | **Get** /users/{user_guid}/members/{member_guid}/transactions | List member transactions
-*MembersAPI* | [**ListMembers**](docs/MembersAPI.md#listmembers) | **Get** /users/{user_guid}/members | List members
-*MembersAPI* | [**ReadMember**](docs/MembersAPI.md#readmember) | **Get** /users/{user_guid}/members/{member_guid} | Read member
-*MembersAPI* | [**ReadMemberStatus**](docs/MembersAPI.md#readmemberstatus) | **Get** /users/{user_guid}/members/{member_guid}/status | Read member connection status
-*MembersAPI* | [**ResumeMember**](docs/MembersAPI.md#resumemember) | **Put** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
-*MembersAPI* | [**UpdateMember**](docs/MembersAPI.md#updatemember) | **Put** /users/{user_guid}/members/{member_guid} | Update member
-*TransactionsAPI* | [**CleanseAndCategorizeTransactions**](docs/TransactionsAPI.md#cleanseandcategorizetransactions) | **Post** /cleanse_and_categorize | Categorize transactions
-*TransactionsAPI* | [**ListUserTransactions**](docs/TransactionsAPI.md#listusertransactions) | **Get** /users/{user_guid}/transactions | List transactions for a user
-*TransactionsAPI* | [**ReadTransaction**](docs/TransactionsAPI.md#readtransaction) | **Get** /users/{user_guid}/transactions/{transaction_guid} | Read a transaction
-*UsersAPI* | [**CreateUser**](docs/UsersAPI.md#createuser) | **Post** /users | Create user
-*UsersAPI* | [**DeleteUser**](docs/UsersAPI.md#deleteuser) | **Delete** /users/{user_guid} | Delete user
-*UsersAPI* | [**ListUsers**](docs/UsersAPI.md#listusers) | **Get** /users | List users
-*UsersAPI* | [**ReadUser**](docs/UsersAPI.md#readuser) | **Get** /users/{user_guid} | Read user
-*UsersAPI* | [**UpdateUser**](docs/UsersAPI.md#updateuser) | **Put** /users/{user_guid} | Update user
-*VerificationAPI* | [**ListAccountNumbers**](docs/VerificationAPI.md#listaccountnumbers) | **Get** /users/{user_guid}/members/{member_guid}/account_numbers | Read account numbers
-*VerificationAPI* | [**ListAccountNumbersByAccount**](docs/VerificationAPI.md#listaccountnumbersbyaccount) | **Get** /users/{user_guid}/accounts/{account_guid}/account_numbers | Read account numbers by account GUID
-*VerificationAPI* | [**VerifyMember**](docs/VerificationAPI.md#verifymember) | **Post** /users/{user_guid}/members/{member_guid}/verify | Verify
+*AtriumClient* | [**AggregateMember**](docs/AtriumClient.md#aggregatemember) | **Post** /users/{user_guid}/members/{member_guid}/aggregate | Aggregate member
+*AtriumClient* | [**CleanseAndCategorizeTransactions**](docs/AtriumClient.md#cleanseandcategorizetransactions) | **Post** /cleanse_and_categorize | Categorize transactions
+*AtriumClient* | [**CreateMember**](docs/AtriumClient.md#createmember) | **Post** /users/{user_guid}/members | Create member
+*AtriumClient* | [**CreateUser**](docs/AtriumClient.md#createuser) | **Post** /users | Create user
+*AtriumClient* | [**DeleteMember**](docs/AtriumClient.md#deletemember) | **Delete** /users/{user_guid}/members/{member_guid} | Delete member
+*AtriumClient* | [**DeleteUser**](docs/AtriumClient.md#deleteuser) | **Delete** /users/{user_guid} | Delete user
+*AtriumClient* | [**GetConnectWidget**](docs/AtriumClient.md#getconnectwidget) | **Post** /users/{user_guid}/connect_widget_url | Embedding in a website
+*AtriumClient* | [**IdentifyMember**](docs/AtriumClient.md#identifymember) | **Post** /users/{user_guid}/members/{member_guid}/identify | Identify
+*AtriumClient* | [**ListAccountNumbers**](docs/AtriumClient.md#listaccountnumbers) | **Get** /users/{user_guid}/members/{member_guid}/account_numbers | Read account numbers
+*AtriumClient* | [**ListAccountNumbersByAccount**](docs/AtriumClient.md#listaccountnumbersbyaccount) | **Get** /users/{user_guid}/accounts/{account_guid}/account_numbers | Read account numbers by account GUID
+*AtriumClient* | [**ListAccountOwners**](docs/AtriumClient.md#listaccountowners) | **Get** /users/{user_guid}/members/{member_guid}/account_owners | List member account owners
+*AtriumClient* | [**ListAccountTransactions**](docs/AtriumClient.md#listaccounttransactions) | **Get** /users/{user_guid}/accounts/{account_guid}/transactions | List account transactions
+*AtriumClient* | [**ListInstitutions**](docs/AtriumClient.md#listinstitutions) | **Get** /institutions | List institutions
+*AtriumClient* | [**ListMemberAccounts**](docs/AtriumClient.md#listmemberaccounts) | **Get** /users/{user_guid}/members/{member_guid}/accounts | List member accounts
+*AtriumClient* | [**ListMemberCredentials**](docs/AtriumClient.md#listmembercredentials) | **Get** /users/{user_guid}/members/{member_guid}/credentials | List member credentials
+*AtriumClient* | [**ListMemberMFAChallenges**](docs/AtriumClient.md#listmembermfachallenges) | **Get** /users/{user_guid}/members/{member_guid}/challenges | List member MFA challenges
+*AtriumClient* | [**ListMemberTransactions**](docs/AtriumClient.md#listmembertransactions) | **Get** /users/{user_guid}/members/{member_guid}/transactions | List member transactions
+*AtriumClient* | [**ListMembers**](docs/AtriumClient.md#listmembers) | **Get** /users/{user_guid}/members | List members
+*AtriumClient* | [**ListUserAccounts**](docs/AtriumClient.md#listuseraccounts) | **Get** /users/{user_guid}/accounts | List accounts for a user
+*AtriumClient* | [**ListUserTransactions**](docs/AtriumClient.md#listusertransactions) | **Get** /users/{user_guid}/transactions | List transactions for a user
+*AtriumClient* | [**ListUsers**](docs/AtriumClient.md#listusers) | **Get** /users | List users
+*AtriumClient* | [**ReadAccount**](docs/AtriumClient.md#readaccount) | **Get** /users/{user_guid}/accounts/{account_guid} | Read an account
+*AtriumClient* | [**ReadAccountByMemberGUID**](docs/AtriumClient.md#readaccountbymemberguid) | **Get** /users/{user_guid}/members/{member_guid}/accounts/{account_guid} | Read an account
+*AtriumClient* | [**ReadInstitution**](docs/AtriumClient.md#readinstitution) | **Get** /institutions/{institution_code} | Read institution
+*AtriumClient* | [**ReadInstitutionCredentials**](docs/AtriumClient.md#readinstitutioncredentials) | **Get** /institutions/{institution_code}/credentials | Read institution credentials
+*AtriumClient* | [**ReadMember**](docs/AtriumClient.md#readmember) | **Get** /users/{user_guid}/members/{member_guid} | Read member
+*AtriumClient* | [**ReadMemberStatus**](docs/AtriumClient.md#readmemberstatus) | **Get** /users/{user_guid}/members/{member_guid}/status | Read member connection status
+*AtriumClient* | [**ReadTransaction**](docs/AtriumClient.md#readtransaction) | **Get** /users/{user_guid}/transactions/{transaction_guid} | Read a transaction
+*AtriumClient* | [**ReadUser**](docs/AtriumClient.md#readuser) | **Get** /users/{user_guid} | Read user
+*AtriumClient* | [**ResumeMember**](docs/AtriumClient.md#resumemember) | **Put** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
+*AtriumClient* | [**UpdateMember**](docs/AtriumClient.md#updatemember) | **Put** /users/{user_guid}/members/{member_guid} | Update member
+*AtriumClient* | [**UpdateUser**](docs/AtriumClient.md#updateuser) | **Put** /users/{user_guid} | Update user
+*AtriumClient* | [**VerifyMember**](docs/AtriumClient.md#verifymember) | **Post** /users/{user_guid}/members/{member_guid}/verify | Verify
 
 
 ## Documentation For Models
