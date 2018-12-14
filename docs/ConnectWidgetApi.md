@@ -6,7 +6,7 @@ Method | HTTP request | Description
 
 
 # **GetConnectWidget**
-> ConnectWidget GetConnectWidget(ctx, userGUID, body)
+> ConnectWidgetResponseBody GetConnectWidget(ctx, userGUID, body)
 Embedding in a website
 
 This endpoint will return a URL for an embeddable version of MX Connect.
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectWidget**](ConnectWidget.md)
+[**ConnectWidgetResponseBody**](ConnectWidgetResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

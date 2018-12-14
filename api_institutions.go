@@ -34,7 +34,7 @@ This endpoint allows you to see what institutions are available for connection. 
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
-@return Institutions
+@return InstitutionsResponseBody
 */
 
 type ListInstitutionsOpts struct { 
@@ -43,13 +43,13 @@ type ListInstitutionsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *InstitutionsAPIService) ListInstitutions(ctx context.Context, localVarOptionals *ListInstitutionsOpts) (Institutions, *http.Response, error) {
+func (a *InstitutionsAPIService) ListInstitutions(ctx context.Context, localVarOptionals *ListInstitutionsOpts) (InstitutionsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Institutions
+		localVarReturnValue InstitutionsResponseBody
 	)
 
 	// create path and map variables
@@ -142,7 +142,7 @@ func (a *InstitutionsAPIService) ListInstitutions(ctx context.Context, localVarO
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Institutions
+			var v InstitutionsResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -164,15 +164,15 @@ This endpoint allows you to see information for a specific institution.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param institutionCode The institution_code of the institution.
 
-@return Institution
+@return InstitutionResponseBody
 */
-func (a *InstitutionsAPIService) ReadInstitution(ctx context.Context, institutionCode string) (Institution, *http.Response, error) {
+func (a *InstitutionsAPIService) ReadInstitution(ctx context.Context, institutionCode string) (InstitutionResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Institution
+		localVarReturnValue InstitutionResponseBody
 	)
 
 	// create path and map variables
@@ -257,7 +257,7 @@ func (a *InstitutionsAPIService) ReadInstitution(ctx context.Context, institutio
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Institution
+			var v InstitutionResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -279,15 +279,15 @@ Use this endpoint to see which credentials will be needed to create a member for
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param institutionCode The institution_code of the institution.
 
-@return Credentials
+@return CredentialsResponseBody
 */
-func (a *InstitutionsAPIService) ReadInstitutionCredentials(ctx context.Context, institutionCode string) (Credentials, *http.Response, error) {
+func (a *InstitutionsAPIService) ReadInstitutionCredentials(ctx context.Context, institutionCode string) (CredentialsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Credentials
+		localVarReturnValue CredentialsResponseBody
 	)
 
 	// create path and map variables
@@ -372,7 +372,7 @@ func (a *InstitutionsAPIService) ReadInstitutionCredentials(ctx context.Context,
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Credentials
+			var v CredentialsResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

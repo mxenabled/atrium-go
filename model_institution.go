@@ -9,5 +9,11 @@
 package atrium
 
 type Institution struct {
-	Institution *InstitutionAttributes `json:"institution,omitempty"`
+	Code string `json:"code,omitempty"`
+	MediumLogoURL string `json:"medium_logo_url,omitempty"`
+	Name string `json:"name,omitempty"`
+	SmallLogoURL string `json:"small_logo_url,omitempty"`
+	SupportsAccountIdentification bool `json:"supports_account_identification,omitempty"`
+	SupportsAccountVerification bool `json:"supports_account_verification,omitempty"`
+	URL string `json:"url,omitempty"`
 }

@@ -31,15 +31,15 @@ The identify endpoint begins an identification process for an already-existing m
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Member
+@return MemberResponseBody
 */
-func (a *IdentityAPIService) IdentifyMember(ctx context.Context, memberGUID string, userGUID string) (Member, *http.Response, error) {
+func (a *IdentityAPIService) IdentifyMember(ctx context.Context, memberGUID string, userGUID string) (MemberResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Member
+		localVarReturnValue MemberResponseBody
 	)
 
 	// create path and map variables
@@ -125,7 +125,7 @@ func (a *IdentityAPIService) IdentifyMember(ctx context.Context, memberGUID stri
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Member
+			var v MemberResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -148,15 +148,15 @@ This endpoint returns an array with information about every account associated w
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return AccountOwners
+@return AccountOwnersResponseBody
 */
-func (a *IdentityAPIService) ListAccountOwners(ctx context.Context, memberGUID string, userGUID string) (AccountOwners, *http.Response, error) {
+func (a *IdentityAPIService) ListAccountOwners(ctx context.Context, memberGUID string, userGUID string) (AccountOwnersResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue AccountOwners
+		localVarReturnValue AccountOwnersResponseBody
 	)
 
 	// create path and map variables
@@ -242,7 +242,7 @@ func (a *IdentityAPIService) ListAccountOwners(ctx context.Context, memberGUID s
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v AccountOwners
+			var v AccountOwnersResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

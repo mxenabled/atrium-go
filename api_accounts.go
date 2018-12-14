@@ -37,7 +37,7 @@ This endpoint allows you to see every transaction that belongs to a specific acc
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
-@return Transactions
+@return TransactionsResponseBody
 */
 
 type ListAccountTransactionsOpts struct { 
@@ -47,13 +47,13 @@ type ListAccountTransactionsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *AccountsAPIService) ListAccountTransactions(ctx context.Context, accountGUID string, userGUID string, localVarOptionals *ListAccountTransactionsOpts) (Transactions, *http.Response, error) {
+func (a *AccountsAPIService) ListAccountTransactions(ctx context.Context, accountGUID string, userGUID string, localVarOptionals *ListAccountTransactionsOpts) (TransactionsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Transactions
+		localVarReturnValue TransactionsResponseBody
 	)
 
 	// create path and map variables
@@ -151,7 +151,7 @@ func (a *AccountsAPIService) ListAccountTransactions(ctx context.Context, accoun
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Transactions
+			var v TransactionsResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -176,7 +176,7 @@ Use this endpoint to view information about every account that belongs to a user
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
-@return Accounts
+@return AccountsResponseBody
 */
 
 type ListUserAccountsOpts struct { 
@@ -184,13 +184,13 @@ type ListUserAccountsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *AccountsAPIService) ListUserAccounts(ctx context.Context, userGUID string, localVarOptionals *ListUserAccountsOpts) (Accounts, *http.Response, error) {
+func (a *AccountsAPIService) ListUserAccounts(ctx context.Context, userGUID string, localVarOptionals *ListUserAccountsOpts) (AccountsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Accounts
+		localVarReturnValue AccountsResponseBody
 	)
 
 	// create path and map variables
@@ -281,7 +281,7 @@ func (a *AccountsAPIService) ListUserAccounts(ctx context.Context, userGUID stri
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Accounts
+			var v AccountsResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -304,15 +304,15 @@ Reading an account allows you to get information about a specific account that b
  * @param accountGUID The unique identifier for an &#x60;account&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Account
+@return AccountResponseBody
 */
-func (a *AccountsAPIService) ReadAccount(ctx context.Context, accountGUID string, userGUID string) (Account, *http.Response, error) {
+func (a *AccountsAPIService) ReadAccount(ctx context.Context, accountGUID string, userGUID string) (AccountResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Account
+		localVarReturnValue AccountResponseBody
 	)
 
 	// create path and map variables
@@ -398,7 +398,7 @@ func (a *AccountsAPIService) ReadAccount(ctx context.Context, accountGUID string
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Account
+			var v AccountResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -422,15 +422,15 @@ Reading an account allows you to get information about a specific account that b
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Account
+@return AccountResponseBody
 */
-func (a *AccountsAPIService) ReadAccountByMemberGUID(ctx context.Context, accountGUID string, memberGUID string, userGUID string) (Account, *http.Response, error) {
+func (a *AccountsAPIService) ReadAccountByMemberGUID(ctx context.Context, accountGUID string, memberGUID string, userGUID string) (AccountResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Account
+		localVarReturnValue AccountResponseBody
 	)
 
 	// create path and map variables
@@ -517,7 +517,7 @@ func (a *AccountsAPIService) ReadAccountByMemberGUID(ctx context.Context, accoun
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Account
+			var v AccountResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

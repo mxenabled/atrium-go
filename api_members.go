@@ -32,15 +32,15 @@ Calling this endpoint initiates an aggregation event for the member. This brings
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Member
+@return MemberResponseBody
 */
-func (a *MembersAPIService) AggregateMember(ctx context.Context, memberGUID string, userGUID string) (Member, *http.Response, error) {
+func (a *MembersAPIService) AggregateMember(ctx context.Context, memberGUID string, userGUID string) (MemberResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Member
+		localVarReturnValue MemberResponseBody
 	)
 
 	// create path and map variables
@@ -126,7 +126,7 @@ func (a *MembersAPIService) AggregateMember(ctx context.Context, memberGUID stri
 		}
 		
 		if localVarHttpResponse.StatusCode == 202 {
-			var v Member
+			var v MemberResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -149,15 +149,15 @@ This endpoint allows you to create a new member. Members are created with the re
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param body Member object to be created with optional parameters (identifier and metadata) and required parameters (credentials and institution_code)
 
-@return Member
+@return MemberResponseBody
 */
-func (a *MembersAPIService) CreateMember(ctx context.Context, userGUID string, body MemberCreateRequestBody) (Member, *http.Response, error) {
+func (a *MembersAPIService) CreateMember(ctx context.Context, userGUID string, body MemberCreateRequestBody) (MemberResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Member
+		localVarReturnValue MemberResponseBody
 	)
 
 	// create path and map variables
@@ -244,7 +244,7 @@ func (a *MembersAPIService) CreateMember(ctx context.Context, userGUID string, b
 		}
 		
 		if localVarHttpResponse.StatusCode == 202 {
-			var v Member
+			var v MemberResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -369,7 +369,7 @@ This endpoint returns an array with information about every account associated w
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
-@return Accounts
+@return AccountsResponseBody
 */
 
 type ListMemberAccountsOpts struct { 
@@ -377,13 +377,13 @@ type ListMemberAccountsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *MembersAPIService) ListMemberAccounts(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *ListMemberAccountsOpts) (Accounts, *http.Response, error) {
+func (a *MembersAPIService) ListMemberAccounts(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *ListMemberAccountsOpts) (AccountsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Accounts
+		localVarReturnValue AccountsResponseBody
 	)
 
 	// create path and map variables
@@ -475,7 +475,7 @@ func (a *MembersAPIService) ListMemberAccounts(ctx context.Context, memberGUID s
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Accounts
+			var v AccountsResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -498,15 +498,15 @@ This endpoint returns an array which contains information on every non-MFA crede
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Credentials
+@return CredentialsResponseBody
 */
-func (a *MembersAPIService) ListMemberCredentials(ctx context.Context, memberGUID string, userGUID string) (Credentials, *http.Response, error) {
+func (a *MembersAPIService) ListMemberCredentials(ctx context.Context, memberGUID string, userGUID string) (CredentialsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Credentials
+		localVarReturnValue CredentialsResponseBody
 	)
 
 	// create path and map variables
@@ -592,7 +592,7 @@ func (a *MembersAPIService) ListMemberCredentials(ctx context.Context, memberGUI
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Credentials
+			var v CredentialsResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -615,15 +615,15 @@ Use this endpoint for information on what multi-factor authentication challenges
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Challenges
+@return ChallengesResponseBody
 */
-func (a *MembersAPIService) ListMemberMFAChallenges(ctx context.Context, memberGUID string, userGUID string) (Challenges, *http.Response, error) {
+func (a *MembersAPIService) ListMemberMFAChallenges(ctx context.Context, memberGUID string, userGUID string) (ChallengesResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Challenges
+		localVarReturnValue ChallengesResponseBody
 	)
 
 	// create path and map variables
@@ -709,7 +709,7 @@ func (a *MembersAPIService) ListMemberMFAChallenges(ctx context.Context, memberG
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Challenges
+			var v ChallengesResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -737,7 +737,7 @@ Use this endpoint to get all transactions from all accounts associated with a sp
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
-@return Transactions
+@return TransactionsResponseBody
 */
 
 type ListMemberTransactionsOpts struct { 
@@ -747,13 +747,13 @@ type ListMemberTransactionsOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *MembersAPIService) ListMemberTransactions(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *ListMemberTransactionsOpts) (Transactions, *http.Response, error) {
+func (a *MembersAPIService) ListMemberTransactions(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *ListMemberTransactionsOpts) (TransactionsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Transactions
+		localVarReturnValue TransactionsResponseBody
 	)
 
 	// create path and map variables
@@ -851,7 +851,7 @@ func (a *MembersAPIService) ListMemberTransactions(ctx context.Context, memberGU
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Transactions
+			var v TransactionsResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -876,7 +876,7 @@ This endpoint returns an array which contains information on every member associ
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
-@return Members
+@return MembersResponseBody
 */
 
 type ListMembersOpts struct { 
@@ -884,13 +884,13 @@ type ListMembersOpts struct {
 	RecordsPerPage optional.Int32
 }
 
-func (a *MembersAPIService) ListMembers(ctx context.Context, userGUID string, localVarOptionals *ListMembersOpts) (Members, *http.Response, error) {
+func (a *MembersAPIService) ListMembers(ctx context.Context, userGUID string, localVarOptionals *ListMembersOpts) (MembersResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Members
+		localVarReturnValue MembersResponseBody
 	)
 
 	// create path and map variables
@@ -981,7 +981,7 @@ func (a *MembersAPIService) ListMembers(ctx context.Context, userGUID string, lo
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Members
+			var v MembersResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -1004,15 +1004,15 @@ Use this endpoint to read the attributes of a specific member.
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Member
+@return MemberResponseBody
 */
-func (a *MembersAPIService) ReadMember(ctx context.Context, memberGUID string, userGUID string) (Member, *http.Response, error) {
+func (a *MembersAPIService) ReadMember(ctx context.Context, memberGUID string, userGUID string) (MemberResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Member
+		localVarReturnValue MemberResponseBody
 	)
 
 	// create path and map variables
@@ -1098,7 +1098,7 @@ func (a *MembersAPIService) ReadMember(ctx context.Context, memberGUID string, u
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Member
+			var v MemberResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -1121,15 +1121,15 @@ This endpoint provides the status of the member&#39;s most recent aggregation ev
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return MemberConnectionStatus
+@return MemberConnectionStatusResponseBody
 */
-func (a *MembersAPIService) ReadMemberStatus(ctx context.Context, memberGUID string, userGUID string) (MemberConnectionStatus, *http.Response, error) {
+func (a *MembersAPIService) ReadMemberStatus(ctx context.Context, memberGUID string, userGUID string) (MemberConnectionStatusResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue MemberConnectionStatus
+		localVarReturnValue MemberConnectionStatusResponseBody
 	)
 
 	// create path and map variables
@@ -1215,7 +1215,7 @@ func (a *MembersAPIService) ReadMemberStatus(ctx context.Context, memberGUID str
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v MemberConnectionStatus
+			var v MemberConnectionStatusResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -1239,15 +1239,15 @@ This endpoint answers the challenges needed when a member has been challenged by
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param body Member object with MFA challenge answers
 
-@return Member
+@return MemberResponseBody
 */
-func (a *MembersAPIService) ResumeMember(ctx context.Context, memberGUID string, userGUID string, body MemberResumeRequestBody) (Member, *http.Response, error) {
+func (a *MembersAPIService) ResumeMember(ctx context.Context, memberGUID string, userGUID string, body MemberResumeRequestBody) (MemberResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Member
+		localVarReturnValue MemberResponseBody
 	)
 
 	// create path and map variables
@@ -1335,7 +1335,7 @@ func (a *MembersAPIService) ResumeMember(ctx context.Context, memberGUID string,
 		}
 		
 		if localVarHttpResponse.StatusCode == 202 {
-			var v Member
+			var v MemberResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -1360,20 +1360,20 @@ Use this endpoint to update a member&#39;s attributes. Only the credentials, ide
  * @param optional nil or *UpdateMemberOpts - Optional Parameters:
      * @param "Body" (optional.Interface of MemberUpdateRequestBody) -  Member object to be updated with optional parameters (credentials, identifier, metadata)
 
-@return Member
+@return MemberResponseBody
 */
 
 type UpdateMemberOpts struct { 
 	Body optional.Interface
 }
 
-func (a *MembersAPIService) UpdateMember(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *UpdateMemberOpts) (Member, *http.Response, error) {
+func (a *MembersAPIService) UpdateMember(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *UpdateMemberOpts) (MemberResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Member
+		localVarReturnValue MemberResponseBody
 	)
 
 	// create path and map variables
@@ -1468,7 +1468,7 @@ func (a *MembersAPIService) UpdateMember(ctx context.Context, memberGUID string,
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Member
+			var v MemberResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

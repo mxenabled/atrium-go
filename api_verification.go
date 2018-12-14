@@ -31,15 +31,15 @@ Use this endpoint to check whether account and routing numbers are available for
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return AccountNumbers
+@return AccountNumbersResponseBody
 */
-func (a *VerificationAPIService) ListAccountNumbers(ctx context.Context, memberGUID string, userGUID string) (AccountNumbers, *http.Response, error) {
+func (a *VerificationAPIService) ListAccountNumbers(ctx context.Context, memberGUID string, userGUID string) (AccountNumbersResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue AccountNumbers
+		localVarReturnValue AccountNumbersResponseBody
 	)
 
 	// create path and map variables
@@ -125,7 +125,7 @@ func (a *VerificationAPIService) ListAccountNumbers(ctx context.Context, memberG
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v AccountNumbers
+			var v AccountNumbersResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -148,15 +148,15 @@ Use this endpoint to check whether account and routing numbers are available for
  * @param accountGUID The unique identifier for an &#x60;account&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return AccountNumbers
+@return AccountNumbersResponseBody
 */
-func (a *VerificationAPIService) ListAccountNumbersByAccount(ctx context.Context, accountGUID string, userGUID string) (AccountNumbers, *http.Response, error) {
+func (a *VerificationAPIService) ListAccountNumbersByAccount(ctx context.Context, accountGUID string, userGUID string) (AccountNumbersResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue AccountNumbers
+		localVarReturnValue AccountNumbersResponseBody
 	)
 
 	// create path and map variables
@@ -242,7 +242,7 @@ func (a *VerificationAPIService) ListAccountNumbersByAccount(ctx context.Context
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v AccountNumbers
+			var v AccountNumbersResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -265,15 +265,15 @@ The verify endpoint begins a verification process for a member.
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Member
+@return MemberResponseBody
 */
-func (a *VerificationAPIService) VerifyMember(ctx context.Context, memberGUID string, userGUID string) (Member, *http.Response, error) {
+func (a *VerificationAPIService) VerifyMember(ctx context.Context, memberGUID string, userGUID string) (MemberResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Member
+		localVarReturnValue MemberResponseBody
 	)
 
 	// create path and map variables
@@ -359,7 +359,7 @@ func (a *VerificationAPIService) VerifyMember(ctx context.Context, memberGUID st
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Member
+			var v MemberResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **CreateUser**
-> User CreateUser(ctx, body)
+> UserResponseBody CreateUser(ctx, body)
 Create user
 
 Call this endpoint to create a new user. Atrium will respond with the newly-created user object if successful. This endpoint accepts several parameters: identifier, metadata, and is_disabled.<br> Disabling a user means that accounts and transactions associated with it will not be updated in the background by MX. It will also restrict access to that user's data until they are no longer disabled. Users who are disabled for the entirety of an Atrium billing period will not be factored into that month's bill. 
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**UserResponseBody**](UserResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListUsers**
-> Users ListUsers(ctx, optional)
+> UsersResponseBody ListUsers(ctx, optional)
 List users
 
 Use this endpoint to list every user you've created in Atrium.
@@ -149,12 +149,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Users**](Users.md)
+[**UsersResponseBody**](UsersResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ReadUser**
-> User ReadUser(ctx, userGUID)
+> UserResponseBody ReadUser(ctx, userGUID)
 Read user
 
 Use this endpoint to read the attributes of a specific user.
@@ -193,12 +193,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**UserResponseBody**](UserResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateUser**
-> User UpdateUser(ctx, userGUID, optional)
+> UserResponseBody UpdateUser(ctx, userGUID, optional)
 Update user
 
 Use this endpoint to update the attributes of a specific user. Atrium will respond with the updated user object.<br> Disabling a user means that accounts and transactions associated with it will not be updated in the background by MX. It will also restrict access to that user's data until they are no longer disabled. Users who are disabled for the entirety of an Atrium billing period will not be factored into that month's bill.<br> To disable a user, update it and set the is_disabled parameter to true. Set it to false to re-enable the user. 
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**UserResponseBody**](UserResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

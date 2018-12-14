@@ -9,5 +9,13 @@
 package atrium
 
 type MemberConnectionStatus struct {
-	Member *MemberConnectionStatusAttributes `json:"member,omitempty"`
+	AggregatedAt string `json:"aggregated_at,omitempty"`
+	Challenges []Challenge `json:"challenges,omitempty"`
+	ConnectionStatus string `json:"connection_status,omitempty"`
+	GUID bool `json:"guid,omitempty"`
+	HasProcessedAccounts bool `json:"has_processed_accounts,omitempty"`
+	HasProcessedTransactions bool `json:"has_processed_transactions,omitempty"`
+	IsBeingAggregated bool `json:"is_being_aggregated,omitempty"`
+	Status string `json:"status,omitempty"`
+	SuccessfullyAggregatedAt string `json:"successfully_aggregated_at,omitempty"`
 }

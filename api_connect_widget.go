@@ -31,15 +31,15 @@ This endpoint will return a URL for an embeddable version of MX Connect.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param body Optional config options for WebView (is_mobile_webview, current_institution_code, current_member_guid, update_credentials)
 
-@return ConnectWidget
+@return ConnectWidgetResponseBody
 */
-func (a *ConnectWidgetAPIService) GetConnectWidget(ctx context.Context, userGUID string, body ConnectWidgetRequestBody) (ConnectWidget, *http.Response, error) {
+func (a *ConnectWidgetAPIService) GetConnectWidget(ctx context.Context, userGUID string, body ConnectWidgetRequestBody) (ConnectWidgetResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue ConnectWidget
+		localVarReturnValue ConnectWidgetResponseBody
 	)
 
 	// create path and map variables
@@ -126,7 +126,7 @@ func (a *ConnectWidgetAPIService) GetConnectWidget(ctx context.Context, userGUID
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v ConnectWidget
+			var v ConnectWidgetResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

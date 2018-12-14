@@ -7,7 +7,7 @@ Method | HTTP request | Description
 
 
 # **IdentifyMember**
-> Member IdentifyMember(ctx, memberGUID, userGUID)
+> MemberResponseBody IdentifyMember(ctx, memberGUID, userGUID)
 Identify
 
 The identify endpoint begins an identification process for an already-existing member.
@@ -48,12 +48,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Member**](Member.md)
+[**MemberResponseBody**](MemberResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListAccountOwners**
-> AccountOwners ListAccountOwners(ctx, memberGUID, userGUID)
+> AccountOwnersResponseBody ListAccountOwners(ctx, memberGUID, userGUID)
 List member account owners
 
 This endpoint returns an array with information about every account associated with a particular member.
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountOwners**](AccountOwners.md)
+[**AccountOwnersResponseBody**](AccountOwnersResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

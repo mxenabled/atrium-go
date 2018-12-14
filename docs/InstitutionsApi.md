@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **ListInstitutions**
-> Institutions ListInstitutions(ctx, optional)
+> InstitutionsResponseBody ListInstitutions(ctx, optional)
 List institutions
 
 This endpoint allows you to see what institutions are available for connection. Information returned will include the institution_code assigned to a particular institution, URLs for the financial institution's logo, and the URL for its website.<br> This endpoint takes an optional query string, name={string}. This will list only institutions in which the appended string appears. 
@@ -61,12 +61,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Institutions**](Institutions.md)
+[**InstitutionsResponseBody**](InstitutionsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ReadInstitution**
-> Institution ReadInstitution(ctx, institutionCode)
+> InstitutionResponseBody ReadInstitution(ctx, institutionCode)
 Read institution
 
 This endpoint allows you to see information for a specific institution.
@@ -105,12 +105,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Institution**](Institution.md)
+[**InstitutionResponseBody**](InstitutionResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ReadInstitutionCredentials**
-> Credentials ReadInstitutionCredentials(ctx, institutionCode)
+> CredentialsResponseBody ReadInstitutionCredentials(ctx, institutionCode)
 Read institution credentials
 
 Use this endpoint to see which credentials will be needed to create a member for a specific institution.
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Credentials**](Credentials.md)
+[**CredentialsResponseBody**](CredentialsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

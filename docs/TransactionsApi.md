@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **CleanseAndCategorizeTransactions**
-> TransactionsCleanseAndCategorize CleanseAndCategorizeTransactions(ctx, body)
+> TransactionsCleanseAndCategorizeResponseBody CleanseAndCategorizeTransactions(ctx, body)
 Categorize transactions
 
 Use this endpoint to categorize, cleanse, and classify transactions. These transactions are not persisted or stored on the MX platform.
@@ -47,12 +47,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionsCleanseAndCategorize**](TransactionsCleanseAndCategorize.md)
+[**TransactionsCleanseAndCategorizeResponseBody**](TransactionsCleanseAndCategorizeResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListUserTransactions**
-> Transactions ListUserTransactions(ctx, userGUID, optional)
+> TransactionsResponseBody ListUserTransactions(ctx, userGUID, optional)
 List transactions for a user
 
 Use this endpoint to get all transactions that belong to a specific user, across all the user's members and accounts.<br> This endpoint accepts optional query parameters, from_date and to_date, which filter transactions according to the date they were posted. If no values are given, from_date will default to 90 days prior to the request, and to_date will default to 5 days from the time of the request. 
@@ -110,12 +110,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Transactions**](Transactions.md)
+[**TransactionsResponseBody**](TransactionsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ReadTransaction**
-> Transaction ReadTransaction(ctx, transactionGUID, userGUID)
+> TransactionResponseBody ReadTransaction(ctx, transactionGUID, userGUID)
 Read a transaction
 
 This endpoint allows you to view information about a specific transaction that belongs to a user.<br>
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Transaction**](Transaction.md)
+[**TransactionResponseBody**](TransactionResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

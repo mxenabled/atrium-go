@@ -9,5 +9,8 @@
 package atrium
 
 type User struct {
-	User *UserAttributes `json:"user,omitempty"`
+	GUID string `json:"guid,omitempty"`
+	Identifier string `json:"identifier,omitempty"`
+	IsDisabled bool `json:"is_disabled,omitempty"`
+	Metadata string `json:"metadata,omitempty"`
 }

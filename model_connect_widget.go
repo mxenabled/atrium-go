@@ -9,5 +9,6 @@
 package atrium
 
 type ConnectWidget struct {
-	User *ConnectWidgetAttributes `json:"user,omitempty"`
+	ConnectWidgetURL string `json:"connect_widget_url,omitempty"`
+	GUID string `json:"guid,omitempty"`
 }

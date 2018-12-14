@@ -31,15 +31,15 @@ Use this endpoint to categorize, cleanse, and classify transactions. These trans
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param body User object to be created with optional parameters (amount, type) amd required parameters (description, identifier)
 
-@return TransactionsCleanseAndCategorize
+@return TransactionsCleanseAndCategorizeResponseBody
 */
-func (a *TransactionsAPIService) CleanseAndCategorizeTransactions(ctx context.Context, body TransactionsCleanseAndCategorizeRequestBody) (TransactionsCleanseAndCategorize, *http.Response, error) {
+func (a *TransactionsAPIService) CleanseAndCategorizeTransactions(ctx context.Context, body TransactionsCleanseAndCategorizeRequestBody) (TransactionsCleanseAndCategorizeResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue TransactionsCleanseAndCategorize
+		localVarReturnValue TransactionsCleanseAndCategorizeResponseBody
 	)
 
 	// create path and map variables
@@ -125,7 +125,7 @@ func (a *TransactionsAPIService) CleanseAndCategorizeTransactions(ctx context.Co
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v TransactionsCleanseAndCategorize
+			var v TransactionsCleanseAndCategorizeResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -152,7 +152,7 @@ Use this endpoint to get all transactions that belong to a specific user, across
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
      * @param "ToDate" (optional.String) -  Filter transactions to this date.
 
-@return Transactions
+@return TransactionsResponseBody
 */
 
 type ListUserTransactionsOpts struct { 
@@ -162,13 +162,13 @@ type ListUserTransactionsOpts struct {
 	ToDate optional.String
 }
 
-func (a *TransactionsAPIService) ListUserTransactions(ctx context.Context, userGUID string, localVarOptionals *ListUserTransactionsOpts) (Transactions, *http.Response, error) {
+func (a *TransactionsAPIService) ListUserTransactions(ctx context.Context, userGUID string, localVarOptionals *ListUserTransactionsOpts) (TransactionsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Transactions
+		localVarReturnValue TransactionsResponseBody
 	)
 
 	// create path and map variables
@@ -265,7 +265,7 @@ func (a *TransactionsAPIService) ListUserTransactions(ctx context.Context, userG
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Transactions
+			var v TransactionsResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -288,15 +288,15 @@ This endpoint allows you to view information about a specific transaction that b
  * @param transactionGUID The unique identifier for a &#x60;transaction&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
 
-@return Transaction
+@return TransactionResponseBody
 */
-func (a *TransactionsAPIService) ReadTransaction(ctx context.Context, transactionGUID string, userGUID string) (Transaction, *http.Response, error) {
+func (a *TransactionsAPIService) ReadTransaction(ctx context.Context, transactionGUID string, userGUID string) (TransactionResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue Transaction
+		localVarReturnValue TransactionResponseBody
 	)
 
 	// create path and map variables
@@ -382,7 +382,7 @@ func (a *TransactionsAPIService) ReadTransaction(ctx context.Context, transactio
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Transaction
+			var v TransactionResponseBody
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

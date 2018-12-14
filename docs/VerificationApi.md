@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **ListAccountNumbers**
-> AccountNumbers ListAccountNumbers(ctx, memberGUID, userGUID)
+> AccountNumbersResponseBody ListAccountNumbers(ctx, memberGUID, userGUID)
 Read account numbers
 
 Use this endpoint to check whether account and routing numbers are available for accounts associated with a particular member. It returns the account_numbers object, which contains account and routing number data for each account associated with the member.
@@ -49,12 +49,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountNumbers**](AccountNumbers.md)
+[**AccountNumbersResponseBody**](AccountNumbersResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListAccountNumbersByAccount**
-> AccountNumbers ListAccountNumbersByAccount(ctx, accountGUID, userGUID)
+> AccountNumbersResponseBody ListAccountNumbersByAccount(ctx, accountGUID, userGUID)
 Read account numbers by account GUID
 
 Use this endpoint to check whether account and routing numbers are available for a specific account. It returns the account_numbers object, which contains account and routing number data.
@@ -95,12 +95,12 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountNumbers**](AccountNumbers.md)
+[**AccountNumbersResponseBody**](AccountNumbersResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **VerifyMember**
-> Member VerifyMember(ctx, memberGUID, userGUID)
+> MemberResponseBody VerifyMember(ctx, memberGUID, userGUID)
 Verify
 
 The verify endpoint begins a verification process for a member.
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Member**](Member.md)
+[**MemberResponseBody**](MemberResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

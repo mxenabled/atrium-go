@@ -9,5 +9,5 @@
 package atrium
 
 type UserUpdateRequestBody struct {
-	User *UserAttributes `json:"user,omitempty"`
+	User *User `json:"user,omitempty"`
 }
