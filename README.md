@@ -8,6 +8,45 @@ Put the package under your project folder and add the following in import:
 import "github.com/mxenabled/atrium-go"
 ```
 
+## Example Usage
+
+Please see `docs` directory for additional endpoint examples
+
+```go
+require_once(__DIR__ . '/vendor/autoload.php');
+
+package main
+
+import (
+  "context"
+  "fmt"
+  "github.com/mxenabled/atrium-go"
+  "github.com/antihax/optional"
+)
+
+func main() {
+  client := atrium.NewAPIClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
+  
+  accountGUID := "accountGUID_example" // string | The unique identifier for an `account`.
+  userGUID := "userGUID_example" // string | The unique identifier for a `user`.
+  opts := &atrium.ListAccountTransactionsOpts{ 
+    FromDate: optional.NewString("fromDate_example"), // string | Filter transactions from this date.
+    ToDate: optional.NewString("toDate_example"), // string | Filter transactions to this date.
+    Page: optional.NewInt32(12), // int32 | Specify current page.
+    RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
+  }
+
+  response, _, err := client.AccountsAPI.ListAccountTransactions(ctx, accountGUID, userGUID, opts)
+  if err != nil {
+    fmt.Printf("Error: %v\n", err)
+  } else {
+    fmt.Printf("Response: %s\n", response)
+  }
+}
+
+```
+
 ## Documentation for API Endpoints
 
 Class | Method | HTTP request | Description
