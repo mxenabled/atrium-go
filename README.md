@@ -13,7 +13,6 @@ import "github.com/mxenabled/atrium-go"
 Please see `docs` directory for additional endpoint examples
 
 ```go
-require_once(__DIR__ . '/vendor/autoload.php');
 
 package main
 
