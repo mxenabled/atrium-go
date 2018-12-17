@@ -4,7 +4,7 @@ go:
   - 1.11
 
 script:
-  - diff <(echo -n) <(gofmt -s -d .)
+  # - diff <(echo -n) <(gofmt -s -d .)
   - go build ./...
 
 notifications:
