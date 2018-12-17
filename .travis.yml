@@ -1,0 +1,11 @@
+language: go
+
+go:
+  - 1.10
+
+script:
+  - diff <(echo -n) <(gofmt -s -d .)
+  - go build ./...
+
+notifications:
+  email: false
