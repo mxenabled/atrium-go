@@ -43,8 +43,14 @@ type APIClient struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// API Services
-
-	AtriumClient *AtriumClientService
+	Accounts *AccountsApiService
+	ConnectWidget *ConnectWidgetApiService
+	Identity *IdentityApiService
+	Institutions *InstitutionsApiService
+	Members *MembersApiService
+	Transactions *TransactionsApiService
+	Users *UsersApiService
+	Verification *VerificationApiService
 }
 
 type service struct {
@@ -63,7 +69,14 @@ func newAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AtriumClient = (*AtriumClientService)(&c.common)
+	c.Accounts = (*AccountsApiService)(&c.common)
+	c.ConnectWidget = (*ConnectWidgetApiService)(&c.common)
+	c.Identity = (*IdentityApiService)(&c.common)
+	c.Institutions = (*InstitutionsApiService)(&c.common)
+	c.Members = (*MembersApiService)(&c.common)
+	c.Transactions = (*TransactionsApiService)(&c.common)
+	c.Users = (*UsersApiService)(&c.common)
+	c.Verification = (*VerificationApiService)(&c.common)
 
 	return c
 }

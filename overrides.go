@@ -1,14 +1,14 @@
 package atrium
 
-func NewAtriumClient(apiKey, clientId string) *AtriumClientService {
+func AtriumClient(apiKey, clientId string) *APIClient {
   config := NewConfiguration()
   config.DefaultHeader["MX-Client-ID"] = clientId
   config.DefaultHeader["MX-API-Key"] = apiKey
-  return newAPIClient(config).AtriumClient
+  return newAPIClient(config)
 }
 
-func NewAtriumClientWithConfiguration(apiKey, clientId string, config *Configuration) *AtriumClientService {
+func AtriumClientWithConfiguration(apiKey, clientId string, config *Configuration) *APIClient {
   config.DefaultHeader["MX-Client-ID"] = clientId
   config.DefaultHeader["MX-API-Key"] = apiKey
-  return newAPIClient(config).AtriumClient
+  return newAPIClient(config)
 }
