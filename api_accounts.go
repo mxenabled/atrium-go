@@ -1,7 +1,7 @@
 /*
  * MX API
  *
- * The MX Atrium API supports over 48,000 data connections to thousands of financial institutions. It provides secure access to your users' accounts and transactions with industry-leading cleansing, categorization, and classification.  Atrium is designed according to resource-oriented REST architecture and responds with JSON bodies and HTTP response codes.  Use Atrium's development environment, vestibule.mx.com, to quickly get up and running. The development environment limits are 100 users, 25 members per user, and access to the top 15 institutions. Contact MX to purchase production access. 
+ * The MX Atrium API supports over 48,000 data connections to thousands of financial institutions. It provides secure access to your users' accounts and transactions with industry-leading cleansing, categorization, and classification.  Atrium is designed according to resource-oriented REST architecture and responds with JSON bodies and HTTP response codes.  Use Atrium's development environment, vestibule.mx.com, to quickly get up and running. The development environment limits are 100 users, 25 members per user, and access to the top 15 institutions. Contact MX to purchase production access.
  *
  * API version: 0.1
  */
@@ -10,12 +10,12 @@ package atrium
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"fmt"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -27,7 +27,7 @@ type AccountsApiService service
 
 /*
 AccountsApiService List account transactions
-This endpoint allows you to see every transaction that belongs to a specific account. The default from_date is 90 days prior to the request, and the default to_date is 5 days from the time of the request.&lt;br&gt; The from_date and to_date parameters can optionally be appended to the request. 
+This endpoint allows you to see every transaction that belongs to a specific account. The default from_date is 90 days prior to the request, and the default to_date is 5 days from the time of the request.&lt;br&gt; The from_date and to_date parameters can optionally be appended to the request.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountGUID The unique identifier for an &#x60;account&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
@@ -40,19 +40,19 @@ This endpoint allows you to see every transaction that belongs to a specific acc
 @return TransactionsResponseBody
 */
 
-type ListAccountTransactionsOpts struct { 
-	FromDate optional.String
-	ToDate optional.String
-	Page optional.Int32
+type ListAccountTransactionsOpts struct {
+	FromDate       optional.String
+	ToDate         optional.String
+	Page           optional.Int32
 	RecordsPerPage optional.Int32
 }
 
 func (a *AccountsApiService) ListAccountTransactions(ctx context.Context, accountGUID string, userGUID string, localVarOptionals *ListAccountTransactionsOpts) (TransactionsResponseBody, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue TransactionsResponseBody
 	)
 
@@ -104,7 +104,7 @@ func (a *AccountsApiService) ListAccountTransactions(ctx context.Context, accoun
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-API-Key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -117,7 +117,7 @@ func (a *AccountsApiService) ListAccountTransactions(ctx context.Context, accoun
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-Client-ID"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -138,7 +138,7 @@ func (a *AccountsApiService) ListAccountTransactions(ctx context.Context, accoun
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -146,21 +146,21 @@ func (a *AccountsApiService) ListAccountTransactions(ctx context.Context, accoun
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v TransactionsResponseBody
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -179,17 +179,17 @@ Use this endpoint to view information about every account that belongs to a user
 @return AccountsResponseBody
 */
 
-type ListUserAccountsOpts struct { 
-	Page optional.Int32
+type ListUserAccountsOpts struct {
+	Page           optional.Int32
 	RecordsPerPage optional.Int32
 }
 
 func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGUID string, localVarOptionals *ListUserAccountsOpts) (AccountsResponseBody, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue AccountsResponseBody
 	)
 
@@ -234,7 +234,7 @@ func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGUID stri
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-API-Key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -247,7 +247,7 @@ func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGUID stri
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-Client-ID"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -268,7 +268,7 @@ func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGUID stri
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -276,21 +276,21 @@ func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGUID stri
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v AccountsResponseBody
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -299,7 +299,7 @@ func (a *AccountsApiService) ListUserAccounts(ctx context.Context, userGUID stri
 
 /*
 AccountsApiService Read an account
-Reading an account allows you to get information about a specific account that belongs to a user. That includes the account type — e.g., CHECKING, MONEY_MARKET, or PROPERTY — the balance, the date the account was started, and much more.&lt;br&gt; There are two endpoints for reading an account. Both will return the same information.&lt;br&gt; It&#39;s important to remember that balance and available_balance will normally be positive numbers — for all account types. But this should be interpreted differently for debt accounts and asset accounts.&lt;br&gt; An asset account, e.g., CHECKING, SAVINGS, or INVESTMENT, will have a positive balance unless it is in an overdraft condition, in which case the balance will be negative.&lt;br&gt; On the other hand, a debt account, e.g., CREDIT CARD, LOAN, MORTGAGE, would have a positivebalance when the user owes money on the account. It would have a negative balance if the account has been overpaid. 
+Reading an account allows you to get information about a specific account that belongs to a user. That includes the account type — e.g., CHECKING, MONEY_MARKET, or PROPERTY — the balance, the date the account was started, and much more.&lt;br&gt; There are two endpoints for reading an account. Both will return the same information.&lt;br&gt; It&#39;s important to remember that balance and available_balance will normally be positive numbers — for all account types. But this should be interpreted differently for debt accounts and asset accounts.&lt;br&gt; An asset account, e.g., CHECKING, SAVINGS, or INVESTMENT, will have a positive balance unless it is in an overdraft condition, in which case the balance will be negative.&lt;br&gt; On the other hand, a debt account, e.g., CREDIT CARD, LOAN, MORTGAGE, would have a positivebalance when the user owes money on the account. It would have a negative balance if the account has been overpaid.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountGUID The unique identifier for an &#x60;account&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
@@ -308,10 +308,10 @@ Reading an account allows you to get information about a specific account that b
 */
 func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGUID string, userGUID string) (AccountResponseBody, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue AccountResponseBody
 	)
 
@@ -351,7 +351,7 @@ func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGUID string
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-API-Key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -364,7 +364,7 @@ func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGUID string
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-Client-ID"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -385,7 +385,7 @@ func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGUID string
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -393,21 +393,21 @@ func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGUID string
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v AccountResponseBody
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -416,7 +416,7 @@ func (a *AccountsApiService) ReadAccount(ctx context.Context, accountGUID string
 
 /*
 AccountsApiService Read an account
-Reading an account allows you to get information about a specific account that belongs to a user. That includes the account type — e.g., CHECKING, MONEY_MARKET, or PROPERTY — the balance, the date the account was started, and much more.&lt;br&gt; There are two endpoints for reading an account. Both will return the same information.&lt;br&gt; It&#39;s important to remember that balance and available_balance will normally be positive numbers — for all account types. But this should be interpreted differently for debt accounts and asset accounts.&lt;br&gt; An asset account, e.g., CHECKING, SAVINGS, or INVESTMENT, will have a positive balance unless it is in an overdraft condition, in which case the balance will be negative.&lt;br&gt; On the other hand, a debt account, e.g., CREDIT CARD, LOAN, MORTGAGE, would have a positivebalance when the user owes money on the account. It would have a negative balance if the account has been overpaid. 
+Reading an account allows you to get information about a specific account that belongs to a user. That includes the account type — e.g., CHECKING, MONEY_MARKET, or PROPERTY — the balance, the date the account was started, and much more.&lt;br&gt; There are two endpoints for reading an account. Both will return the same information.&lt;br&gt; It&#39;s important to remember that balance and available_balance will normally be positive numbers — for all account types. But this should be interpreted differently for debt accounts and asset accounts.&lt;br&gt; An asset account, e.g., CHECKING, SAVINGS, or INVESTMENT, will have a positive balance unless it is in an overdraft condition, in which case the balance will be negative.&lt;br&gt; On the other hand, a debt account, e.g., CREDIT CARD, LOAN, MORTGAGE, would have a positivebalance when the user owes money on the account. It would have a negative balance if the account has been overpaid.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountGUID The unique identifier for an &#x60;account&#x60;.
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
@@ -426,10 +426,10 @@ Reading an account allows you to get information about a specific account that b
 */
 func (a *AccountsApiService) ReadAccountByMemberGUID(ctx context.Context, accountGUID string, memberGUID string, userGUID string) (AccountResponseBody, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue AccountResponseBody
 	)
 
@@ -470,7 +470,7 @@ func (a *AccountsApiService) ReadAccountByMemberGUID(ctx context.Context, accoun
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-API-Key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -483,7 +483,7 @@ func (a *AccountsApiService) ReadAccountByMemberGUID(ctx context.Context, accoun
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-Client-ID"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -504,7 +504,7 @@ func (a *AccountsApiService) ReadAccountByMemberGUID(ctx context.Context, accoun
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -512,24 +512,23 @@ func (a *AccountsApiService) ReadAccountByMemberGUID(ctx context.Context, accoun
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v AccountResponseBody
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-

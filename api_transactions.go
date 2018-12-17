@@ -1,7 +1,7 @@
 /*
  * MX API
  *
- * The MX Atrium API supports over 48,000 data connections to thousands of financial institutions. It provides secure access to your users' accounts and transactions with industry-leading cleansing, categorization, and classification.  Atrium is designed according to resource-oriented REST architecture and responds with JSON bodies and HTTP response codes.  Use Atrium's development environment, vestibule.mx.com, to quickly get up and running. The development environment limits are 100 users, 25 members per user, and access to the top 15 institutions. Contact MX to purchase production access. 
+ * The MX Atrium API supports over 48,000 data connections to thousands of financial institutions. It provides secure access to your users' accounts and transactions with industry-leading cleansing, categorization, and classification.  Atrium is designed according to resource-oriented REST architecture and responds with JSON bodies and HTTP response codes.  Use Atrium's development environment, vestibule.mx.com, to quickly get up and running. The development environment limits are 100 users, 25 members per user, and access to the top 15 institutions. Contact MX to purchase production access.
  *
  * API version: 0.1
  */
@@ -10,12 +10,12 @@ package atrium
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"fmt"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -35,10 +35,10 @@ Use this endpoint to categorize, cleanse, and classify transactions. These trans
 */
 func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Context, body TransactionsCleanseAndCategorizeRequestBody) (TransactionsCleanseAndCategorizeResponseBody, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue TransactionsCleanseAndCategorizeResponseBody
 	)
 
@@ -78,7 +78,7 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-API-Key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -91,7 +91,7 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-Client-ID"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -112,7 +112,7 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -120,21 +120,21 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v TransactionsCleanseAndCategorizeResponseBody
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -143,7 +143,7 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 
 /*
 TransactionsApiService List transactions for a user
-Use this endpoint to get all transactions that belong to a specific user, across all the user&#39;s members and accounts.&lt;br&gt; This endpoint accepts optional query parameters, from_date and to_date, which filter transactions according to the date they were posted. If no values are given, from_date will default to 90 days prior to the request, and to_date will default to 5 days from the time of the request. 
+Use this endpoint to get all transactions that belong to a specific user, across all the user&#39;s members and accounts.&lt;br&gt; This endpoint accepts optional query parameters, from_date and to_date, which filter transactions according to the date they were posted. If no values are given, from_date will default to 90 days prior to the request, and to_date will default to 5 days from the time of the request.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
  * @param optional nil or *ListUserTransactionsOpts - Optional Parameters:
@@ -155,19 +155,19 @@ Use this endpoint to get all transactions that belong to a specific user, across
 @return TransactionsResponseBody
 */
 
-type ListUserTransactionsOpts struct { 
-	Page optional.Int32
-	FromDate optional.String
+type ListUserTransactionsOpts struct {
+	Page           optional.Int32
+	FromDate       optional.String
 	RecordsPerPage optional.Int32
-	ToDate optional.String
+	ToDate         optional.String
 }
 
 func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userGUID string, localVarOptionals *ListUserTransactionsOpts) (TransactionsResponseBody, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue TransactionsResponseBody
 	)
 
@@ -218,7 +218,7 @@ func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userG
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-API-Key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -231,7 +231,7 @@ func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userG
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-Client-ID"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -252,7 +252,7 @@ func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userG
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -260,21 +260,21 @@ func (a *TransactionsApiService) ListUserTransactions(ctx context.Context, userG
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v TransactionsResponseBody
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -292,10 +292,10 @@ This endpoint allows you to view information about a specific transaction that b
 */
 func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactionGUID string, userGUID string) (TransactionResponseBody, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue TransactionResponseBody
 	)
 
@@ -335,7 +335,7 @@ func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactio
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-API-Key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -348,7 +348,7 @@ func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactio
 				key = auth.Key
 			}
 			localVarHeaderParams["MX-Client-ID"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -369,7 +369,7 @@ func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactio
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
@@ -377,24 +377,23 @@ func (a *TransactionsApiService) ReadTransaction(ctx context.Context, transactio
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v TransactionResponseBody
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-
