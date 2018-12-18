@@ -1,6 +1,6 @@
 # Go API client for atrium
 
-The MX Atrium API supports over 48,000 data connections to thousands of financial institutions. It provides secure access to your users' accounts and transactions with industry-leading cleansing, categorization, and classification.  Atrium is designed according to resource-oriented REST architecture and responds with JSON bodies and HTTP response codes.  Use Atrium's development environment, vestibule.mx.com, to quickly get up and running. The development environment limits are 100 users, 25 members per user, and access to the top 15 institutions. Contact MX to purchase production access. 
+The MX Atrium API supports over 48,000 data connections to thousands of financial institutions. It provides secure access to your users' accounts and transactions with industry-leading cleansing, categorization, and classification.  Atrium is designed according to resource-oriented REST architecture and responds with JSON bodies and HTTP response codes.  Use Atrium's development environment, vestibule.mx.com, to quickly get up and running. The development environment limits are 100 users, 25 members per user, and access to the top 15 institutions. Contact MX to purchase production access.
 
 ## Installation
 Put the package under your project folder and add the following in import:
@@ -17,31 +17,31 @@ Please see `docs` directory for additional endpoint examples
 package main
 
 import (
-  "context"
-  "fmt"
-  "github.com/mxenabled/atrium-go"
-  "github.com/antihax/optional"
+	"context"
+	"fmt"
+	"github.com/mxenabled/atrium-go"
+	"github.com/antihax/optional"
 )
 
 func main() {
-  client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
-  ctx := context.Background()
-  
-  accountGUID := "ACT-123" // string | The unique identifier for an `account`.
-  userGUID := "USR-123" // string | The unique identifier for a `user`.
-  opts := &atrium.ListAccountTransactionsOpts{ 
-    FromDate: optional.NewString("2016-09-20"), // string | Filter transactions from this date.
-    ToDate: optional.NewString("2016-10-20"), // string | Filter transactions to this date.
-    Page: optional.NewInt32(1), // int32 | Specify current page.
-    RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
-  }
+	client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+	ctx := context.Background()
 
-  response, _, err := client.Accounts.ListAccountTransactions(ctx, accountGUID, userGUID, opts)
-  if err != nil {
-    fmt.Printf("Error: %v\n", err)
-  } else {
-    fmt.Printf("Response: %s\n", response)
-  }
+	accountGUID := "ACT-123" // string | The unique identifier for an `account`.
+	userGUID := "USR-123" // string | The unique identifier for a `user`.
+	opts := &atrium.ListAccountTransactionsOpts{
+		FromDate: optional.NewString("2016-09-20"), // string | Filter transactions from this date.
+		ToDate: optional.NewString("2016-10-20"), // string | Filter transactions to this date.
+		Page: optional.NewInt32(1), // int32 | Specify current page.
+		RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
+	}
+
+	response, _, err := client.Accounts.ListAccountTransactions(ctx, accountGUID, userGUID, opts)
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+	} else {
+		fmt.Printf("Response: %s\n", response)
+	}
 }
 
 ```
