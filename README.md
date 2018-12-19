@@ -17,10 +17,10 @@ Please see `docs` directory for additional endpoint examples
 package main
 
 import (
-  "context"
-  "fmt"
-  "github.com/mxenabled/atrium-go"
-  "github.com/antihax/optional"
+	"context"
+	"fmt"
+	"github.com/mxenabled/atrium-go"
+	"github.com/antihax/optional"
 )
 
 func main() {
