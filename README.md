@@ -24,24 +24,24 @@ import (
 )
 
 func main() {
-  client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
-  ctx := context.Background()
-  
-  accountGUID := "ACT-123" // string | The unique identifier for an `account`.
-  userGUID := "USR-123" // string | The unique identifier for a `user`.
-  opts := &atrium.ListAccountTransactionsOpts{ 
-    FromDate: optional.NewString("2016-09-20"), // string | Filter transactions from this date.
-    ToDate: optional.NewString("2016-10-20"), // string | Filter transactions to this date.
-    Page: optional.NewInt32(1), // int32 | Specify current page.
-    RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
-  }
+	client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+	ctx := context.Background()
 
-  response, _, err := client.Accounts.ListAccountTransactions(ctx, accountGUID, userGUID, opts)
-  if err != nil {
-    fmt.Printf("Error: %v\n", err)
-  } else {
-    fmt.Printf("Response: %s\n", response)
-  }
+	accountGUID := "ACT-123" // string | The unique identifier for an `account`.
+	userGUID := "USR-123" // string | The unique identifier for a `user`.
+	opts := &atrium.ListAccountTransactionsOpts{ 
+		FromDate: optional.NewString("2016-09-20"), // string | Filter transactions from this date.
+		ToDate: optional.NewString("2016-10-20"), // string | Filter transactions to this date.
+		Page: optional.NewInt32(1), // int32 | Specify current page.
+		RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
+	}
+
+	response, _, err := client.Accounts.ListAccountTransactions(ctx, accountGUID, userGUID, opts)
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+	} else {
+		fmt.Printf("Response: %s\n", response)
+	}
 }
 
 ```
