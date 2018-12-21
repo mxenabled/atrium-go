@@ -45,6 +45,7 @@ type APIClient struct {
 	// API Services
 	Accounts      *AccountsApiService
 	ConnectWidget *ConnectWidgetApiService
+	Holdings      *HoldingsApiService
 	Identity      *IdentityApiService
 	Institutions  *InstitutionsApiService
 	Members       *MembersApiService
@@ -72,6 +73,7 @@ func newAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.Accounts = (*AccountsApiService)(&c.common)
 	c.ConnectWidget = (*ConnectWidgetApiService)(&c.common)
+	c.Holdings = (*HoldingsApiService)(&c.common)
 	c.Identity = (*IdentityApiService)(&c.common)
 	c.Institutions = (*InstitutionsApiService)(&c.common)
 	c.Members = (*MembersApiService)(&c.common)

@@ -1,6 +1,6 @@
 # Go API client for atrium
 
-The MX Atrium API supports over 48,000 data connections to thousands of financial institutions. It provides secure access to your users' accounts and transactions with industry-leading cleansing, categorization, and classification.  Atrium is designed according to resource-oriented REST architecture and responds with JSON bodies and HTTP response codes.  Use Atrium's development environment, vestibule.mx.com, to quickly get up and running. The development environment limits are 100 users, 25 members per user, and access to the top 15 institutions. Contact MX to purchase production access.
+The MX Atrium API supports over 48,000 data connections to thousands of financial institutions. It provides secure access to your users' accounts and transactions with industry-leading cleansing, categorization, and classification.  Atrium is designed according to resource-oriented REST architecture and responds with JSON bodies and HTTP response codes.  Use Atrium's development environment, vestibule.mx.com, to quickly get up and running. The development environment limits are 100 users, 25 members per user, and access to the top 15 institutions. Contact MX to purchase production access. 
 
 ## Installation
 Put the package under your project folder and add the following in import:
@@ -29,7 +29,7 @@ func main() {
 
 	accountGUID := "ACT-123" // string | The unique identifier for an `account`.
 	userGUID := "USR-123" // string | The unique identifier for a `user`.
-	opts := &atrium.ListAccountTransactionsOpts{
+	opts := &atrium.ListAccountTransactionsOpts{ 
 		FromDate: optional.NewString("2016-09-20"), // string | Filter transactions from this date.
 		ToDate: optional.NewString("2016-10-20"), // string | Filter transactions to this date.
 		Page: optional.NewInt32(1), // int32 | Specify current page.
@@ -55,6 +55,10 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**ReadAccount**](docs/AccountsApi.md#readaccount) | **Get** /users/{user_guid}/accounts/{account_guid} | Read an account
 *AccountsApi* | [**ReadAccountByMemberGUID**](docs/AccountsApi.md#readaccountbymemberguid) | **Get** /users/{user_guid}/members/{member_guid}/accounts/{account_guid} | Read an account
 *ConnectWidgetApi* | [**GetConnectWidget**](docs/ConnectWidgetApi.md#getconnectwidget) | **Post** /users/{user_guid}/connect_widget_url | Embedding in a website
+*HoldingsApi* | [**ListHoldings**](docs/HoldingsApi.md#listholdings) | **Get** /users/{user_guid}/holdings | List holdings
+*HoldingsApi* | [**ListHoldingsByAccount**](docs/HoldingsApi.md#listholdingsbyaccount) | **Get** /users/{user_guid}/accounts/{account_guid}/holdings | List holdings by account
+*HoldingsApi* | [**ListHoldingsByMember**](docs/HoldingsApi.md#listholdingsbymember) | **Get** /users/{user_guid}/members/{member_guid}/holdings | List holdings by member
+*HoldingsApi* | [**ReadHolding**](docs/HoldingsApi.md#readholding) | **Get** /users/{user_guid}/holdings/{holding_guid} | Read holding
 *IdentityApi* | [**IdentifyMember**](docs/IdentityApi.md#identifymember) | **Post** /users/{user_guid}/members/{member_guid}/identify | Identify
 *IdentityApi* | [**ListAccountOwners**](docs/IdentityApi.md#listaccountowners) | **Get** /users/{user_guid}/members/{member_guid}/account_owners | List member account owners
 *InstitutionsApi* | [**ListInstitutions**](docs/InstitutionsApi.md#listinstitutions) | **Get** /institutions | List institutions
@@ -105,6 +109,9 @@ Class | Method | HTTP request | Description
  - [CredentialRequest](docs/CredentialRequest.md)
  - [CredentialResponse](docs/CredentialResponse.md)
  - [CredentialsResponseBody](docs/CredentialsResponseBody.md)
+ - [Holding](docs/Holding.md)
+ - [HoldingResponseBody](docs/HoldingResponseBody.md)
+ - [HoldingsResponseBody](docs/HoldingsResponseBody.md)
  - [Institution](docs/Institution.md)
  - [InstitutionResponseBody](docs/InstitutionResponseBody.md)
  - [InstitutionsResponseBody](docs/InstitutionsResponseBody.md)
