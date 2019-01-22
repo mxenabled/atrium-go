@@ -11,7 +11,7 @@ package atrium
 type Member struct {
 	AggregatedAt             string `json:"aggregated_at,omitempty"`
 	ConnectionStatus         string `json:"connection_status,omitempty"`
-	GUID                     bool   `json:"guid,omitempty"`
+	GUID                     string `json:"guid,omitempty"`
 	Identifier               string `json:"identifier,omitempty"`
 	InstitutionCode          string `json:"institution_code,omitempty"`
 	IsBeingAggregated        bool   `json:"is_being_aggregated,omitempty"`
