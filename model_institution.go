@@ -14,6 +14,8 @@ type Institution struct {
 	Name                          string `json:"name,omitempty"`
 	SmallLogoURL                  string `json:"small_logo_url,omitempty"`
 	SupportsAccountIdentification bool   `json:"supports_account_identification,omitempty"`
+	SupportsAccountStatement      bool   `json:"supports_account_statement,omitempty"`
 	SupportsAccountVerification   bool   `json:"supports_account_verification,omitempty"`
+	SupportsTransactionHistory    bool   `json:"supports_transaction_history,omitempty"`
 	URL                           string `json:"url,omitempty"`
 }

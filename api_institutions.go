@@ -33,14 +33,22 @@ This endpoint allows you to see what institutions are available for connection. 
      * @param "Name" (optional.String) -  This will list only institutions in which the appended string appears.
      * @param "Page" (optional.Int32) -  Specify current page.
      * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
+     * @param "SupportsAccountIdentification" (optional.Bool) -  Filter only institutions which support account identification.
+     * @param "SupportsAccountStatement" (optional.Bool) -  Filter only institutions which support account statements.
+     * @param "SupportsAccountVerification" (optional.Bool) -  Filter only institutions which support account verification.
+     * @param "SupportsTransactionHistory" (optional.Bool) -  Filter only institutions which support extended transaction history.
 
 @return InstitutionsResponseBody
 */
 
 type ListInstitutionsOpts struct {
-	Name           optional.String
-	Page           optional.Int32
-	RecordsPerPage optional.Int32
+	Name                          optional.String
+	Page                          optional.Int32
+	RecordsPerPage                optional.Int32
+	SupportsAccountIdentification optional.Bool
+	SupportsAccountStatement      optional.Bool
+	SupportsAccountVerification   optional.Bool
+	SupportsTransactionHistory    optional.Bool
 }
 
 func (a *InstitutionsApiService) ListInstitutions(ctx context.Context, localVarOptionals *ListInstitutionsOpts) (InstitutionsResponseBody, *http.Response, error) {
@@ -67,6 +75,18 @@ func (a *InstitutionsApiService) ListInstitutions(ctx context.Context, localVarO
 	}
 	if localVarOptionals != nil && localVarOptionals.RecordsPerPage.IsSet() {
 		localVarQueryParams.Add("records_per_page", parameterToString(localVarOptionals.RecordsPerPage.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SupportsAccountIdentification.IsSet() {
+		localVarQueryParams.Add("supports_account_identification", parameterToString(localVarOptionals.SupportsAccountIdentification.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SupportsAccountStatement.IsSet() {
+		localVarQueryParams.Add("supports_account_statement", parameterToString(localVarOptionals.SupportsAccountStatement.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SupportsAccountVerification.IsSet() {
+		localVarQueryParams.Add("supports_account_verification", parameterToString(localVarOptionals.SupportsAccountVerification.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SupportsTransactionHistory.IsSet() {
+		localVarQueryParams.Add("supports_transaction_history", parameterToString(localVarOptionals.SupportsTransactionHistory.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

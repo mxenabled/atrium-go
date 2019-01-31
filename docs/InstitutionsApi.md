@@ -32,6 +32,10 @@ func main() {
     Name: optional.NewString(name_example), // string | This will list only institutions in which the appended string appears.
     Page: optional.NewInt32(1), // int32 | Specify current page.
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
+    SupportsAccountIdentification: optional.NewBool(true), // bool | Filter only institutions which support account identification.
+    SupportsAccountStatement: optional.NewBool(true), // bool | Filter only institutions which support account statements.
+    SupportsAccountVerification: optional.NewBool(true), // bool | Filter only institutions which support account verification.
+    SupportsTransactionHistory: optional.NewBool(true), // bool | Filter only institutions which support extended transaction history.
   }
 
   response, _, err := client.Institutions.ListInstitutions(ctx, opts)
@@ -58,6 +62,10 @@ Name | Type | Description  | Notes
  **name** | **optional.String**| This will list only institutions in which the appended string appears. | 
  **page** | **optional.Int32**| Specify current page. | 
  **recordsPerPage** | **optional.Int32**| Specify records per page. | 
+ **supportsAccountIdentification** | **optional.Bool**| Filter only institutions which support account identification. | 
+ **supportsAccountStatement** | **optional.Bool**| Filter only institutions which support account statements. | 
+ **supportsAccountVerification** | **optional.Bool**| Filter only institutions which support account verification. | 
+ **supportsTransactionHistory** | **optional.Bool**| Filter only institutions which support extended transaction history. | 
 
 ### Return type
 
