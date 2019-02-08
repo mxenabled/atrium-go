@@ -5,10 +5,10 @@ Method | HTTP request | Description
 [**AggregateMember**](MembersApi.md#AggregateMember) | **Post** /users/{user_guid}/members/{member_guid}/aggregate | Aggregate member
 [**CreateMember**](MembersApi.md#CreateMember) | **Post** /users/{user_guid}/members | Create member
 [**DeleteMember**](MembersApi.md#DeleteMember) | **Delete** /users/{user_guid}/members/{member_guid} | Delete member
+[**ExtendHistory**](MembersApi.md#ExtendHistory) | **Post** /users/{user_guid}/members/{member_guid}/extend_history | Extend history
 [**ListMemberAccounts**](MembersApi.md#ListMemberAccounts) | **Get** /users/{user_guid}/members/{member_guid}/accounts | List member accounts
 [**ListMemberCredentials**](MembersApi.md#ListMemberCredentials) | **Get** /users/{user_guid}/members/{member_guid}/credentials | List member credentials
 [**ListMemberMFAChallenges**](MembersApi.md#ListMemberMFAChallenges) | **Get** /users/{user_guid}/members/{member_guid}/challenges | List member MFA challenges
-[**ListMemberStatements**](MembersApi.md#ListMemberStatements) | **Get** /users/{user_guid}/members/{member_guid}/statements | List member statements
 [**ListMemberTransactions**](MembersApi.md#ListMemberTransactions) | **Get** /users/{user_guid}/members/{member_guid}/transactions | List member transactions
 [**ListMembers**](MembersApi.md#ListMembers) | **Get** /users/{user_guid}/members | List members
 [**ReadMember**](MembersApi.md#ReadMember) | **Get** /users/{user_guid}/members/{member_guid} | Read member
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **AggregateMember**
-> MemberResponseBody AggregateMember(ctx, memberGUID, userGUID, optional)
+> MemberResponseBody AggregateMember(ctx, memberGUID, userGUID)
 Aggregate member
 
 Calling this endpoint initiates an aggregation event for the member. This brings in the latest account and transaction data from the connected institution. If this data has recently been updated, MX may not initiate an aggregation event. 
@@ -31,7 +31,6 @@ import (
   "context"
   "fmt"
   "github.com/mxenabled/atrium-go"
-  "github.com/antihax/optional"
 )
 
 func main() {
@@ -40,11 +39,8 @@ func main() {
   
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
-  opts := &atrium.AggregateMemberOpts{ 
-    Type_: optional.NewString("history"), // string | An optional parameter which determines the type of aggregation to be peformed. Possible values are `statement` and `history`.
-  }
 
-  response, _, err := client.Members.AggregateMember(ctx, memberGUID, userGUID, opts)
+  response, _, err := client.Members.AggregateMember(ctx, memberGUID, userGUID)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -60,16 +56,6 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **memberGUID** | **string**| The unique identifier for a &#x60;member&#x60;. | 
   **userGUID** | **string**| The unique identifier for a &#x60;user&#x60;. | 
- **optional** | ***AggregateMemberOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a AggregateMemberOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **type_** | **optional.String**| An optional parameter which determines the type of aggregation to be peformed. Possible values are &#x60;statement&#x60; and &#x60;history&#x60;. | 
 
 ### Return type
 
@@ -166,6 +152,52 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ExtendHistory**
+> MemberResponseBody ExtendHistory(ctx, memberGUID, userGUID)
+Extend history
+
+The extend_history endpoint begins the process of fetching up to 24 months of data associated with a particular `member`.
+
+### Example
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+  "github.com/mxenabled/atrium-go"
+)
+
+func main() {
+  client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
+  
+  memberGUID := "MBR-123" // string | The unique identifier for a `member`.
+  userGUID := "USR-123" // string | The unique identifier for a `user`.
+
+  response, _, err := client.Members.ExtendHistory(ctx, memberGUID, userGUID)
+  if err != nil {
+    fmt.Printf("Error: %v\n", err)
+  } else {
+    fmt.Printf("Response: %s\n", response)
+  }
+}
+```
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **memberGUID** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+  **userGUID** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+
+### Return type
+
+[**MemberResponseBody**](MemberResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -320,68 +352,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ChallengesResponseBody**](ChallengesResponseBody.md)
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ListMemberStatements**
-> StatementsResponseBody ListMemberStatements(ctx, memberGUID, userGUID, optional)
-List member statements
-
-Certain institutions in Atrium allow developers to access account statements associated with a particular `member`. Use this endpoint to get an array of available statements.  Before this endpoint can be used, an aggregation of type `statement` should be performed on the relevant `member`. 
-
-### Example
-```go
-package main
-
-import (
-  "context"
-  "fmt"
-  "github.com/mxenabled/atrium-go"
-  "github.com/antihax/optional"
-)
-
-func main() {
-  client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
-  ctx := context.Background()
-  
-  memberGUID := "MBR-123" // string | The unique identifier for a `member`.
-  userGUID := "USR-123" // string | The unique identifier for a `user`.
-  opts := &atrium.ListMemberStatementsOpts{ 
-    Page: optional.NewInt32(1), // int32 | Specify current page.
-    RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
-  }
-
-  response, _, err := client.Members.ListMemberStatements(ctx, memberGUID, userGUID, opts)
-  if err != nil {
-    fmt.Printf("Error: %v\n", err)
-  } else {
-    fmt.Printf("Response: %s\n", response)
-  }
-}
-```
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **memberGUID** | **string**| The unique identifier for a &#x60;member&#x60;. | 
-  **userGUID** | **string**| The unique identifier for a &#x60;user&#x60;. | 
- **optional** | ***ListMemberStatementsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a ListMemberStatementsOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **page** | **optional.Int32**| Specify current page. | 
- **recordsPerPage** | **optional.Int32**| Specify records per page. | 
-
-### Return type
-
-[**StatementsResponseBody**](StatementsResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -50,6 +50,7 @@ type APIClient struct {
 	Institutions  *InstitutionsApiService
 	Members       *MembersApiService
 	Merchants     *MerchantsApiService
+	Statements    *StatementsApiService
 	Transactions  *TransactionsApiService
 	Users         *UsersApiService
 	Verification  *VerificationApiService
@@ -78,6 +79,7 @@ func newAPIClient(cfg *Configuration) *APIClient {
 	c.Institutions = (*InstitutionsApiService)(&c.common)
 	c.Members = (*MembersApiService)(&c.common)
 	c.Merchants = (*MerchantsApiService)(&c.common)
+	c.Statements = (*StatementsApiService)(&c.common)
 	c.Transactions = (*TransactionsApiService)(&c.common)
 	c.Users = (*UsersApiService)(&c.common)
 	c.Verification = (*VerificationApiService)(&c.common)
