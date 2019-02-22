@@ -36,7 +36,7 @@ func main() {
 		RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
 	}
 
-	response, _, err := client.Accounts.ListAccountTransactions(ctx, accountGUID, userGUID, opts)
+	response, _, err := client.Accounts.ListAccountTransactions(ctx, accountGUID, userGUID, , opts)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 	} else {
@@ -78,8 +78,10 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**ResumeMember**](docs/MembersApi.md#resumemember) | **Put** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
 *MembersApi* | [**UpdateMember**](docs/MembersApi.md#updatemember) | **Put** /users/{user_guid}/members/{member_guid} | Update member
 *MerchantsApi* | [**ReadMerchant**](docs/MerchantsApi.md#readmerchant) | **Get** /merchants/{merchant_guid} | Read merchant
+*StatementsApi* | [**DownloadStatementPdf**](docs/StatementsApi.md#downloadstatementpdf) | **Get** /users/{user_guid}/members/{member_guid}/statements/{statement_guid}.pdf | Download statement PDF
 *StatementsApi* | [**FetchStatements**](docs/StatementsApi.md#fetchstatements) | **Post** /users/{user_guid}/members/{member_guid}/fetch_statements | Fetch statements
 *StatementsApi* | [**ListMemberStatements**](docs/StatementsApi.md#listmemberstatements) | **Get** /users/{user_guid}/members/{member_guid}/statements | List member statements
+*StatementsApi* | [**ReadMemberStatement**](docs/StatementsApi.md#readmemberstatement) | **Get** /users/{user_guid}/members/{member_guid}/statements/{statement_guid} | Read statement JSON
 *TransactionsApi* | [**CleanseAndCategorizeTransactions**](docs/TransactionsApi.md#cleanseandcategorizetransactions) | **Post** /cleanse_and_categorize | Categorize transactions
 *TransactionsApi* | [**ListUserTransactions**](docs/TransactionsApi.md#listusertransactions) | **Get** /users/{user_guid}/transactions | List transactions for a user
 *TransactionsApi* | [**ReadTransaction**](docs/TransactionsApi.md#readtransaction) | **Get** /users/{user_guid}/transactions/{transaction_guid} | Read a transaction
@@ -133,6 +135,7 @@ Class | Method | HTTP request | Description
  - [MerchantResponseBody](docs/MerchantResponseBody.md)
  - [Pagination](docs/Pagination.md)
  - [Statement](docs/Statement.md)
+ - [StatementResponseBody](docs/StatementResponseBody.md)
  - [StatementsResponseBody](docs/StatementsResponseBody.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionCleanseAndCategorizeRequest](docs/TransactionCleanseAndCategorizeRequest.md)

@@ -30,7 +30,7 @@ func main() {
   
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Holdings.ListHoldings(ctx, userGUID)
+  response, _, err := client.Holdings.ListHoldings(ctx, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -75,7 +75,7 @@ func main() {
   accountGUID := "ACT-123" // string | The unique identifier for an `account`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Holdings.ListHoldingsByAccount(ctx, accountGUID, userGUID)
+  response, _, err := client.Holdings.ListHoldingsByAccount(ctx, accountGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -121,7 +121,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Holdings.ListHoldingsByMember(ctx, memberGUID, userGUID)
+  response, _, err := client.Holdings.ListHoldingsByMember(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -167,7 +167,7 @@ func main() {
   holdingGUID := "HOL-123" // string | The unique identifier for a `holding`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Holdings.ReadHolding(ctx, holdingGUID, userGUID)
+  response, _, err := client.Holdings.ReadHolding(ctx, holdingGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

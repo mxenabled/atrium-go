@@ -80,7 +80,7 @@ func main() {
     ToDate: optional.NewString("2016-10-20"), // string | Filter transactions to this date.
   }
 
-  response, _, err := client.Transactions.ListUserTransactions(ctx, userGUID, opts)
+  response, _, err := client.Transactions.ListUserTransactions(ctx, userGUID, , opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -137,7 +137,7 @@ func main() {
   transactionGUID := "TRN-123" // string | The unique identifier for a `transaction`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Transactions.ReadTransaction(ctx, transactionGUID, userGUID)
+  response, _, err := client.Transactions.ReadTransaction(ctx, transactionGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

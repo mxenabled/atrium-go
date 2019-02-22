@@ -28,7 +28,7 @@ func main() {
   userGUID := "USR-123" // string | The unique identifier for a `user`.
   body := atrium.ConnectWidgetRequestBody{} // ConnectWidgetRequestBody | Optional config options for WebView (is_mobile_webview, current_institution_code, current_member_guid, update_credentials)
 
-  response, _, err := client.ConnectWidget.GetConnectWidget(ctx, userGUIDbody)
+  response, _, err := client.ConnectWidget.GetConnectWidget(ctx, userGUID, body)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

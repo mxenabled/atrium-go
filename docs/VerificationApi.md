@@ -30,7 +30,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Verification.ListAccountNumbers(ctx, memberGUID, userGUID)
+  response, _, err := client.Verification.ListAccountNumbers(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -76,7 +76,7 @@ func main() {
   accountGUID := "ACT-123" // string | The unique identifier for an `account`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Verification.ListAccountNumbersByAccount(ctx, accountGUID, userGUID)
+  response, _, err := client.Verification.ListAccountNumbersByAccount(ctx, accountGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -122,7 +122,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Verification.VerifyMember(ctx, memberGUID, userGUID)
+  response, _, err := client.Verification.VerifyMember(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

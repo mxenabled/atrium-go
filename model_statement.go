@@ -11,6 +11,8 @@ package atrium
 type Statement struct {
 	// The unique identifier for the `account` associated with the `statement`. Defined by MX.
 	AccountGUID string `json:"account_guid,omitempty"`
+	// SHA256 digest of the pdf payload
+	ContentHash string `json:"content_hash,omitempty"`
 	// The date and time the `statement` was created.
 	CreatedAt string `json:"created_at,omitempty"`
 	// The unique identifier for the `statement`. Defined by MX.

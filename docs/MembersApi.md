@@ -40,7 +40,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Members.AggregateMember(ctx, memberGUID, userGUID)
+  response, _, err := client.Members.AggregateMember(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -86,7 +86,7 @@ func main() {
   userGUID := "USR-123" // string | The unique identifier for a `user`.
   body := atrium.MemberCreateRequestBody{} // MemberCreateRequestBody | Member object to be created with optional parameters (identifier and metadata) and required parameters (credentials and institution_code)
 
-  response, _, err := client.Members.CreateMember(ctx, userGUIDbody)
+  response, _, err := client.Members.CreateMember(ctx, userGUID, body)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -132,7 +132,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Members.DeleteMember(ctx, memberGUID, userGUID)
+  response, _, err := client.Members.DeleteMember(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -178,7 +178,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Members.ExtendHistory(ctx, memberGUID, userGUID)
+  response, _, err := client.Members.ExtendHistory(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -229,7 +229,7 @@ func main() {
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.Members.ListMemberAccounts(ctx, memberGUID, userGUID, opts)
+  response, _, err := client.Members.ListMemberAccounts(ctx, memberGUID, userGUID, , opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -286,7 +286,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Members.ListMemberCredentials(ctx, memberGUID, userGUID)
+  response, _, err := client.Members.ListMemberCredentials(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -332,7 +332,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Members.ListMemberMFAChallenges(ctx, memberGUID, userGUID)
+  response, _, err := client.Members.ListMemberMFAChallenges(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -385,7 +385,7 @@ func main() {
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.Members.ListMemberTransactions(ctx, memberGUID, userGUID, opts)
+  response, _, err := client.Members.ListMemberTransactions(ctx, memberGUID, userGUID, , opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -448,7 +448,7 @@ func main() {
     RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
   }
 
-  response, _, err := client.Members.ListMembers(ctx, userGUID, opts)
+  response, _, err := client.Members.ListMembers(ctx, userGUID, , opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -503,7 +503,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Members.ReadMember(ctx, memberGUID, userGUID)
+  response, _, err := client.Members.ReadMember(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -549,7 +549,7 @@ func main() {
   memberGUID := "MBR-123" // string | The unique identifier for a `member`.
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Members.ReadMemberStatus(ctx, memberGUID, userGUID)
+  response, _, err := client.Members.ReadMemberStatus(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -596,7 +596,7 @@ func main() {
   userGUID := "USR-123" // string | The unique identifier for a `user`.
   body := atrium.MemberResumeRequestBody{} // MemberResumeRequestBody | Member object with MFA challenge answers
 
-  response, _, err := client.Members.ResumeMember(ctx, memberGUID, userGUIDbody)
+  response, _, err := client.Members.ResumeMember(ctx, memberGUID, userGUID, body)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -647,7 +647,7 @@ func main() {
     Body: optional.NewInterface(atrium.MemberUpdateRequestBody{}), // MemberUpdateRequestBody | Member object to be updated with optional parameters (credentials, identifier, metadata)
   }
 
-  response, _, err := client.Members.UpdateMember(ctx, memberGUID, userGUID, opts)
+  response, _, err := client.Members.UpdateMember(ctx, memberGUID, userGUID, , opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {

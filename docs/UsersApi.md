@@ -75,7 +75,7 @@ func main() {
   
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Users.DeleteUser(ctx, userGUID)
+  response, _, err := client.Users.DeleteUser(ctx, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -175,7 +175,7 @@ func main() {
   
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
-  response, _, err := client.Users.ReadUser(ctx, userGUID)
+  response, _, err := client.Users.ReadUser(ctx, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -223,7 +223,7 @@ func main() {
     Body: optional.NewInterface(atrium.UserUpdateRequestBody{}), // UserUpdateRequestBody | User object to be updated with optional parameters (identifier, is_disabled, metadata)
   }
 
-  response, _, err := client.Users.UpdateUser(ctx, userGUID, opts)
+  response, _, err := client.Users.UpdateUser(ctx, userGUID, , opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
