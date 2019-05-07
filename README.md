@@ -82,7 +82,7 @@ Class | Method | HTTP request | Description
 *StatementsApi* | [**FetchStatements**](docs/StatementsApi.md#fetchstatements) | **Post** /users/{user_guid}/members/{member_guid}/fetch_statements | Fetch statements
 *StatementsApi* | [**ListMemberStatements**](docs/StatementsApi.md#listmemberstatements) | **Get** /users/{user_guid}/members/{member_guid}/statements | List member statements
 *StatementsApi* | [**ReadMemberStatement**](docs/StatementsApi.md#readmemberstatement) | **Get** /users/{user_guid}/members/{member_guid}/statements/{statement_guid} | Read statement JSON
-*TransactionsApi* | [**CleanseAndCategorizeTransactions**](docs/TransactionsApi.md#cleanseandcategorizetransactions) | **Post** /cleanse_and_categorize | Categorize transactions
+*TransactionsApi* | [**CleanseAndCategorizeTransactions**](docs/TransactionsApi.md#cleanseandcategorizetransactions) | **Post** /transactions/cleanse_and_categorize | Categorize transactions
 *TransactionsApi* | [**ListUserTransactions**](docs/TransactionsApi.md#listusertransactions) | **Get** /users/{user_guid}/transactions | List transactions for a user
 *TransactionsApi* | [**ReadTransaction**](docs/TransactionsApi.md#readtransaction) | **Get** /users/{user_guid}/transactions/{transaction_guid} | Read a transaction
 *UsersApi* | [**CreateUser**](docs/UsersApi.md#createuser) | **Post** /users | Create user

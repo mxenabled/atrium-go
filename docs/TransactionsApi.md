@@ -2,7 +2,7 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CleanseAndCategorizeTransactions**](TransactionsApi.md#CleanseAndCategorizeTransactions) | **Post** /cleanse_and_categorize | Categorize transactions
+[**CleanseAndCategorizeTransactions**](TransactionsApi.md#CleanseAndCategorizeTransactions) | **Post** /transactions/cleanse_and_categorize | Categorize transactions
 [**ListUserTransactions**](TransactionsApi.md#ListUserTransactions) | **Get** /users/{user_guid}/transactions | List transactions for a user
 [**ReadTransaction**](TransactionsApi.md#ReadTransaction) | **Get** /users/{user_guid}/transactions/{transaction_guid} | Read a transaction
 

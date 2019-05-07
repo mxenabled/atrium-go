@@ -43,7 +43,7 @@ func (a *TransactionsApiService) CleanseAndCategorizeTransactions(ctx context.Co
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cleanse_and_categorize"
+	localVarPath := a.client.cfg.BasePath + "/transactions/cleanse_and_categorize"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
