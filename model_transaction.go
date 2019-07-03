@@ -32,6 +32,7 @@ type Transaction struct {
 	MemberGUID           string  `json:"member_guid,omitempty"`
 	Memo                 string  `json:"memo,omitempty"`
 	MerchantCategoryCode int32   `json:"merchant_category_code,omitempty"`
+	MerchantGUID         string  `json:"merchant_guid,omitempty"`
 	OriginalDescription  string  `json:"original_description,omitempty"`
 	PostedAt             string  `json:"posted_at,omitempty"`
 	Status               string  `json:"status,omitempty"`
