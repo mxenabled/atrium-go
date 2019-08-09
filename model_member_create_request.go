@@ -13,4 +13,5 @@ type MemberCreateRequest struct {
 	Identifier      string              `json:"identifier,omitempty"`
 	InstitutionCode string              `json:"institution_code"`
 	Metadata        string              `json:"metadata,omitempty"`
+	SkipAggregation bool                `json:"skip_aggregation,omitempty"`
 }
