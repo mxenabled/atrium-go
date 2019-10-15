@@ -3,6 +3,7 @@
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AggregateMember**](MembersApi.md#AggregateMember) | **Post** /users/{user_guid}/members/{member_guid}/aggregate | Aggregate member
+[**AggregateMemberBalances**](MembersApi.md#AggregateMemberBalances) | **Post** /users/{user_guid}/members/{member_guid}/balance | Aggregate member account balances
 [**CreateMember**](MembersApi.md#CreateMember) | **Post** /users/{user_guid}/members | Create member
 [**DeleteMember**](MembersApi.md#DeleteMember) | **Delete** /users/{user_guid}/members/{member_guid} | Delete member
 [**ExtendHistory**](MembersApi.md#ExtendHistory) | **Post** /users/{user_guid}/members/{member_guid}/extend_history | Extend history
@@ -41,6 +42,52 @@ func main() {
   userGUID := "USR-123" // string | The unique identifier for a `user`.
 
   response, _, err := client.Members.AggregateMember(ctx, memberGUID, userGUID, )
+  if err != nil {
+    fmt.Printf("Error: %v\n", err)
+  } else {
+    fmt.Printf("Response: %s\n", response)
+  }
+}
+```
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **memberGUID** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+  **userGUID** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+
+### Return type
+
+[**MemberResponseBody**](MemberResponseBody.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **AggregateMemberBalances**
+> MemberResponseBody AggregateMemberBalances(ctx, memberGUID, userGUID)
+Aggregate member account balances
+
+This endpoint operates much like the _aggregate member_ endpoint except that it gathers only account balance information; it does not gather any transaction data at all.
+
+### Example
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+  "github.com/mxenabled/atrium-go"
+)
+
+func main() {
+  client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
+  
+  memberGUID := "MBR-123" // string | The unique identifier for a `member`.
+  userGUID := "USR-123" // string | The unique identifier for a `user`.
+
+  response, _, err := client.Members.AggregateMemberBalances(ctx, memberGUID, userGUID, )
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
