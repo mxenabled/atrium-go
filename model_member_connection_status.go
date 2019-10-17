@@ -15,6 +15,7 @@ type MemberConnectionStatus struct {
 	GUID                     string      `json:"guid,omitempty"`
 	HasProcessedAccounts     bool        `json:"has_processed_accounts,omitempty"`
 	HasProcessedTransactions bool        `json:"has_processed_transactions,omitempty"`
+	IsAuthenticated          bool        `json:"is_authenticated,omitempty"`
 	IsBeingAggregated        bool        `json:"is_being_aggregated,omitempty"`
 	Status                   string      `json:"status,omitempty"`
 	SuccessfullyAggregatedAt string      `json:"successfully_aggregated_at,omitempty"`
