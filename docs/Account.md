@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccountNumber** | **string** |  | [optional] [default to null]
 **Apr** | **float32** |  | [optional] [default to null]
 **Apy** | **float32** |  | [optional] [default to null]
 **AvailableBalance** | **float32** |  | [optional] [default to null]

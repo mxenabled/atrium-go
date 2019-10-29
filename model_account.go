@@ -9,6 +9,7 @@
 package atrium
 
 type Account struct {
+	AccountNumber      string  `json:"account_number,omitempty"`
 	Apr                float32 `json:"apr,omitempty"`
 	Apy                float32 `json:"apy,omitempty"`
 	AvailableBalance   float32 `json:"available_balance,omitempty"`
