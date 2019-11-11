@@ -9,10 +9,11 @@
 package atrium
 
 type Challenge struct {
-	FieldName string            `json:"field_name,omitempty"`
-	GUID      string            `json:"guid,omitempty"`
-	ImageData string            `json:"image_data,omitempty"`
-	Label     string            `json:"label,omitempty"`
-	Options   []ChallengeOption `json:"options,omitempty"`
-	Type_     string            `json:"type,omitempty"`
+	FieldName    string                 `json:"field_name,omitempty"`
+	GUID         string                 `json:"guid,omitempty"`
+	ImageData    string                 `json:"image_data,omitempty"`
+	ImageOptions []ChallengeImageOption `json:"image_options,omitempty"`
+	Label        string                 `json:"label,omitempty"`
+	Options      []ChallengeOption      `json:"options,omitempty"`
+	Type_        string                 `json:"type,omitempty"`
 }
