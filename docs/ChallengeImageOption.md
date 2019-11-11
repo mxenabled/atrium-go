@@ -1,8 +1,9 @@
-# ChallengeOption
+# ChallengeImageOption
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DataUri** | **string** |  | [optional] [default to null]
 **Label** | **string** |  | [optional] [default to null]
 **Value** | **string** |  | [optional] [default to null]
 

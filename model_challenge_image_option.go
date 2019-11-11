@@ -8,7 +8,8 @@
 
 package atrium
 
-type ChallengeOption struct {
-	Label string `json:"label,omitempty"`
-	Value string `json:"value,omitempty"`
+type ChallengeImageOption struct {
+	DataUri string `json:"data_uri,omitempty"`
+	Label   string `json:"label,omitempty"`
+	Value   string `json:"value,omitempty"`
 }
