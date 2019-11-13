@@ -9,9 +9,11 @@
 package atrium
 
 type ConnectWidgetRequestBody struct {
-	IsMobileWebview        bool    `json:"is_mobile_webview,omitempty"`
-	CurrentInstitutionCode string  `json:"current_institution_code,omitempty"`
-	CurrentMemberGUID      string  `json:"current_member_guid,omitempty"`
-	UiMessageVersion       float32 `json:"ui_message_version,omitempty"`
-	UpdateCredentials      bool    `json:"update_credentials,omitempty"`
+	IsMobileWebview          bool    `json:"is_mobile_webview,omitempty"`
+	CurrentInstitutionCode   string  `json:"current_institution_code,omitempty"`
+	CurrentMemberGUID        string  `json:"current_member_guid,omitempty"`
+	DisableInstitutionSearch bool    `json:"disable_institution_search,omitempty"`
+	Mode                     string  `json:"mode,omitempty"`
+	UiMessageVersion         float32 `json:"ui_message_version,omitempty"`
+	UpdateCredentials        bool    `json:"update_credentials,omitempty"`
 }

@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 **IsMobileWebview** | **bool** |  | [optional] [default to null]
 **CurrentInstitutionCode** | **string** |  | [optional] [default to null]
 **CurrentMemberGUID** | **string** |  | [optional] [default to null]
+**DisableInstitutionSearch** | **bool** |  | [optional] [default to null]
+**Mode** | **string** |  | [optional] [default to null]
 **UiMessageVersion** | **float32** |  | [optional] [default to null]
 **UpdateCredentials** | **bool** |  | [optional] [default to null]
 
