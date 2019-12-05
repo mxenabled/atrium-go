@@ -16,6 +16,9 @@ Name | Type | Description | Notes
 **IsInternational** | **bool** |  | [optional] [default to null]
 **IsOverdraftFee** | **bool** |  | [optional] [default to null]
 **IsPayrollAdvance** | **bool** |  | [optional] [default to null]
+**MerchantCategoryCode** | **float32** |  | [optional] [default to null]
+**MerchantGUID** | **string** |  | [optional] [default to null]
+**OriginalDescription** | **string** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
