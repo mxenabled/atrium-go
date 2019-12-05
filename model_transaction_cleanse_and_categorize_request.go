@@ -9,8 +9,9 @@
 package atrium
 
 type TransactionCleanseAndCategorizeRequest struct {
-	Amount      float32 `json:"amount,omitempty"`
-	Description string  `json:"description,omitempty"`
-	Identifier  string  `json:"identifier,omitempty"`
-	Type_       string  `json:"type,omitempty"`
+	Amount               float32 `json:"amount,omitempty"`
+	Description          string  `json:"description,omitempty"`
+	Identifier           string  `json:"identifier,omitempty"`
+	MerchantCategoryCode float32 `json:"merchant_category_code,omitempty"`
+	Type_                string  `json:"type,omitempty"`
 }
