@@ -8,12 +8,6 @@
 
 package atrium
 
-type AccountNumber struct {
-	AccountGUID       string `json:"account_guid,omitempty"`
-	AccountNumber     string `json:"account_number,omitempty"`
-	InstitutionNumber string `json:"institution_number,omitempty"`
-	MemberGUID        string `json:"member_guid,omitempty"`
-	RoutingNumber     string `json:"routing_number,omitempty"`
-	TransitNumber     string `json:"transit_number,omitempty"`
-	UserGUID          string `json:"user_guid,omitempty"`
+type MerchantLocationResponseBody struct {
+	MerchantLocation *MerchantLocation `json:"merchant_location,omitempty"`
 }

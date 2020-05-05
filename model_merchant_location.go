@@ -8,12 +8,15 @@
 
 package atrium
 
-type AccountNumber struct {
-	AccountGUID       string `json:"account_guid,omitempty"`
-	AccountNumber     string `json:"account_number,omitempty"`
-	InstitutionNumber string `json:"institution_number,omitempty"`
-	MemberGUID        string `json:"member_guid,omitempty"`
-	RoutingNumber     string `json:"routing_number,omitempty"`
-	TransitNumber     string `json:"transit_number,omitempty"`
-	UserGUID          string `json:"user_guid,omitempty"`
+type MerchantLocation struct {
+	City          string  `json:"city,omitempty"`
+	GUID          string  `json:"guid,omitempty"`
+	Latitude      float32 `json:"latitude,omitempty"`
+	Longitude     float32 `json:"longitude,omitempty"`
+	MerchantGUID  string  `json:"merchant_guid,omitempty"`
+	PhoneNumber   string  `json:"phone_number,omitempty"`
+	PostalCode    string  `json:"postal_code,omitempty"`
+	State         string  `json:"state,omitempty"`
+	StoreNumber   string  `json:"store_number,omitempty"`
+	StreetAddress string  `json:"street_address,omitempty"`
 }

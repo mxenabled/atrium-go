@@ -78,7 +78,10 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**ReadMemberStatus**](docs/MembersApi.md#readmemberstatus) | **Get** /users/{user_guid}/members/{member_guid}/status | Read member connection status
 *MembersApi* | [**ResumeMember**](docs/MembersApi.md#resumemember) | **Put** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
 *MembersApi* | [**UpdateMember**](docs/MembersApi.md#updatemember) | **Put** /users/{user_guid}/members/{member_guid} | Update member
+*MerchantsApi* | [**ListMerchantLocations**](docs/MerchantsApi.md#listmerchantlocations) | **Get** /merchants/{merchant_guid}/merchant_locations | List merchant locations
+*MerchantsApi* | [**ListMerchants**](docs/MerchantsApi.md#listmerchants) | **Get** /merchants | List merchants
 *MerchantsApi* | [**ReadMerchant**](docs/MerchantsApi.md#readmerchant) | **Get** /merchants/{merchant_guid} | Read merchant
+*MerchantsApi* | [**ReadMerchantLocation**](docs/MerchantsApi.md#readmerchantlocation) | **Get** /merchants/{merchant_guid}/merchant_locations/{merchant_location_guid} | Read merchant location
 *StatementsApi* | [**DownloadStatementPdf**](docs/StatementsApi.md#downloadstatementpdf) | **Get** /users/{user_guid}/members/{member_guid}/statements/{statement_guid}.pdf | Download statement PDF
 *StatementsApi* | [**FetchStatements**](docs/StatementsApi.md#fetchstatements) | **Post** /users/{user_guid}/members/{member_guid}/fetch_statements | Fetch statements
 *StatementsApi* | [**ListMemberStatements**](docs/StatementsApi.md#listmemberstatements) | **Get** /users/{user_guid}/members/{member_guid}/statements | List member statements
@@ -134,7 +137,11 @@ Class | Method | HTTP request | Description
  - [MemberUpdateRequestBody](docs/MemberUpdateRequestBody.md)
  - [MembersResponseBody](docs/MembersResponseBody.md)
  - [Merchant](docs/Merchant.md)
+ - [MerchantLocation](docs/MerchantLocation.md)
+ - [MerchantLocationResponseBody](docs/MerchantLocationResponseBody.md)
+ - [MerchantLocationsResponseBody](docs/MerchantLocationsResponseBody.md)
  - [MerchantResponseBody](docs/MerchantResponseBody.md)
+ - [MerchantsResponseBody](docs/MerchantsResponseBody.md)
  - [Pagination](docs/Pagination.md)
  - [Statement](docs/Statement.md)
  - [StatementResponseBody](docs/StatementResponseBody.md)
