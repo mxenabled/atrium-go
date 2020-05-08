@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**ListMembers**](MembersApi.md#ListMembers) | **Get** /users/{user_guid}/members | List members
 [**ReadMember**](MembersApi.md#ReadMember) | **Get** /users/{user_guid}/members/{member_guid} | Read member
 [**ReadMemberStatus**](MembersApi.md#ReadMemberStatus) | **Get** /users/{user_guid}/members/{member_guid}/status | Read member connection status
+[**ReadOAuthWindowURI**](MembersApi.md#ReadOAuthWindowURI) | **Get** /users/{user_guid}/members/{member_guid}/oauth_window_uri | Read OAuth Window URI
 [**ResumeMember**](MembersApi.md#ResumeMember) | **Put** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
 [**UpdateMember**](MembersApi.md#UpdateMember) | **Put** /users/{user_guid}/members/{member_guid} | Update member
 
@@ -616,6 +617,68 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MemberConnectionStatusResponseBody**](MemberConnectionStatusResponseBody.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ReadOAuthWindowURI**
+> MemberResponseBody ReadOAuthWindowURI(ctx, memberGUID, userGUID, optional)
+Read OAuth Window URI
+
+This endpoint will generate an `oauth_window_uri` for the specified `member`.
+
+### Example
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+  "github.com/mxenabled/atrium-go"
+  "github.com/antihax/optional"
+)
+
+func main() {
+  client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
+  ctx := context.Background()
+  
+  memberGUID := "MBR-123" // string | The unique identifier for a `member`.
+  userGUID := "USR-123" // string | The unique identifier for a `user`.
+  opts := &atrium.ReadOAuthWindowURIOpts{ 
+    ReferralSource: optional.NewString("BROWSER"), // string | Should be either BROWSER or APP depending on the implementation.
+    UiMessageWebviewURLScheme: optional.NewString("ui_message_webview_url_scheme_example"), // string | A scheme for routing the user back to the application state they were previously in.
+  }
+
+  response, _, err := client.Members.ReadOAuthWindowURI(ctx, memberGUID, userGUID, , opts)
+  if err != nil {
+    fmt.Printf("Error: %v\n", err)
+  } else {
+    fmt.Printf("Response: %s\n", response)
+  }
+}
+```
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **memberGUID** | **string**| The unique identifier for a &#x60;member&#x60;. | 
+  **userGUID** | **string**| The unique identifier for a &#x60;user&#x60;. | 
+ **optional** | ***ReadOAuthWindowURIOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ReadOAuthWindowURIOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **referralSource** | **optional.String**| Should be either BROWSER or APP depending on the implementation. | 
+ **uiMessageWebviewURLScheme** | **optional.String**| A scheme for routing the user back to the application state they were previously in. | 
+
+### Return type
+
+[**MemberResponseBody**](MemberResponseBody.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
