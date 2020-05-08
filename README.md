@@ -76,6 +76,7 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**ListMembers**](docs/MembersApi.md#listmembers) | **Get** /users/{user_guid}/members | List members
 *MembersApi* | [**ReadMember**](docs/MembersApi.md#readmember) | **Get** /users/{user_guid}/members/{member_guid} | Read member
 *MembersApi* | [**ReadMemberStatus**](docs/MembersApi.md#readmemberstatus) | **Get** /users/{user_guid}/members/{member_guid}/status | Read member connection status
+*MembersApi* | [**ReadOAuthWindowURI**](docs/MembersApi.md#readoauthwindowuri) | **Get** /users/{user_guid}/members/{member_guid}/oauth_window_uri | Read OAuth Window URI
 *MembersApi* | [**ResumeMember**](docs/MembersApi.md#resumemember) | **Put** /users/{user_guid}/members/{member_guid}/resume | Resume aggregation from MFA
 *MembersApi* | [**UpdateMember**](docs/MembersApi.md#updatemember) | **Put** /users/{user_guid}/members/{member_guid} | Update member
 *MerchantsApi* | [**ListMerchantLocations**](docs/MerchantsApi.md#listmerchantlocations) | **Get** /merchants/{merchant_guid}/merchant_locations | List merchant locations

@@ -9,9 +9,12 @@
 package atrium
 
 type MemberCreateRequest struct {
-	Credentials     []CredentialRequest `json:"credentials"`
-	Identifier      string              `json:"identifier,omitempty"`
-	InstitutionCode string              `json:"institution_code"`
-	Metadata        string              `json:"metadata,omitempty"`
-	SkipAggregation bool                `json:"skip_aggregation,omitempty"`
+	Credentials               []CredentialRequest `json:"credentials,omitempty"`
+	Identifier                string              `json:"identifier,omitempty"`
+	IsOauth                   bool                `json:"is_oauth,omitempty"`
+	InstitutionCode           string              `json:"institution_code"`
+	Metadata                  string              `json:"metadata,omitempty"`
+	ReferralSource            string              `json:"referral_source,omitempty"`
+	SkipAggregation           bool                `json:"skip_aggregation,omitempty"`
+	UiMessageWebviewURLScheme string              `json:"ui_message_webview_url_scheme,omitempty"`
 }
