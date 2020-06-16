@@ -9,6 +9,6 @@
 package atrium
 
 type MerchantsResponseBody struct {
-	Merchant   []Merchant  `json:"merchant,omitempty"`
+	Merchants  []Merchant  `json:"merchants,omitempty"`
 	Pagination *Pagination `json:"pagination,omitempty"`
 }
