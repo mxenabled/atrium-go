@@ -27,6 +27,7 @@ type Transaction struct {
 	IsInternational      bool    `json:"is_international,omitempty"`
 	IsOverdraftFee       bool    `json:"is_overdraft_fee,omitempty"`
 	IsPayrollAdvance     bool    `json:"is_payroll_advance,omitempty"`
+	IsSubscription       bool    `json:"is_subscription,omitempty"`
 	Latitude             float32 `json:"latitude,omitempty"`
 	Longitude            float32 `json:"longitude,omitempty"`
 	MemberGUID           string  `json:"member_guid,omitempty"`
