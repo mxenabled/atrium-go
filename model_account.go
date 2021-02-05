@@ -24,6 +24,7 @@ type Account struct {
 	DeathBenefit       float32 `json:"death_benefit,omitempty"`
 	GUID               string  `json:"guid,omitempty"`
 	HoldingsValue      float32 `json:"holdings_value,omitempty"`
+	InsuredName        string  `json:"insured_name,omitempty"`
 	InstitutionCode    string  `json:"institution_code,omitempty"`
 	InterestRate       float32 `json:"interest_rate,omitempty"`
 	IsClosed           bool    `json:"is_closed,omitempty"`
@@ -37,6 +38,8 @@ type Account struct {
 	OriginalBalance    float32 `json:"original_balance,omitempty"`
 	PaymentDueAt       string  `json:"payment_due_at,omitempty"`
 	PayoffBalance      float32 `json:"payoff_balance,omitempty"`
+	PayOutAmount       float32 `json:"pay_out_amount,omitempty"`
+	PremiumAmount      float32 `json:"premium_amount,omitempty"`
 	StartedOn          string  `json:"started_on,omitempty"`
 	Subtype            string  `json:"subtype,omitempty"`
 	TotalAccountValue  float32 `json:"total_account_value,omitempty"`
