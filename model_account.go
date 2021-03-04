@@ -29,6 +29,7 @@ type Account struct {
 	InterestRate       float32 `json:"interest_rate,omitempty"`
 	IsClosed           bool    `json:"is_closed,omitempty"`
 	LastPayment        float32 `json:"last_payment,omitempty"`
+	LastPaymentAt      string  `json:"last_payment_at,omitempty"`
 	LoanAmount         float32 `json:"loan_amount,omitempty"`
 	MaturesOn          string  `json:"matures_on,omitempty"`
 	MemberGUID         string  `json:"member_guid,omitempty"`

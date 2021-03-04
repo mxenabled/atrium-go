@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **InterestRate** | **float32** |  | [optional] [default to null]
 **IsClosed** | **bool** |  | [optional] [default to null]
 **LastPayment** | **float32** |  | [optional] [default to null]
+**LastPaymentAt** | **string** |  | [optional] [default to null]
 **LoanAmount** | **float32** |  | [optional] [default to null]
 **MaturesOn** | **string** |  | [optional] [default to null]
 **MemberGUID** | **string** |  | [optional] [default to null]
