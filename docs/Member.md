@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Identifier** | **string** |  | [optional] [default to null]
 **InstitutionCode** | **string** |  | [optional] [default to null]
 **IsBeingAggregated** | **bool** |  | [optional] [default to null]
+**IsOauth** | **bool** |  | [optional] [default to null]
 **Metadata** | **string** |  | [optional] [default to null]
 **Name** | **string** |  | [optional] [default to null]
 **OauthWindowUri** | **string** |  | [optional] [default to null]
