@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **SupportsAccountIdentification** | **bool** |  | [optional] [default to null]
 **SupportsAccountStatement** | **bool** |  | [optional] [default to null]
 **SupportsAccountVerification** | **bool** |  | [optional] [default to null]
+**SupportsOauth** | **bool** |  | [optional] [default to null]
 **SupportsTransactionHistory** | **bool** |  | [optional] [default to null]
 **URL** | **string** |  | [optional] [default to null]
 

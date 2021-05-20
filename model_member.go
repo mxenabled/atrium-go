@@ -15,6 +15,7 @@ type Member struct {
 	Identifier               string `json:"identifier,omitempty"`
 	InstitutionCode          string `json:"institution_code,omitempty"`
 	IsBeingAggregated        bool   `json:"is_being_aggregated,omitempty"`
+	IsOauth                  bool   `json:"is_oauth,omitempty"`
 	Metadata                 string `json:"metadata,omitempty"`
 	Name                     string `json:"name,omitempty"`
 	OauthWindowUri           string `json:"oauth_window_uri,omitempty"`
