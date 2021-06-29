@@ -5,7 +5,7 @@ The MX Atrium API supports over 48,000 data connections to thousands of financia
 ## Installation
 Put the package under your project folder and add the following in import:
 ```golang
-import "github.com/mxenabled/atrium-go"
+import "github.com/mxenabled/atrium-go/v2"
 ```
 
 ## Example Usage
@@ -19,7 +19,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/mxenabled/atrium-go"
+	"github.com/mxenabled/atrium-go/v2"
 	"github.com/antihax/optional"
 )
 

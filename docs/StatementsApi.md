@@ -21,7 +21,7 @@ package main
 import (
   "context"
   "fmt"
-  "github.com/mxenabled/atrium-go"
+  "github.com/mxenabled/atrium-go/v2"
 )
 
 func main() {
@@ -69,7 +69,7 @@ package main
 import (
   "context"
   "fmt"
-  "github.com/mxenabled/atrium-go"
+  "github.com/mxenabled/atrium-go/v2"
 )
 
 func main() {
@@ -115,7 +115,7 @@ package main
 import (
   "context"
   "fmt"
-  "github.com/mxenabled/atrium-go"
+  "github.com/mxenabled/atrium-go/v2"
   "github.com/antihax/optional"
 )
 
@@ -177,7 +177,7 @@ package main
 import (
   "context"
   "fmt"
-  "github.com/mxenabled/atrium-go"
+  "github.com/mxenabled/atrium-go/v2"
 )
 
 func main() {
