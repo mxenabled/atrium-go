@@ -11,12 +11,14 @@ package atrium
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
 	"fmt"
 	"io"
 	"mime/multipart"
+	"net"
 	"net/http"
 	"net/url"
 	"os"
@@ -64,7 +66,20 @@ type service struct {
 // optionally a custom http.Client to allow for advanced features such as caching.
 func newAPIClient(cfg *Configuration) *APIClient {
 	if cfg.HTTPClient == nil {
-		cfg.HTTPClient = http.DefaultClient
+		var netTransport = &http.Transport{
+			Dial: (&net.Dialer{
+				Timeout: 5 * time.Second,
+			}).Dial,
+			TLSHandshakeTimeout: 5 * time.Second,
+			TLSClientConfig: &tls.Config{
+				ServerName: "moneydesktop.com",
+			},
+		}
+		var netClient = &http.Client{
+			Timeout:   time.Second * 10,
+			Transport: netTransport,
+		}
+		cfg.HTTPClient = netClient
 	}
 
 	c := &APIClient{}
