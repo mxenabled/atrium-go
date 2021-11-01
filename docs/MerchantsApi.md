@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **ListMerchantLocations**
-> MerchantLocationsResponseBody ListMerchantLocations(ctx, merchantGUID)
+> MerchantLocationsResponseBody ListMerchantLocations(ctx, merchantGUID, optional)
 List merchant locations
 
 Returns a list of all the merchant locations associated with a merchant, including physical location, latitude, longitude, etc.
@@ -22,6 +22,7 @@ import (
   "context"
   "fmt"
   "github.com/mxenabled/atrium-go/v2"
+  "github.com/antihax/optional"
 )
 
 func main() {
@@ -29,8 +30,12 @@ func main() {
   ctx := context.Background()
   
   merchantGUID := "MCH-123" // string | The unique identifier for a `merchant`.
+  opts := &atrium.ListMerchantLocationsOpts{ 
+    Page: optional.NewInt32(1), // int32 | Specify current page.
+    RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
+  }
 
-  response, _, err := client.Merchants.ListMerchantLocations(ctx, merchantGUID, )
+  response, _, err := client.Merchants.ListMerchantLocations(ctx, merchantGUID, , opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -45,6 +50,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **merchantGUID** | **string**| The unique identifier for a &#x60;merchant&#x60;. | 
+ **optional** | ***ListMerchantLocationsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ListMerchantLocationsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **optional.Int32**| Specify current page. | 
+ **recordsPerPage** | **optional.Int32**| Specify records per page. | 
 
 ### Return type
 
@@ -53,7 +68,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListMerchants**
-> MerchantsResponseBody ListMerchants(ctx, )
+> MerchantsResponseBody ListMerchants(ctx, optional)
 List merchants
 
 Returns a list of merchnants.
@@ -66,13 +81,19 @@ import (
   "context"
   "fmt"
   "github.com/mxenabled/atrium-go/v2"
+  "github.com/antihax/optional"
 )
 
 func main() {
   client := atrium.AtriumClient("YOUR_API_KEY", "YOUR_CLIENT_ID")
   ctx := context.Background()
+  
+  opts := &atrium.ListMerchantsOpts{ 
+    Page: optional.NewInt32(1), // int32 | Specify current page.
+    RecordsPerPage: optional.NewInt32(12), // int32 | Specify records per page.
+  }
 
-  response, _, err := client.Merchants.ListMerchants
+  response, _, err := client.Merchants.ListMerchants(ctx, opts)
   if err != nil {
     fmt.Printf("Error: %v\n", err)
   } else {
@@ -82,7 +103,19 @@ func main() {
 ```
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ListMerchantsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ListMerchantsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **optional.Int32**| Specify current page. | 
+ **recordsPerPage** | **optional.Int32**| Specify records per page. | 
 
 ### Return type
 
