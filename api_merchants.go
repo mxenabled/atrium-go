@@ -11,6 +11,7 @@ package atrium
 import (
 	"context"
 	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -29,10 +30,19 @@ MerchantsApiService List merchant locations
 Returns a list of all the merchant locations associated with a merchant, including physical location, latitude, longitude, etc.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param merchantGUID The unique identifier for a &#x60;merchant&#x60;.
+ * @param optional nil or *ListMerchantLocationsOpts - Optional Parameters:
+     * @param "Page" (optional.Int32) -  Specify current page.
+     * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
 @return MerchantLocationsResponseBody
 */
-func (a *MerchantsApiService) ListMerchantLocations(ctx context.Context, merchantGUID string) (MerchantLocationsResponseBody, *http.Response, error) {
+
+type ListMerchantLocationsOpts struct {
+	Page           optional.Int32
+	RecordsPerPage optional.Int32
+}
+
+func (a *MerchantsApiService) ListMerchantLocations(ctx context.Context, merchantGUID string, localVarOptionals *ListMerchantLocationsOpts) (MerchantLocationsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -49,6 +59,12 @@ func (a *MerchantsApiService) ListMerchantLocations(ctx context.Context, merchan
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.RecordsPerPage.IsSet() {
+		localVarQueryParams.Add("records_per_page", parameterToString(localVarOptionals.RecordsPerPage.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -143,10 +159,19 @@ func (a *MerchantsApiService) ListMerchantLocations(ctx context.Context, merchan
 MerchantsApiService List merchants
 Returns a list of merchnants.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *ListMerchantsOpts - Optional Parameters:
+     * @param "Page" (optional.Int32) -  Specify current page.
+     * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
 @return MerchantsResponseBody
 */
-func (a *MerchantsApiService) ListMerchants(ctx context.Context) (MerchantsResponseBody, *http.Response, error) {
+
+type ListMerchantsOpts struct {
+	Page           optional.Int32
+	RecordsPerPage optional.Int32
+}
+
+func (a *MerchantsApiService) ListMerchants(ctx context.Context, localVarOptionals *ListMerchantsOpts) (MerchantsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -162,6 +187,12 @@ func (a *MerchantsApiService) ListMerchants(ctx context.Context) (MerchantsRespo
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.RecordsPerPage.IsSet() {
+		localVarQueryParams.Add("records_per_page", parameterToString(localVarOptionals.RecordsPerPage.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 

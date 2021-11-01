@@ -11,6 +11,7 @@ package atrium
 import (
 	"context"
 	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -29,10 +30,19 @@ HoldingsApiService List holdings
 Use this endpoint to read all holdings associated with a specific user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
+ * @param optional nil or *ListHoldingsOpts - Optional Parameters:
+     * @param "Page" (optional.Int32) -  Specify current page.
+     * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
 @return HoldingsResponseBody
 */
-func (a *HoldingsApiService) ListHoldings(ctx context.Context, userGUID string) (HoldingsResponseBody, *http.Response, error) {
+
+type ListHoldingsOpts struct {
+	Page           optional.Int32
+	RecordsPerPage optional.Int32
+}
+
+func (a *HoldingsApiService) ListHoldings(ctx context.Context, userGUID string, localVarOptionals *ListHoldingsOpts) (HoldingsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -49,6 +59,12 @@ func (a *HoldingsApiService) ListHoldings(ctx context.Context, userGUID string) 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.RecordsPerPage.IsSet() {
+		localVarQueryParams.Add("records_per_page", parameterToString(localVarOptionals.RecordsPerPage.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -145,10 +161,19 @@ Use this endpoint to read all holdings associated with a specific account.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountGUID The unique identifier for an &#x60;account&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
+ * @param optional nil or *ListHoldingsByAccountOpts - Optional Parameters:
+     * @param "Page" (optional.Int32) -  Specify current page.
+     * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
 @return HoldingsResponseBody
 */
-func (a *HoldingsApiService) ListHoldingsByAccount(ctx context.Context, accountGUID string, userGUID string) (HoldingsResponseBody, *http.Response, error) {
+
+type ListHoldingsByAccountOpts struct {
+	Page           optional.Int32
+	RecordsPerPage optional.Int32
+}
+
+func (a *HoldingsApiService) ListHoldingsByAccount(ctx context.Context, accountGUID string, userGUID string, localVarOptionals *ListHoldingsByAccountOpts) (HoldingsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -166,6 +191,12 @@ func (a *HoldingsApiService) ListHoldingsByAccount(ctx context.Context, accountG
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.RecordsPerPage.IsSet() {
+		localVarQueryParams.Add("records_per_page", parameterToString(localVarOptionals.RecordsPerPage.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -262,10 +293,19 @@ Use this endpoint to read all holdings associated with a specific member.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param memberGUID The unique identifier for a &#x60;member&#x60;.
  * @param userGUID The unique identifier for a &#x60;user&#x60;.
+ * @param optional nil or *ListHoldingsByMemberOpts - Optional Parameters:
+     * @param "Page" (optional.Int32) -  Specify current page.
+     * @param "RecordsPerPage" (optional.Int32) -  Specify records per page.
 
 @return HoldingsResponseBody
 */
-func (a *HoldingsApiService) ListHoldingsByMember(ctx context.Context, memberGUID string, userGUID string) (HoldingsResponseBody, *http.Response, error) {
+
+type ListHoldingsByMemberOpts struct {
+	Page           optional.Int32
+	RecordsPerPage optional.Int32
+}
+
+func (a *HoldingsApiService) ListHoldingsByMember(ctx context.Context, memberGUID string, userGUID string, localVarOptionals *ListHoldingsByMemberOpts) (HoldingsResponseBody, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
@@ -283,6 +323,12 @@ func (a *HoldingsApiService) ListHoldingsByMember(ctx context.Context, memberGUI
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.RecordsPerPage.IsSet() {
+		localVarQueryParams.Add("records_per_page", parameterToString(localVarOptionals.RecordsPerPage.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
